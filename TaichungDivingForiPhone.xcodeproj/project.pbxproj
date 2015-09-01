@@ -1,0 +1,604 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		571CBE541B8C3C3E003343F1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBE531B8C3C3E003343F1 /* main.m */; };
+		571CBE571B8C3C3E003343F1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBE561B8C3C3E003343F1 /* AppDelegate.m */; };
+		571CBE5A1B8C3C3E003343F1 /* TaichungDivingForiPhone.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 571CBE581B8C3C3E003343F1 /* TaichungDivingForiPhone.xcdatamodeld */; };
+		571CBE5D1B8C3C3E003343F1 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBE5C1B8C3C3E003343F1 /* MainViewController.m */; };
+		571CBE621B8C3C3E003343F1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 571CBE611B8C3C3E003343F1 /* Images.xcassets */; };
+		571CBE651B8C3C3E003343F1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 571CBE631B8C3C3E003343F1 /* LaunchScreen.xib */; };
+		571CBE711B8C3C3E003343F1 /* TaichungDivingForiPhoneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBE701B8C3C3E003343F1 /* TaichungDivingForiPhoneTests.m */; };
+		571CBE7C1B8C3D15003343F1 /* fadiving@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 571CBE7A1B8C3D15003343F1 /* fadiving@2x.png */; };
+		571CBE7D1B8C3D15003343F1 /* fadiving@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 571CBE7B1B8C3D15003343F1 /* fadiving@3x.png */; };
+		571CBE831B8C3F5B003343F1 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBE821B8C3F5B003343F1 /* Reachability.m */; };
+		571CBE861B8C47A1003343F1 /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBE851B8C47A1003343F1 /* LogViewController.m */; };
+		571CBE891B8C47D7003343F1 /* LogBookTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBE881B8C47D7003343F1 /* LogBookTableViewController.m */; };
+		571CBE8C1B8C4814003343F1 /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBE8B1B8C4814003343F1 /* PageViewController.m */; };
+		571CBE8F1B8C484A003343F1 /* LogShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBE8E1B8C484A003343F1 /* LogShowViewController.m */; };
+		571CBE921B8C486A003343F1 /* LogCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBE911B8C486A003343F1 /* LogCategoryViewController.m */; };
+		571CBE951B8C4890003343F1 /* TourTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBE941B8C4890003343F1 /* TourTableViewController.m */; };
+		571CBE981B8C48BB003343F1 /* TourDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBE971B8C48BB003343F1 /* TourDetailViewController.m */; };
+		571CBE9B1B8C48E3003343F1 /* ForecastNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBE9A1B8C48E3003343F1 /* ForecastNewViewController.m */; };
+		571CBE9E1B8C4914003343F1 /* ModelControler.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBE9D1B8C4914003343F1 /* ModelControler.m */; };
+		571CBEA11B8C4931003343F1 /* LogDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBEA01B8C4931003343F1 /* LogDatabase.m */; };
+		571CBEA41B8C4EDD003343F1 /* DiveLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBEA31B8C4EDD003343F1 /* DiveLog.m */; };
+		571CBEA61B8C520F003343F1 /* icons.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 571CBEA51B8C520F003343F1 /* icons.bundle */; };
+		571CBEAF1B8C523E003343F1 /* ic_book_black_24dp.png in Resources */ = {isa = PBXBuildFile; fileRef = 571CBEA71B8C523E003343F1 /* ic_book_black_24dp.png */; };
+		571CBEB01B8C523E003343F1 /* ic_book_black_48dp.png in Resources */ = {isa = PBXBuildFile; fileRef = 571CBEA81B8C523E003343F1 /* ic_book_black_48dp.png */; };
+		571CBEB11B8C523E003343F1 /* ic_class_black_48dp.png in Resources */ = {isa = PBXBuildFile; fileRef = 571CBEA91B8C523E003343F1 /* ic_class_black_48dp.png */; };
+		571CBEB21B8C523E003343F1 /* ic_edit_black_24dp.png in Resources */ = {isa = PBXBuildFile; fileRef = 571CBEAA1B8C523E003343F1 /* ic_edit_black_24dp.png */; };
+		571CBEB31B8C523E003343F1 /* ic_home_black_24dp.png in Resources */ = {isa = PBXBuildFile; fileRef = 571CBEAB1B8C523E003343F1 /* ic_home_black_24dp.png */; };
+		571CBEB41B8C523E003343F1 /* ic_refresh_black_24dp.png in Resources */ = {isa = PBXBuildFile; fileRef = 571CBEAC1B8C523E003343F1 /* ic_refresh_black_24dp.png */; };
+		571CBEB51B8C523E003343F1 /* ic_save_black_24dp.png in Resources */ = {isa = PBXBuildFile; fileRef = 571CBEAD1B8C523E003343F1 /* ic_save_black_24dp.png */; };
+		571CBEB61B8C523E003343F1 /* ic_warning_amber_48dp.png in Resources */ = {isa = PBXBuildFile; fileRef = 571CBEAE1B8C523E003343F1 /* ic_warning_amber_48dp.png */; };
+		571CBEB91B8C5E32003343F1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 571CBEBB1B8C5E32003343F1 /* Localizable.strings */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		571CBE6B1B8C3C3E003343F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 571CBE461B8C3C3E003343F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 571CBE4D1B8C3C3E003343F1;
+			remoteInfo = TaichungDivingForiPhone;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		571CBE4E1B8C3C3E003343F1 /* TaichungDivingForiPhone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaichungDivingForiPhone.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		571CBE521B8C3C3E003343F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		571CBE531B8C3C3E003343F1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		571CBE551B8C3C3E003343F1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		571CBE561B8C3C3E003343F1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		571CBE591B8C3C3E003343F1 /* TaichungDivingForiPhone.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TaichungDivingForiPhone.xcdatamodel; sourceTree = "<group>"; };
+		571CBE5B1B8C3C3E003343F1 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		571CBE5C1B8C3C3E003343F1 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		571CBE611B8C3C3E003343F1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		571CBE641B8C3C3E003343F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		571CBE6A1B8C3C3E003343F1 /* TaichungDivingForiPhoneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaichungDivingForiPhoneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		571CBE6F1B8C3C3E003343F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		571CBE701B8C3C3E003343F1 /* TaichungDivingForiPhoneTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaichungDivingForiPhoneTests.m; sourceTree = "<group>"; };
+		571CBE7A1B8C3D15003343F1 /* fadiving@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fadiving@2x.png"; sourceTree = "<group>"; };
+		571CBE7B1B8C3D15003343F1 /* fadiving@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fadiving@3x.png"; sourceTree = "<group>"; };
+		571CBE811B8C3F5B003343F1 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		571CBE821B8C3F5B003343F1 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		571CBE841B8C47A1003343F1 /* LogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogViewController.h; sourceTree = "<group>"; };
+		571CBE851B8C47A1003343F1 /* LogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogViewController.m; sourceTree = "<group>"; };
+		571CBE871B8C47D7003343F1 /* LogBookTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogBookTableViewController.h; sourceTree = "<group>"; };
+		571CBE881B8C47D7003343F1 /* LogBookTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogBookTableViewController.m; sourceTree = "<group>"; };
+		571CBE8A1B8C4814003343F1 /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
+		571CBE8B1B8C4814003343F1 /* PageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageViewController.m; sourceTree = "<group>"; };
+		571CBE8D1B8C484A003343F1 /* LogShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogShowViewController.h; sourceTree = "<group>"; };
+		571CBE8E1B8C484A003343F1 /* LogShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogShowViewController.m; sourceTree = "<group>"; };
+		571CBE901B8C486A003343F1 /* LogCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogCategoryViewController.h; sourceTree = "<group>"; };
+		571CBE911B8C486A003343F1 /* LogCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogCategoryViewController.m; sourceTree = "<group>"; };
+		571CBE931B8C4890003343F1 /* TourTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TourTableViewController.h; sourceTree = "<group>"; };
+		571CBE941B8C4890003343F1 /* TourTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TourTableViewController.m; sourceTree = "<group>"; };
+		571CBE961B8C48BB003343F1 /* TourDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TourDetailViewController.h; sourceTree = "<group>"; };
+		571CBE971B8C48BB003343F1 /* TourDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TourDetailViewController.m; sourceTree = "<group>"; };
+		571CBE991B8C48E3003343F1 /* ForecastNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForecastNewViewController.h; sourceTree = "<group>"; };
+		571CBE9A1B8C48E3003343F1 /* ForecastNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForecastNewViewController.m; sourceTree = "<group>"; };
+		571CBE9C1B8C4914003343F1 /* ModelControler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelControler.h; sourceTree = "<group>"; };
+		571CBE9D1B8C4914003343F1 /* ModelControler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelControler.m; sourceTree = "<group>"; };
+		571CBE9F1B8C4931003343F1 /* LogDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogDatabase.h; sourceTree = "<group>"; };
+		571CBEA01B8C4931003343F1 /* LogDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogDatabase.m; sourceTree = "<group>"; };
+		571CBEA21B8C4EDD003343F1 /* DiveLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiveLog.h; sourceTree = "<group>"; };
+		571CBEA31B8C4EDD003343F1 /* DiveLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiveLog.m; sourceTree = "<group>"; };
+		571CBEA51B8C520F003343F1 /* icons.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = icons.bundle; sourceTree = "<group>"; };
+		571CBEA71B8C523E003343F1 /* ic_book_black_24dp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_book_black_24dp.png; sourceTree = "<group>"; };
+		571CBEA81B8C523E003343F1 /* ic_book_black_48dp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_book_black_48dp.png; sourceTree = "<group>"; };
+		571CBEA91B8C523E003343F1 /* ic_class_black_48dp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_class_black_48dp.png; sourceTree = "<group>"; };
+		571CBEAA1B8C523E003343F1 /* ic_edit_black_24dp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_edit_black_24dp.png; sourceTree = "<group>"; };
+		571CBEAB1B8C523E003343F1 /* ic_home_black_24dp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_home_black_24dp.png; sourceTree = "<group>"; };
+		571CBEAC1B8C523E003343F1 /* ic_refresh_black_24dp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_refresh_black_24dp.png; sourceTree = "<group>"; };
+		571CBEAD1B8C523E003343F1 /* ic_save_black_24dp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_save_black_24dp.png; sourceTree = "<group>"; };
+		571CBEAE1B8C523E003343F1 /* ic_warning_amber_48dp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_warning_amber_48dp.png; sourceTree = "<group>"; };
+		571CBEBA1B8C5E32003343F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		571CBEBC1B8C5E35003343F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		571CBEBD1B8C5E49003343F1 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		571CBE4B1B8C3C3E003343F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		571CBE671B8C3C3E003343F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		571CBE451B8C3C3E003343F1 = {
+			isa = PBXGroup;
+			children = (
+				571CBE501B8C3C3E003343F1 /* TaichungDivingForiPhone */,
+				571CBE6D1B8C3C3E003343F1 /* TaichungDivingForiPhoneTests */,
+				571CBE4F1B8C3C3E003343F1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		571CBE4F1B8C3C3E003343F1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				571CBE4E1B8C3C3E003343F1 /* TaichungDivingForiPhone.app */,
+				571CBE6A1B8C3C3E003343F1 /* TaichungDivingForiPhoneTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		571CBE501B8C3C3E003343F1 /* TaichungDivingForiPhone */ = {
+			isa = PBXGroup;
+			children = (
+				571CBE801B8C3DEA003343F1 /* Database */,
+				571CBE7F1B8C3DC5003343F1 /* ViewControlers */,
+				571CBE7E1B8C3D21003343F1 /* Icons */,
+				571CBE611B8C3C3E003343F1 /* Images.xcassets */,
+				571CBE631B8C3C3E003343F1 /* LaunchScreen.xib */,
+				571CBE511B8C3C3E003343F1 /* Supporting Files */,
+			);
+			path = TaichungDivingForiPhone;
+			sourceTree = "<group>";
+		};
+		571CBE511B8C3C3E003343F1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				571CBEBB1B8C5E32003343F1 /* Localizable.strings */,
+				571CBE811B8C3F5B003343F1 /* Reachability.h */,
+				571CBE821B8C3F5B003343F1 /* Reachability.m */,
+				571CBE551B8C3C3E003343F1 /* AppDelegate.h */,
+				571CBE561B8C3C3E003343F1 /* AppDelegate.m */,
+				571CBE521B8C3C3E003343F1 /* Info.plist */,
+				571CBE531B8C3C3E003343F1 /* main.m */,
+				571CBE9C1B8C4914003343F1 /* ModelControler.h */,
+				571CBE9D1B8C4914003343F1 /* ModelControler.m */,
+				571CBE9F1B8C4931003343F1 /* LogDatabase.h */,
+				571CBEA01B8C4931003343F1 /* LogDatabase.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		571CBE6D1B8C3C3E003343F1 /* TaichungDivingForiPhoneTests */ = {
+			isa = PBXGroup;
+			children = (
+				571CBE701B8C3C3E003343F1 /* TaichungDivingForiPhoneTests.m */,
+				571CBE6E1B8C3C3E003343F1 /* Supporting Files */,
+			);
+			path = TaichungDivingForiPhoneTests;
+			sourceTree = "<group>";
+		};
+		571CBE6E1B8C3C3E003343F1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				571CBE6F1B8C3C3E003343F1 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		571CBE7E1B8C3D21003343F1 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				571CBEA71B8C523E003343F1 /* ic_book_black_24dp.png */,
+				571CBEA81B8C523E003343F1 /* ic_book_black_48dp.png */,
+				571CBEA91B8C523E003343F1 /* ic_class_black_48dp.png */,
+				571CBEAA1B8C523E003343F1 /* ic_edit_black_24dp.png */,
+				571CBEAB1B8C523E003343F1 /* ic_home_black_24dp.png */,
+				571CBEAC1B8C523E003343F1 /* ic_refresh_black_24dp.png */,
+				571CBEAD1B8C523E003343F1 /* ic_save_black_24dp.png */,
+				571CBEAE1B8C523E003343F1 /* ic_warning_amber_48dp.png */,
+				571CBEA51B8C520F003343F1 /* icons.bundle */,
+				571CBE7A1B8C3D15003343F1 /* fadiving@2x.png */,
+				571CBE7B1B8C3D15003343F1 /* fadiving@3x.png */,
+			);
+			name = Icons;
+			sourceTree = "<group>";
+		};
+		571CBE7F1B8C3DC5003343F1 /* ViewControlers */ = {
+			isa = PBXGroup;
+			children = (
+				571CBE5B1B8C3C3E003343F1 /* MainViewController.h */,
+				571CBE5C1B8C3C3E003343F1 /* MainViewController.m */,
+				571CBE841B8C47A1003343F1 /* LogViewController.h */,
+				571CBE851B8C47A1003343F1 /* LogViewController.m */,
+				571CBE871B8C47D7003343F1 /* LogBookTableViewController.h */,
+				571CBE881B8C47D7003343F1 /* LogBookTableViewController.m */,
+				571CBE8A1B8C4814003343F1 /* PageViewController.h */,
+				571CBE8B1B8C4814003343F1 /* PageViewController.m */,
+				571CBE8D1B8C484A003343F1 /* LogShowViewController.h */,
+				571CBE8E1B8C484A003343F1 /* LogShowViewController.m */,
+				571CBE901B8C486A003343F1 /* LogCategoryViewController.h */,
+				571CBE911B8C486A003343F1 /* LogCategoryViewController.m */,
+				571CBE931B8C4890003343F1 /* TourTableViewController.h */,
+				571CBE941B8C4890003343F1 /* TourTableViewController.m */,
+				571CBE961B8C48BB003343F1 /* TourDetailViewController.h */,
+				571CBE971B8C48BB003343F1 /* TourDetailViewController.m */,
+				571CBE991B8C48E3003343F1 /* ForecastNewViewController.h */,
+				571CBE9A1B8C48E3003343F1 /* ForecastNewViewController.m */,
+			);
+			name = ViewControlers;
+			sourceTree = "<group>";
+		};
+		571CBE801B8C3DEA003343F1 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				571CBE581B8C3C3E003343F1 /* TaichungDivingForiPhone.xcdatamodeld */,
+				571CBEA21B8C4EDD003343F1 /* DiveLog.h */,
+				571CBEA31B8C4EDD003343F1 /* DiveLog.m */,
+			);
+			name = Database;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		571CBE4D1B8C3C3E003343F1 /* TaichungDivingForiPhone */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 571CBE741B8C3C3E003343F1 /* Build configuration list for PBXNativeTarget "TaichungDivingForiPhone" */;
+			buildPhases = (
+				571CBE4A1B8C3C3E003343F1 /* Sources */,
+				571CBE4B1B8C3C3E003343F1 /* Frameworks */,
+				571CBE4C1B8C3C3E003343F1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TaichungDivingForiPhone;
+			productName = TaichungDivingForiPhone;
+			productReference = 571CBE4E1B8C3C3E003343F1 /* TaichungDivingForiPhone.app */;
+			productType = "com.apple.product-type.application";
+		};
+		571CBE691B8C3C3E003343F1 /* TaichungDivingForiPhoneTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 571CBE771B8C3C3E003343F1 /* Build configuration list for PBXNativeTarget "TaichungDivingForiPhoneTests" */;
+			buildPhases = (
+				571CBE661B8C3C3E003343F1 /* Sources */,
+				571CBE671B8C3C3E003343F1 /* Frameworks */,
+				571CBE681B8C3C3E003343F1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				571CBE6C1B8C3C3E003343F1 /* PBXTargetDependency */,
+			);
+			name = TaichungDivingForiPhoneTests;
+			productName = TaichungDivingForiPhoneTests;
+			productReference = 571CBE6A1B8C3C3E003343F1 /* TaichungDivingForiPhoneTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		571CBE461B8C3C3E003343F1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = "Samuel Teng";
+				TargetAttributes = {
+					571CBE4D1B8C3C3E003343F1 = {
+						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 7V3E82AMW2;
+					};
+					571CBE691B8C3C3E003343F1 = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = 571CBE4D1B8C3C3E003343F1;
+					};
+				};
+			};
+			buildConfigurationList = 571CBE491B8C3C3E003343F1 /* Build configuration list for PBXProject "TaichungDivingForiPhone" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				"zh-Hant",
+			);
+			mainGroup = 571CBE451B8C3C3E003343F1;
+			productRefGroup = 571CBE4F1B8C3C3E003343F1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				571CBE4D1B8C3C3E003343F1 /* TaichungDivingForiPhone */,
+				571CBE691B8C3C3E003343F1 /* TaichungDivingForiPhoneTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		571CBE4C1B8C3C3E003343F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				571CBEB51B8C523E003343F1 /* ic_save_black_24dp.png in Resources */,
+				571CBE651B8C3C3E003343F1 /* LaunchScreen.xib in Resources */,
+				571CBE7D1B8C3D15003343F1 /* fadiving@3x.png in Resources */,
+				571CBEB91B8C5E32003343F1 /* Localizable.strings in Resources */,
+				571CBEAF1B8C523E003343F1 /* ic_book_black_24dp.png in Resources */,
+				571CBEA61B8C520F003343F1 /* icons.bundle in Resources */,
+				571CBEB31B8C523E003343F1 /* ic_home_black_24dp.png in Resources */,
+				571CBE621B8C3C3E003343F1 /* Images.xcassets in Resources */,
+				571CBEB41B8C523E003343F1 /* ic_refresh_black_24dp.png in Resources */,
+				571CBEB21B8C523E003343F1 /* ic_edit_black_24dp.png in Resources */,
+				571CBE7C1B8C3D15003343F1 /* fadiving@2x.png in Resources */,
+				571CBEB11B8C523E003343F1 /* ic_class_black_48dp.png in Resources */,
+				571CBEB01B8C523E003343F1 /* ic_book_black_48dp.png in Resources */,
+				571CBEB61B8C523E003343F1 /* ic_warning_amber_48dp.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		571CBE681B8C3C3E003343F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		571CBE4A1B8C3C3E003343F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				571CBE9E1B8C4914003343F1 /* ModelControler.m in Sources */,
+				571CBE571B8C3C3E003343F1 /* AppDelegate.m in Sources */,
+				571CBE981B8C48BB003343F1 /* TourDetailViewController.m in Sources */,
+				571CBEA11B8C4931003343F1 /* LogDatabase.m in Sources */,
+				571CBE921B8C486A003343F1 /* LogCategoryViewController.m in Sources */,
+				571CBE9B1B8C48E3003343F1 /* ForecastNewViewController.m in Sources */,
+				571CBE5A1B8C3C3E003343F1 /* TaichungDivingForiPhone.xcdatamodeld in Sources */,
+				571CBE891B8C47D7003343F1 /* LogBookTableViewController.m in Sources */,
+				571CBE8C1B8C4814003343F1 /* PageViewController.m in Sources */,
+				571CBE5D1B8C3C3E003343F1 /* MainViewController.m in Sources */,
+				571CBE8F1B8C484A003343F1 /* LogShowViewController.m in Sources */,
+				571CBE541B8C3C3E003343F1 /* main.m in Sources */,
+				571CBE831B8C3F5B003343F1 /* Reachability.m in Sources */,
+				571CBE951B8C4890003343F1 /* TourTableViewController.m in Sources */,
+				571CBEA41B8C4EDD003343F1 /* DiveLog.m in Sources */,
+				571CBE861B8C47A1003343F1 /* LogViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		571CBE661B8C3C3E003343F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				571CBE711B8C3C3E003343F1 /* TaichungDivingForiPhoneTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		571CBE6C1B8C3C3E003343F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 571CBE4D1B8C3C3E003343F1 /* TaichungDivingForiPhone */;
+			targetProxy = 571CBE6B1B8C3C3E003343F1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		571CBE631B8C3C3E003343F1 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				571CBE641B8C3C3E003343F1 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		571CBEBB1B8C5E32003343F1 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				571CBEBA1B8C5E32003343F1 /* Base */,
+				571CBEBC1B8C5E35003343F1 /* en */,
+				571CBEBD1B8C5E49003343F1 /* zh-Hant */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		571CBE721B8C3C3E003343F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		571CBE731B8C3C3E003343F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		571CBE751B8C3C3E003343F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = TaichungDivingForiPhone/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Debug;
+		};
+		571CBE761B8C3C3E003343F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = TaichungDivingForiPhone/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Release;
+		};
+		571CBE781B8C3C3E003343F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TaichungDivingForiPhoneTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TaichungDivingForiPhone.app/TaichungDivingForiPhone";
+			};
+			name = Debug;
+		};
+		571CBE791B8C3C3E003343F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TaichungDivingForiPhoneTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TaichungDivingForiPhone.app/TaichungDivingForiPhone";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		571CBE491B8C3C3E003343F1 /* Build configuration list for PBXProject "TaichungDivingForiPhone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				571CBE721B8C3C3E003343F1 /* Debug */,
+				571CBE731B8C3C3E003343F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		571CBE741B8C3C3E003343F1 /* Build configuration list for PBXNativeTarget "TaichungDivingForiPhone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				571CBE751B8C3C3E003343F1 /* Debug */,
+				571CBE761B8C3C3E003343F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		571CBE771B8C3C3E003343F1 /* Build configuration list for PBXNativeTarget "TaichungDivingForiPhoneTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				571CBE781B8C3C3E003343F1 /* Debug */,
+				571CBE791B8C3C3E003343F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		571CBE581B8C3C3E003343F1 /* TaichungDivingForiPhone.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				571CBE591B8C3C3E003343F1 /* TaichungDivingForiPhone.xcdatamodel */,
+			);
+			currentVersion = 571CBE591B8C3C3E003343F1 /* TaichungDivingForiPhone.xcdatamodel */;
+			path = TaichungDivingForiPhone.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 571CBE461B8C3C3E003343F1 /* Project object */;
+}

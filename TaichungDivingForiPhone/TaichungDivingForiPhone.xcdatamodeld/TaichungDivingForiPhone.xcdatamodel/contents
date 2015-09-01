@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14F27" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="DiveLog" representedClassName="DiveLog" syncable="YES">
+        <attribute name="current" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dive_time" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="end_pressure" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gas_type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="helium" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="highppo2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lowppo2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="max_depth" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mixture" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nitrogen" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="oxygen" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="site" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="start_pressure" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="temperature" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="visibility" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="waves" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="DiveLog" positionX="-63" positionY="-18" width="128" height="300"/>
+    </elements>
+</model>

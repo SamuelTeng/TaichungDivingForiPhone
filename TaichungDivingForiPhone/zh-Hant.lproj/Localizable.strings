@@ -1,0 +1,85 @@
+/* 
+  Localizable.strings
+  TaichungDivingForiPad
+
+  Created by Samuel Teng on 2015/8/22.
+  Copyright (c) 2015年 Samuel Teng. All rights reserved.
+*/
+
+/*Title*/
+"DivingBook" = "非潛Book";
+"LogPage" = "潛水日誌";
+"Weather" = "氣象資訊";
+"Tour" = "旅遊行程";
+
+/*Subtitle*/
+"Air" = "一般空氣";
+"Nitro" = "高氧";
+"CCR" = "循環水肺";
+"Surface" = "海面天氣";
+"Site" = "旅遊天氣";
+"Domestic" = "國內旅遊";
+"Foreign" = "國外旅遊";
+
+/*Tour Title*/
+"NoEa" = "東北角潛水旅遊";
+"Liuqiu" = "琉球嶼潛水旅遊";
+"GreenI" = "綠島潛水旅遊";
+"OrchidI" = "蘭嶼潛水旅遊";
+"Penghu" = "澎湖潛水旅遊";
+"Kenting" = "墾丁潛水旅遊";
+"Maldives" = "馬爾地夫船宿潛水旅遊";
+"SimilanI" = "斯米蘭船宿潛水旅遊";
+"SuluS" = "蘇祿海船宿潛水旅遊";
+"GBR" = "大堡礁潛水旅遊";
+"Mindoro" = "明多洛潛水旅遊";
+"Palau" = "帛琉潛水旅遊";
+"Sipadan" = "西巴丹潛水旅遊";
+"TiomanI" = "刁曼島潛水旅遊";
+"Moaboal" = "莫亞礁潛水旅遊";
+"Anilao" = "阿尼洛潛水旅遊";
+"Dumaguete" = "杜馬蓋地潛水旅遊";
+"Bohol" = "薄荷島潛水旅遊";
+"Okinawa" = "沖繩島潛水旅遊";
+"Phuket" = "普吉島潛水旅遊";
+"Maratua" = "馬拉杜阿潛水旅遊";
+"Tulamben" = "土蘭奔潛水旅遊";
+
+/*MSG*/
+"Alert" = "無日誌記錄";
+"AlertM" = "沒有日誌記錄，請選擇邊欄任一類別日誌新增一筆或\"取消\"回到主頁面";
+"Cancel" = "取消";
+"Count" = "目前已潛:%lu";
+"Saved" = "儲存成功";
+"SavedM" = "請點選\"日誌首頁\"回到目錄";
+
+/*Spinner*/
+"Flat" = "平";
+"Small" = "小";
+"Medium" = "中";
+"Strong" = "大";
+"Yes" = "有";
+"No" = "無";
+"Date" = "日期";
+"Site" = "潛點";
+"Gas" = "氣源";
+"BPres" = "起始殘壓";
+"EPres" = "結束殘壓";
+"Max" = "最大深度";
+"DTime" = "潛水時間";
+"Temp" = "水溫";
+"Visi" = "能見度";
+"Mix" = "混合濃度";
+"Oxy" = "氧氣";
+"Nitrox" = "氮氣";
+"Heli" = "氫氣";
+"LowP" = "低ppO2";
+"HighP" = "高ppO2";
+"Waves" = "浪況";
+"Current" = "海流";
+
+/*Log*/
+"CCRL" = " 日期: %@ \n\n 潛點: %@ \n\n 潛水時間: %@ minutes \n\n 氣源: %@ \n\n 起始殘壓: %@ bar\n\n 結束殘壓: %@ bar\n\n 混合濃度: %@\n\n 氧氣:%@\n\n 氮氣:%@\n\n 氦氣:%@\n\n 低ppO2:%@\n\n 高ppO2:%@\n\n 最大深度: %@ \n\n 水溫: %@ \n\n 能見度: %@ \n\n 流: %@ \n\n 浪況: %@";
+"NitroL" = " 日期: %@ \n\n 潛點: %@ \n\n 潛水時間: %@ minutes \n\n 氣源: %@ \n\n 起始殘壓: %@ bar\n\n 結束殘壓: %@ bar\n\n 混合濃度: %@\n\n 氧氣:%@\n\n 氮氣:%@\n\n 最大深度: %@ \n\n 水溫: %@ \n\n 能見度: %@ \n\n 流: %@ \n\n 浪況: %@";
+"Log" = " 日期: %@ \n\n 潛點: %@ \n\n 潛水時間: %@ minutes \n\n 氣源: %@ \n\n 起始殘壓: %@ bar\n\n 結束殘壓: %@ bar\n\n 最大深度: %@ \n\n 水溫: %@ \n\n 能見度: %@ \n\n 流: %@ \n\n 浪況: %@";
+

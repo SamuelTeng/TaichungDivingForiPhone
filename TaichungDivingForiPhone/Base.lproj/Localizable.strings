@@ -1,0 +1,87 @@
+/* 
+  Localizable.strings
+  TaichungDivingForiPad
+
+  Created by Samuel Teng on 2015/8/22.
+  Copyright (c) 2015年 Samuel Teng. All rights reserved.
+*/
+
+/*Title*/
+"DivingBook" = "Diving Book";
+"LogPage" = "Diving Log";
+"Weather" = "Weather";
+"Tour" = "Tour";
+
+/*Subtitle*/
+"Air" = "Air";
+"Nitro" = "Nitrox";
+"CCR" = "CCR";
+"Surface" = "Surface";
+"Site" = "Site";
+"Domestic" = "Domestic";
+"Foreign" = "Foreign";
+
+/*Tour Title*/
+"NoEa" = "North East";
+"Liuqiu" = "Liuqiu";
+"GreenI" = "Green Island";
+"OrchidI" = "Orchid Island";
+"Penghu" = "Penghu";
+"Kenting" = "Kenting";
+"Maldives" = "Maldives";
+"SimilanI" = "Similan Islands";
+"SuluS" = "Sulu Sea";
+"GBR" = "Great Barrier Reef";
+"Mindoro" = "Mindoro";
+"Palau" = "Palau";
+"Sipadan" = "Sipadan";
+"TiomanI" = "Tioman Island";
+"Moaboal" = "Moaboal";
+"Anilao" = "Anilao";
+"Dumaguete" = "Dumaguete";
+"Bohol" = "Bohol";
+"Okinawa" = "Okinawa";
+"Phuket" = "Phuket";
+"Maratua" = "Maratua";
+"Tulamben" = "Tulamben";
+
+/*MSG*/
+"Alert" = "No Record Be Found";
+"AlertM" = "Please Pick A Category To Add One; Click Cancel To Dismiss";
+"Cancel" = "Cancel";
+"Count" = "You have dived: %lu";
+"Saved" = "Saved";
+"SavedM" = "Click \"Log Page\" To Return";
+"Add" = "Add";
+
+/*Spinner*/
+"Flat" = "Flat";
+"Small" = "Small";
+"Medium" = "Medium";
+"Strong" = "Strong";
+"Yes" = "Yes";
+"No" = "No";
+"Date" = "Date";
+"Site" = "Site";
+"Gas" = "Gas";
+"BPres" = "Begin Pressure";
+"EPres" = "End Pressure";
+"Max" = "Max Depth";
+"DTime" = "Diving Time";
+"Temp" = "Temperature";
+"Visi" = "Visibility";
+"Mix" = "Mix";
+"Oxy" = "Oxygen";
+"Nitrox" = "Nitrox";
+"Heli" = "Helium";
+"LowP" = "Low ppO2";
+"HighP" = "High ppO2";
+"Waves" = "Waves";
+"Current" = "Current";
+
+/*Log*/
+"CCRL" = " Date: %@ \n\n Site: %@ \n\n Diving Time: %@ minutes \n\n Gas: %@ \n\n Begin Pressure: %@ bar\n\n End Pressure: %@ bar\n\n Mixture: %@\n\n Oxygen:%@\n\n Nitrogen:%@\n\n Helium:%@\n\n LowppO2:%@\n\n High ppO2:%@\n\n Max Depth: %@ \n\n Temperature: %@ \n\n Visibility: %@ \n\n Current: %@ \n\n Waves: %@";
+"NitroL" = " Date: %@ \n\n Site: %@ \n\n Diving Time: %@ minutes \n\n Gas: %@ \n\n Begin Pressure: %@ bar\n\n End Pressure: %@ bar\n\n Mixture: %@\n\n Oxygen:%@\n\n Nitrogen:%@\n\n Max Depth: %@ \n\n Temperature: %@ \n\n Visibility: %@ \n\n Current: %@ \n\n Waves: %@";
+"Log" = " Date: %@ \n\n Site: %@ \n\n Diving Time: %@ minutes \n\n Gas: %@ \n\n Begin Pressure: %@ bar\n\n End Pressure: %@ bar\n\n Max Depth: %@ \n\n Temperature: %@ \n\n Visibility: %@ \n\n Current: %@ \n\n Waves: %@";
+
+
