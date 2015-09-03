@@ -38,6 +38,8 @@
 		571CBEB51B8C523E003343F1 /* ic_save_black_24dp.png in Resources */ = {isa = PBXBuildFile; fileRef = 571CBEAD1B8C523E003343F1 /* ic_save_black_24dp.png */; };
 		571CBEB61B8C523E003343F1 /* ic_warning_amber_48dp.png in Resources */ = {isa = PBXBuildFile; fileRef = 571CBEAE1B8C523E003343F1 /* ic_warning_amber_48dp.png */; };
 		571CBEB91B8C5E32003343F1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 571CBEBB1B8C5E32003343F1 /* Localizable.strings */; };
+		578679581B95E38B00A0F977 /* Background.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 578679571B95E38B00A0F977 /* Background.bundle */; };
+		57ABF8191B96E69400BE7CF2 /* Button.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 57ABF8181B96E69400BE7CF2 /* Button.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +104,8 @@
 		571CBEBA1B8C5E32003343F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		571CBEBC1B8C5E35003343F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		571CBEBD1B8C5E49003343F1 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		578679571B95E38B00A0F977 /* Background.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Background.bundle; sourceTree = "<group>"; };
+		57ABF8181B96E69400BE7CF2 /* Button.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Button.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +195,8 @@
 		571CBE7E1B8C3D21003343F1 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				57ABF8181B96E69400BE7CF2 /* Button.bundle */,
+				578679571B95E38B00A0F977 /* Background.bundle */,
 				571CBEA71B8C523E003343F1 /* ic_book_black_24dp.png */,
 				571CBEA81B8C523E003343F1 /* ic_book_black_48dp.png */,
 				571CBEA91B8C523E003343F1 /* ic_class_black_48dp.png */,
@@ -324,11 +330,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				571CBEB51B8C523E003343F1 /* ic_save_black_24dp.png in Resources */,
+				57ABF8191B96E69400BE7CF2 /* Button.bundle in Resources */,
 				571CBE651B8C3C3E003343F1 /* LaunchScreen.xib in Resources */,
 				571CBE7D1B8C3D15003343F1 /* fadiving@3x.png in Resources */,
 				571CBEB91B8C5E32003343F1 /* Localizable.strings in Resources */,
 				571CBEAF1B8C523E003343F1 /* ic_book_black_24dp.png in Resources */,
 				571CBEA61B8C520F003343F1 /* icons.bundle in Resources */,
+				578679581B95E38B00A0F977 /* Background.bundle in Resources */,
 				571CBEB31B8C523E003343F1 /* ic_home_black_24dp.png in Resources */,
 				571CBE621B8C3C3E003343F1 /* Images.xcassets in Resources */,
 				571CBEB41B8C523E003343F1 /* ic_refresh_black_24dp.png in Resources */,
