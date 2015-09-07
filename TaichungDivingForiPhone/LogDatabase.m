@@ -106,7 +106,7 @@
 {
     [self fetchData];
     NSManagedObject *managedObject = [resultController objectAtIndexPath:indexpath];
-    logTemperature = [managedObject valueForKey:@"temperture"];
+    logTemperature = [managedObject valueForKey:@"temperature"];
     return logTemperature;
 }
 

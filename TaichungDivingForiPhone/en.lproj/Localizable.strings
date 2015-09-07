@@ -52,6 +52,7 @@
 "Count" = "You have dived: %lu";
 "Saved" = "Saved";
 "SavedM" = "Click \"Log Page\" To Return";
+"Add" = "Add";
 
 /*Spinner*/
 "Flat" = "Flat";

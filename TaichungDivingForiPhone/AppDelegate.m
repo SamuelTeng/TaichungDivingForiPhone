@@ -35,6 +35,7 @@
     
     self.mainViewController = [[MainViewController alloc] init];
     self.navi = [[UINavigationController alloc] initWithRootViewController:self.mainViewController];
+    
     self.window.rootViewController = self.navi;
     
     

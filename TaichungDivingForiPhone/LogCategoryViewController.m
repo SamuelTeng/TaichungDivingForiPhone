@@ -11,6 +11,19 @@
 #import "LogBookTableViewController.h"
 #import "LogViewController.h"
 
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() ==UIUserInterfaceIdiomPhone)
+#define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
+
+#define SCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
+#define SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
+#define SCREEN_MAX_LENGTH (MAX(SCREEN_WIDTH, SCREEN_HEIGHT))
+#define SCREEN_MIN_LENGTH (MIN(SCREEN_WIDTH, SCREEN_HEIGHT))
+
+#define IS_IPHONE_4_OR_LESS (IS_IPHONE && SCREEN_MAX_LENGTH < 568.0)
+#define IS_IPHONE_5 (IS_IPHONE && SCREEN_MAX_LENGTH == 568.0)
+#define IS_IPHONE_6 (IS_IPHONE && SCREEN_MAX_LENGTH == 667.0)
+#define IS_IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
+
 @interface LogCategoryViewController (){
     
     AppDelegate *delegate;
@@ -23,6 +36,135 @@
 @implementation LogCategoryViewController
 @synthesize air_Button,nitrox_Button,closedCircuit_Button;
 
+-(void)detectingDevice
+{
+    
+    if(IS_IPHONE)
+    {
+        NSLog(@"IS_IPHONE");
+    }
+    if(IS_RETINA)
+    {
+        NSLog(@"IS_RETINA");
+    }
+    if(IS_IPHONE_4_OR_LESS)
+    {
+        NSLog(@"IS_IPHONE_4_OR_LESS");
+        UIImageView *backgroundImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.bundle/Background_i4"]];
+        [self.view addSubview:backgroundImg];
+        /*
+        UIButton *logBookButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [logBookButton setBackgroundImage:[UIImage imageNamed:@"Button.bundle/LogBookBtn_i4"] forState:UIControlStateNormal];
+        [logBookButton setTitle:NSLocalizedString(@"LogPage", nil) forState:UIControlStateNormal];
+        [logBookButton setFrame:CGRectMake(self.view.center.x-74, self.view.center.y-160,145, 45)];
+        logBookButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+        [logBookButton addTarget:self action:@selector(fowardToLogBook:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:logBookButton];
+        
+        UIButton *weatherButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [weatherButton setBackgroundImage:[UIImage imageNamed:@"Button.bundle/WeatherBtn_i4"] forState:UIControlStateNormal];
+        [weatherButton setTitle:NSLocalizedString(@"Weather", nil) forState:UIControlStateNormal];
+        [weatherButton setFrame:CGRectMake(self.view.center.x-74, self.view.center.y-60, 145, 45)];
+        [weatherButton addTarget:self action:@selector(fowardToForecast:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:weatherButton];
+        
+        UIButton *tourButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [tourButton setBackgroundImage:[UIImage imageNamed:@"Button.bundle/TourBtn_i4"] forState:UIControlStateNormal];
+        [tourButton setTitle:NSLocalizedString(@"Tour", nil) forState:UIControlStateNormal];
+        [tourButton setFrame:CGRectMake(self.view.center.x-74, self.view.center.y+40, 145, 45)];
+        [tourButton addTarget:self action:@selector(fowardToTourTable:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:tourButton];
+        */
+    }
+    if(IS_IPHONE_5)
+    {
+        NSLog(@"IS_IPHONE_5");
+        UIImageView *backgroundImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.bundle/Background_i5"]];
+        [self.view addSubview:backgroundImg];
+        /*
+        UIButton *logBookButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [logBookButton setBackgroundImage:[UIImage imageNamed:@"Button.bundle/LogBookBtn_i5"] forState:UIControlStateNormal];
+        [logBookButton setTitle:NSLocalizedString(@"LogPage", nil) forState:UIControlStateNormal];
+        [logBookButton setFrame:CGRectMake(self.view.center.x-94, self.view.center.y-180,190, 60)];
+        logBookButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+        [logBookButton addTarget:self action:@selector(fowardToLogBook:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:logBookButton];
+        
+        UIButton *weatherButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [weatherButton setBackgroundImage:[UIImage imageNamed:@"Button.bundle/WeatherBtn_i5"] forState:UIControlStateNormal];
+        [weatherButton setTitle:NSLocalizedString(@"Weather", nil) forState:UIControlStateNormal];
+        [weatherButton setFrame:CGRectMake(self.view.center.x-94, self.view.center.y-80, 190, 60)];
+        [weatherButton addTarget:self action:@selector(fowardToForecast:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:weatherButton];
+        
+        UIButton *tourButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [tourButton setBackgroundImage:[UIImage imageNamed:@"Button.bundle/TourBtn_i5"] forState:UIControlStateNormal];
+        [tourButton setTitle:NSLocalizedString(@"Tour", nil) forState:UIControlStateNormal];
+        [tourButton setFrame:CGRectMake(self.view.center.x-94, self.view.center.y+20, 190, 60)];
+        [tourButton addTarget:self action:@selector(fowardToTourTable:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:tourButton];
+        */
+    }
+    if(IS_IPHONE_6)
+    {
+        NSLog(@"IS_IPHONE_6");
+        UIImageView *backgroundImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.bundle/Background_i6"]];
+        [self.view addSubview:backgroundImg];
+        /*
+        UIButton *logBookButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [logBookButton setBackgroundImage:[UIImage imageNamed:@"Button.bundle/LogBookBtn_i6"] forState:UIControlStateNormal];
+        [logBookButton setTitle:NSLocalizedString(@"LogPage", nil) forState:UIControlStateNormal];
+        [logBookButton setFrame:CGRectMake(self.view.center.x-100, self.view.center.y-200,210, 70)];
+        logBookButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+        [logBookButton addTarget:self action:@selector(fowardToLogBook:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:logBookButton];
+        
+        UIButton *weatherButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [weatherButton setBackgroundImage:[UIImage imageNamed:@"Button.bundle/WeatherBtn_i6"] forState:UIControlStateNormal];
+        [weatherButton setTitle:NSLocalizedString(@"Weather", nil) forState:UIControlStateNormal];
+        [weatherButton setFrame:CGRectMake(self.view.center.x-100, self.view.center.y-80, 210, 70)];
+        [weatherButton addTarget:self action:@selector(fowardToForecast:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:weatherButton];
+        
+        UIButton *tourButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [tourButton setBackgroundImage:[UIImage imageNamed:@"Button.bundle/TourBtn_i6"] forState:UIControlStateNormal];
+        [tourButton setTitle:NSLocalizedString(@"Tour", nil) forState:UIControlStateNormal];
+        [tourButton setFrame:CGRectMake(self.view.center.x-100, self.view.center.y+40, 210, 70)];
+        [tourButton addTarget:self action:@selector(fowardToTourTable:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:tourButton];
+         */
+    }
+    if(IS_IPHONE_6P)
+    {
+        NSLog(@"IS_IPHONE_6P");UIImageView *backgroundImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.bundle/Background_i6P"]];
+        [self.view addSubview:backgroundImg];
+        /*
+        UIButton *logBookButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [logBookButton setBackgroundImage:[UIImage imageNamed:@"Button.bundle/LogBookBtn_i6P"] forState:UIControlStateNormal];
+        [logBookButton setTitle:NSLocalizedString(@"LogPage", nil) forState:UIControlStateNormal];
+        [logBookButton setFrame:CGRectMake(self.view.center.x-135, self.view.center.y-210,280, 80)];
+        logBookButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+        [logBookButton addTarget:self action:@selector(fowardToLogBook:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:logBookButton];
+        
+        UIButton *weatherButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [weatherButton setBackgroundImage:[UIImage imageNamed:@"Button.bundle/WeatherBtn_i6P"] forState:UIControlStateNormal];
+        [weatherButton setTitle:NSLocalizedString(@"Weather", nil) forState:UIControlStateNormal];
+        [weatherButton setFrame:CGRectMake(self.view.center.x-135, self.view.center.y-80, 280, 80)];
+        [weatherButton addTarget:self action:@selector(fowardToForecast:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:weatherButton];
+        
+        UIButton *tourButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [tourButton setBackgroundImage:[UIImage imageNamed:@"Button.bundle/TourBtn_i6P"] forState:UIControlStateNormal];
+        [tourButton setTitle:NSLocalizedString(@"Tour", nil) forState:UIControlStateNormal];
+        [tourButton setFrame:CGRectMake(self.view.center.x-135, self.view.center.y+50, 280, 80)];
+        [tourButton addTarget:self action:@selector(fowardToTourTable:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:tourButton];
+        */
+    }
+}
+
+
 -(void)loadView
 {
     
@@ -31,6 +173,8 @@
     delegate = [[UIApplication sharedApplication] delegate];
     logBookTableView = [[LogBookTableViewController alloc] init];
     logView = [[LogViewController alloc] init];
+    
+    [self detectingDevice];
     
     air_Button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [air_Button setTitle:NSLocalizedString(@"Air", nil) forState:UIControlStateNormal];
