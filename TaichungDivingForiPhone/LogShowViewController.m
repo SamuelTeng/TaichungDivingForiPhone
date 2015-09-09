@@ -11,6 +11,19 @@
 #import "LogBookTableViewController.h"
 #import "LogDatabase.h"
 
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() ==UIUserInterfaceIdiomPhone)
+#define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
+
+#define SCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
+#define SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
+#define SCREEN_MAX_LENGTH (MAX(SCREEN_WIDTH, SCREEN_HEIGHT))
+#define SCREEN_MIN_LENGTH (MIN(SCREEN_WIDTH, SCREEN_HEIGHT))
+
+#define IS_IPHONE_4_OR_LESS (IS_IPHONE && SCREEN_MAX_LENGTH < 568.0)
+#define IS_IPHONE_5 (IS_IPHONE && SCREEN_MAX_LENGTH == 568.0)
+#define IS_IPHONE_6 (IS_IPHONE && SCREEN_MAX_LENGTH == 667.0)
+#define IS_IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
+
 @interface LogShowViewController (){
     
     AppDelegate *delegate;
@@ -74,46 +87,125 @@
         log = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 1100)];
         [log setText:_log];
         log.textColor = [UIColor blackColor];
+        log.backgroundColor = [UIColor clearColor];
+        
         [log setFont:[UIFont fontWithName:@"Baskerville" size:20.0]];
         //[log setFont:[UIFont systemFontOfSize:20.0]];
         log.editable = NO;
         [logShowView addSubview:log];
         
+        CGFloat scrollViewHeight = 0.0f;
+        for (UIView *view in logShowView.subviews) {
+            scrollViewHeight += view.frame.size.height;
+        }
         
-        self.view.backgroundColor = [UIColor grayColor];
+        logShowView.contentSize = CGSizeMake(self.view.bounds.size.width,
+                                             scrollViewHeight//self.view.bounds.size.height+10
+                                             );
+        
+        
+        self.view.backgroundColor = [UIColor clearColor];
         
     }else if ([airType isEqualToString:NSLocalizedString(@"Nitro", nil)]){
         
         NSString *_log = [NSString stringWithFormat:NSLocalizedString(@"NitroL", nil), date,site,time,airType,preSta,preEnd,mixture,oxygen,nitrogen,maxDep,temp,visib,current,waves];
         
-        log = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 1100)];
+        log = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 900)];
         [log setText:_log];
         log.textColor = [UIColor blackColor];
+        log.backgroundColor = [UIColor clearColor];
+        
         [log setFont:[UIFont fontWithName:@"Baskerville" size:20.0]];
         //[log setFont:[UIFont systemFontOfSize:20.0]];
         log.editable = NO;
         [logShowView addSubview:log];
         
+        CGFloat scrollViewHeight = 0.0f;
+        for (UIView *view in logShowView.subviews) {
+            scrollViewHeight += view.frame.size.height;
+        }
         
-        self.view.backgroundColor = [UIColor grayColor];
+        logShowView.contentSize = CGSizeMake(self.view.bounds.size.width,
+                                             scrollViewHeight//self.view.bounds.size.height+10
+                                             );
+        
+        
+        self.view.backgroundColor = [UIColor clearColor];
     }else{
         
         NSString *_log = [NSString stringWithFormat:NSLocalizedString(@"Log", nil), date,site,time,airType,preSta,preEnd,maxDep,temp,visib,current,waves];
         
-        log = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 1100)];
+        log = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 800)];
         [log setText:_log];
         log.textColor = [UIColor blackColor];
+        log.backgroundColor = [UIColor clearColor];
+        
         [log setFont:[UIFont fontWithName:@"Baskerville" size:20.0]];
         //[log setFont:[UIFont systemFontOfSize:20.0]];
         log.editable = NO;
         [logShowView addSubview:log];
         
+        CGFloat scrollViewHeight = 0.0f;
+        for (UIView *view in logShowView.subviews) {
+            scrollViewHeight += view.frame.size.height;
+        }
         
-        self.view.backgroundColor = [UIColor grayColor];
+        logShowView.contentSize = CGSizeMake(self.view.bounds.size.width,
+                                             scrollViewHeight//self.view.bounds.size.height+10
+                                             );
+        
+        
+        
+        self.view.backgroundColor = [UIColor clearColor];
     }
 
     
 }
+
+-(void)detectingDevice
+{
+    
+        if(IS_IPHONE_4_OR_LESS)
+    {
+        NSLog(@"IS_IPHONE_4_OR_LESS");
+        UIImageView *scrollBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.bundle/Background_i4"]];
+        scrollBackground.contentMode = UIViewContentModeScaleAspectFit;
+        [self.view insertSubview:scrollBackground belowSubview:logShowView];
+        
+        
+    }
+    if(IS_IPHONE_5)
+    {
+        NSLog(@"IS_IPHONE_5");
+        UIImageView *scrollBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.bundle/Background_i5"]];
+        scrollBackground.contentMode = UIViewContentModeScaleAspectFit;
+        [self.view insertSubview:scrollBackground belowSubview:logShowView];
+        
+    }
+    if(IS_IPHONE_6)
+    {
+        NSLog(@"IS_IPHONE_6");
+        
+        UIImageView *scrollBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.bundle/Background_i6"]];
+        //scrollBackground.contentMode = UIViewContentModeScaleAspectFit;
+        [scrollBackground setFrame:logShowView.frame];
+        [self.view insertSubview:scrollBackground belowSubview:logShowView];
+        
+        
+        
+        
+    }
+    if(IS_IPHONE_6P)
+    {
+        NSLog(@"IS_IPHONE_6P");
+        UIImageView *scrollBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.bundle/Background_i6P"]];
+        scrollBackground.contentMode = UIViewContentModeScaleAspectFit;
+        
+        [self.view insertSubview:scrollBackground belowSubview:logShowView];
+        
+    }
+}
+
 
 -(void)loadView
 {
@@ -128,9 +220,11 @@
     
     
     logShowView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
-    logShowView.contentSize = CGSizeMake(self.view.bounds.size.width,
-                                         2000//self.view.bounds.size.height+10
-                                         );
+    
+    
+    [self detectingDevice];
+    
+    
     [self.view addSubview:logShowView];
     
     

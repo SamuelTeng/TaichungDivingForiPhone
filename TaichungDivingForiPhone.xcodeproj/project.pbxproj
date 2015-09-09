@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5702AFAA1B9F33F7009A149F /* Default-667H@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5702AFA91B9F33F7009A149F /* Default-667H@2x.png */; };
 		571CBE541B8C3C3E003343F1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBE531B8C3C3E003343F1 /* main.m */; };
 		571CBE571B8C3C3E003343F1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBE561B8C3C3E003343F1 /* AppDelegate.m */; };
 		571CBE5A1B8C3C3E003343F1 /* TaichungDivingForiPhone.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 571CBE581B8C3C3E003343F1 /* TaichungDivingForiPhone.xcdatamodeld */; };
@@ -40,6 +41,9 @@
 		571CBEB91B8C5E32003343F1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 571CBEBB1B8C5E32003343F1 /* Localizable.strings */; };
 		578679581B95E38B00A0F977 /* Background.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 578679571B95E38B00A0F977 /* Background.bundle */; };
 		57ABF8191B96E69400BE7CF2 /* Button.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 57ABF8181B96E69400BE7CF2 /* Button.bundle */; };
+		57D4D0201B9FD3870008FD2A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57D4D01D1B9FD3870008FD2A /* Default-568h@2x.png */; };
+		57D4D0211B9FD3870008FD2A /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57D4D01E1B9FD3870008FD2A /* Default-736h@3x.png */; };
+		57D4D0221B9FD3870008FD2A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57D4D01F1B9FD3870008FD2A /* Default@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5702AFA91B9F33F7009A149F /* Default-667H@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667H@2x.png"; sourceTree = "<group>"; };
 		571CBE4E1B8C3C3E003343F1 /* TaichungDivingForiPhone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaichungDivingForiPhone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		571CBE521B8C3C3E003343F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		571CBE531B8C3C3E003343F1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -106,6 +111,9 @@
 		571CBEBD1B8C5E49003343F1 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		578679571B95E38B00A0F977 /* Background.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Background.bundle; sourceTree = "<group>"; };
 		57ABF8181B96E69400BE7CF2 /* Button.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Button.bundle; sourceTree = "<group>"; };
+		57D4D01D1B9FD3870008FD2A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		57D4D01E1B9FD3870008FD2A /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
+		57D4D01F1B9FD3870008FD2A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +203,10 @@
 		571CBE7E1B8C3D21003343F1 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				57D4D01D1B9FD3870008FD2A /* Default-568h@2x.png */,
+				57D4D01E1B9FD3870008FD2A /* Default-736h@3x.png */,
+				57D4D01F1B9FD3870008FD2A /* Default@2x.png */,
+				5702AFA91B9F33F7009A149F /* Default-667H@2x.png */,
 				57ABF8181B96E69400BE7CF2 /* Button.bundle */,
 				578679571B95E38B00A0F977 /* Background.bundle */,
 				571CBEA71B8C523E003343F1 /* ic_book_black_24dp.png */,
@@ -339,12 +351,16 @@
 				578679581B95E38B00A0F977 /* Background.bundle in Resources */,
 				571CBEB31B8C523E003343F1 /* ic_home_black_24dp.png in Resources */,
 				571CBE621B8C3C3E003343F1 /* Images.xcassets in Resources */,
+				57D4D0211B9FD3870008FD2A /* Default-736h@3x.png in Resources */,
 				571CBEB41B8C523E003343F1 /* ic_refresh_black_24dp.png in Resources */,
+				57D4D0201B9FD3870008FD2A /* Default-568h@2x.png in Resources */,
 				571CBEB21B8C523E003343F1 /* ic_edit_black_24dp.png in Resources */,
+				5702AFAA1B9F33F7009A149F /* Default-667H@2x.png in Resources */,
 				571CBE7C1B8C3D15003343F1 /* fadiving@2x.png in Resources */,
 				571CBEB11B8C523E003343F1 /* ic_class_black_48dp.png in Resources */,
 				571CBEB01B8C523E003343F1 /* ic_book_black_48dp.png in Resources */,
 				571CBEB61B8C523E003343F1 /* ic_warning_amber_48dp.png in Resources */,
+				57D4D0221B9FD3870008FD2A /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,6 +521,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TaichungDivingForiPhone/Info.plist;
@@ -519,6 +536,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TaichungDivingForiPhone/Info.plist;

@@ -51,13 +51,13 @@
     [request setEntity:[NSEntityDescription entityForName:@"DiveLog" inManagedObjectContext:delegate_logbook.managedObjectContext]];
     
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
-    NSSortDescriptor *gasSort = [[NSSortDescriptor alloc] initWithKey:@"gas_type" ascending:YES];
-   //NSArray *descriptors = [NSArray arrayWithObject:sortDescriptor];
-    NSArray *descriptors = [[NSArray alloc] initWithObjects:gasSort,sortDescriptor, nil];
+    //NSSortDescriptor *gasSort = [[NSSortDescriptor alloc] initWithKey:@"gas_type" ascending:YES];
+   NSArray *descriptors = [NSArray arrayWithObject:sortDescriptor];
+   // NSArray *descriptors = [[NSArray alloc] initWithObjects:gasSort,sortDescriptor, nil];
     [request setSortDescriptors:descriptors];
     
     NSError *error;
-    resultController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:delegate_logbook.managedObjectContext sectionNameKeyPath:@"gas_type" cacheName:nil];
+    resultController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:delegate_logbook.managedObjectContext sectionNameKeyPath:@"date" cacheName:nil];
     
     resultController.delegate = self;
     
@@ -89,11 +89,11 @@
     
     if(IS_IPHONE)
     {
-        NSLog(@"IS_IPHONE");
+        //NSLog(@"IS_IPHONE");
     }
     if(IS_RETINA)
     {
-        NSLog(@"IS_RETINA");
+        //NSLog(@"IS_RETINA");
     }
     if(IS_IPHONE_4_OR_LESS)
     {
@@ -217,7 +217,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
     // Return the number of sections.
-    
+    /*
     if ([[resultController sections] count] > 0 ) {
         
         return [[resultController sections] count];
@@ -226,11 +226,11 @@
         
         return 0;
     }
-     
-    //return [[resultController sections] count];
+     */
+    return [[resultController sections] count];
    
 }
-
+/*
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if ([[resultController sections] count] > 0 ) {
@@ -242,7 +242,7 @@
     }
     
 }
-
+*/
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     return [[[resultController sections] objectAtIndex:section]numberOfObjects];
@@ -261,9 +261,11 @@
     
     NSString *timeStr = [managedObject valueForKey:@"date"];
     NSString *siteStr = [managedObject valueForKey:@"site"];
+    NSString *gasStr = [managedObject valueForKey:@"gas_type"];
+    NSString *detailStr = [NSString stringWithFormat:@"%@ %@",siteStr,gasStr];
     
     cell.textLabel.text = timeStr;
-    cell.detailTextLabel.text = siteStr;
+    cell.detailTextLabel.text = detailStr;
     
     return cell;
     
@@ -293,7 +295,9 @@
     pageViewController.startPage = indexPath.row;//*((int *)indexPath.row);
     pageViewController._section = indexPath.section;//*((int *)indexPath.section);
     [delegate_logbook.navi pushViewController:pageViewController animated:YES];
-   
+    
+    
+    NSLog(@"Table:%li Row & %li Section", (long)indexPath.row,(long)indexPath.section);
 }
 
 /*

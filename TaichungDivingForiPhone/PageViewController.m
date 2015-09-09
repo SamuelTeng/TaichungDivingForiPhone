@@ -49,7 +49,7 @@
     
     logShowViewController.contenPath = [NSIndexPath indexPathForRow:self.startPage inSection:self._section];
     
-    
+    //NSLog(@"Page:%li Row & %li Section", startPage,_section);
     
     
     /*set "animated" to "NO" to prevent "UIWindow" issue from happening*/

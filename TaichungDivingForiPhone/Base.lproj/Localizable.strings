@@ -78,6 +78,8 @@
 "HighP" = "High ppO2";
 "Waves" = "Waves";
 "Current" = "Current";
+"Meter" = "Meter";
+"Feet" = "Feet";
 
 /*Log*/
 "CCRL" = " Date: %@ \n\n Site: %@ \n\n Diving Time: %@ minutes \n\n Gas: %@ \n\n Begin Pressure: %@ bar\n\n End Pressure: %@ bar\n\n Mixture: %@\n\n Oxygen:%@\n\n Nitrogen:%@\n\n Helium:%@\n\n LowppO2:%@\n\n High ppO2:%@\n\n Max Depth: %@ \n\n Temperature: %@ \n\n Visibility: %@ \n\n Current: %@ \n\n Waves: %@";

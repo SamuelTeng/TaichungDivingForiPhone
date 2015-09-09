@@ -44,11 +44,11 @@
     
     if(IS_IPHONE)
     {
-        NSLog(@"IS_IPHONE");
+        //NSLog(@"IS_IPHONE");
     }
     if(IS_RETINA)
     {
-        NSLog(@"IS_RETINA");
+        //NSLog(@"IS_RETINA");
     }
     if(IS_IPHONE_4_OR_LESS)
     {
