@@ -30,6 +30,37 @@
 @property (nonatomic,strong) UILabel *lowppo2Label;
 @property (nonatomic,strong) UILabel *highppo2Label;
 
+@property (nonatomic,strong) UIImageView *dateImg;
+@property (nonatomic,strong) UIImage *imgDate;
+@property (nonatomic,strong) UIImageView *siteImg;
+@property (nonatomic,strong) UIImage *imgSite;
+@property (nonatomic,strong) UIImageView *wavesImg;
+@property (nonatomic,strong) UIImage *imgWaves;
+@property (nonatomic,strong) UIImageView *currentImg;
+@property (nonatomic,strong) UIImage *imgCurrent;
+@property (nonatomic,strong) UIImageView *gasImg;
+@property (nonatomic,strong) UIImage * imgGas;
+@property (nonatomic,strong) UIImageView *startImg;
+@property (nonatomic,strong) UIImage *imgStart;
+@property (nonatomic,strong) UIImageView *endImg;
+@property (nonatomic,strong) UIImage *imgEnd;
+@property (nonatomic,strong) UIImageView *deptthImg;
+@property (nonatomic,strong) UIImage *imgDepth;
+@property (nonatomic,strong) UIImageView *durationImg;
+@property (nonatomic,strong) UIImage *imgDuration;
+@property (nonatomic,strong) UIImageView *tempImg;
+@property (nonatomic,strong) UIImage *imgTemp;
+@property (nonatomic,strong) UIImageView *visiImg;
+@property (nonatomic,strong) UIImage *imgVisi;
+@property (nonatomic,strong) UIImageView *mixImg;
+@property (nonatomic,strong) UIImage *imgMix;
+@property (nonatomic,strong) UIImageView *oxyImg;
+@property (nonatomic,strong) UIImage *imgOxy;
+@property (nonatomic,strong) UIImageView *nitImg;
+@property (nonatomic,strong) UIImage *imgNit;
+@property (nonatomic,strong) UIImageView *helImg;
+@property (nonatomic,strong) UIImage *imgHel;
+
 @property (nonatomic,strong) UITextField *dateField;
 @property (nonatomic,strong) UITextField *siteField;
 @property (nonatomic,strong) UITextField *wavesField;

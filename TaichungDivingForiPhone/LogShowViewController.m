@@ -169,7 +169,8 @@
     {
         NSLog(@"IS_IPHONE_4_OR_LESS");
         UIImageView *scrollBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.bundle/Background_i4"]];
-        scrollBackground.contentMode = UIViewContentModeScaleAspectFit;
+        //scrollBackground.contentMode = UIViewContentModeScaleAspectFit;
+        [scrollBackground setFrame:logShowView.frame];
         [self.view insertSubview:scrollBackground belowSubview:logShowView];
         
         
@@ -178,7 +179,8 @@
     {
         NSLog(@"IS_IPHONE_5");
         UIImageView *scrollBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.bundle/Background_i5"]];
-        scrollBackground.contentMode = UIViewContentModeScaleAspectFit;
+        //scrollBackground.contentMode = UIViewContentModeScaleAspectFit;
+        [scrollBackground setFrame:logShowView.frame];
         [self.view insertSubview:scrollBackground belowSubview:logShowView];
         
     }
@@ -199,8 +201,8 @@
     {
         NSLog(@"IS_IPHONE_6P");
         UIImageView *scrollBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.bundle/Background_i6P"]];
-        scrollBackground.contentMode = UIViewContentModeScaleAspectFit;
-        
+        //scrollBackground.contentMode = UIViewContentModeScaleAspectFit;
+        [scrollBackground setFrame:logShowView.frame];
         [self.view insertSubview:scrollBackground belowSubview:logShowView];
         
     }

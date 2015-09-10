@@ -13,6 +13,19 @@
 #define kDomestic 0
 #define kForeign 1
 
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() ==UIUserInterfaceIdiomPhone)
+#define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
+
+#define SCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
+#define SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
+#define SCREEN_MAX_LENGTH (MAX(SCREEN_WIDTH, SCREEN_HEIGHT))
+#define SCREEN_MIN_LENGTH (MIN(SCREEN_WIDTH, SCREEN_HEIGHT))
+
+#define IS_IPHONE_4_OR_LESS (IS_IPHONE && SCREEN_MAX_LENGTH < 568.0)
+#define IS_IPHONE_5 (IS_IPHONE && SCREEN_MAX_LENGTH == 568.0)
+#define IS_IPHONE_6 (IS_IPHONE && SCREEN_MAX_LENGTH == 667.0)
+#define IS_IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
+
 @interface TourTableViewController ()
 
 
@@ -21,11 +34,71 @@
 @implementation TourTableViewController
 @synthesize domesticTour,foreignTour;
 
+-(void)detectingDevice
+{
+    
+    if(IS_IPHONE)
+    {
+        //NSLog(@"IS_IPHONE");
+    }
+    if(IS_RETINA)
+    {
+        //NSLog(@"IS_RETINA");
+    }
+    if(IS_IPHONE_4_OR_LESS)
+    {
+        NSLog(@"IS_IPHONE_4_OR_LESS");
+        UIImageView *backgroundImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.bundle/Background_i4"]];
+        [self.tableView setBackgroundColor:[UIColor clearColor]];
+        
+        [backgroundImg setFrame:self.tableView.frame];
+        
+        [self.tableView setBackgroundView:backgroundImg];
+        
+    }
+    if(IS_IPHONE_5)
+    {
+        NSLog(@"IS_IPHONE_5");
+        UIImageView *backgroundImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.bundle/Background_i5"]];
+        [self.tableView setBackgroundColor:[UIColor clearColor]];
+        
+        [backgroundImg setFrame:self.tableView.frame];
+        
+        [self.tableView setBackgroundView:backgroundImg];
+    }
+    if(IS_IPHONE_6)
+    {
+        NSLog(@"IS_IPHONE_6");
+        UIImageView *backgroundImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.bundle/Background_i6"]];
+        
+        [self.tableView setBackgroundColor:[UIColor clearColor]];
+        
+        [backgroundImg setFrame:self.tableView.frame];
+        
+        [self.tableView setBackgroundView:backgroundImg];
+        
+        
+    }
+    if(IS_IPHONE_6P)
+    {
+        NSLog(@"IS_IPHONE_6P");
+        UIImageView *backgroundImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.bundle/Background_i6P"]];
+        [self.tableView setBackgroundColor:[UIColor clearColor]];
+        
+        [backgroundImg setFrame:self.tableView.frame];
+        
+        [self.tableView setBackgroundView:backgroundImg];
+    }
+}
+
+
 -(id)init
 {
     self = [super init];
     if (self) {
-        self.title = NSLocalizedString(@"Domestic", nil);
+        self.title = NSLocalizedString(@"Tour", nil);
+        
+        [self detectingDevice];
         
         domesticTour=[[NSMutableArray alloc]init];
         
@@ -127,6 +200,7 @@
     UITableViewCell *cell=[tableView1 dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell==nil) {
         cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+        [cell setBackgroundColor:[UIColor clearColor]];
     }
     NSArray *current;
     switch (indexPath.section) {

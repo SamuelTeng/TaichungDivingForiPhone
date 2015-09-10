@@ -41,6 +41,100 @@
 
 @synthesize managedObjectContext,scrollView,secondRow,selectedRow,siteField,siteLabel,staPreField,staPrelabel,dateField,dateLabel,divetimeField,divetimeLabel,wavesField,wavesLabel,currentField,currentLabel,mAndf,maxDepField,maxDepLabel,temperField,temperLabel,thirdRow,visiField,visiLabel,otherField,otherLabel,gasArr,gasField,gasLabel,dateFromData,wavesFromData,currentFromData,timeFromData,wavesArr,currentArr,logType,mixtureArr,mixtureField,mixtureLabel,oxygenField,oxygenLabel,nitrogenField,nitrogenLabel,heliumField,heliumLabel,lowppo2Field,lowppo2Label,highppo2Field,highppo2Label;
 
+@synthesize dateImg,deptthImg,durationImg,siteImg,startImg,endImg,gasImg,visiImg,wavesImg,currentImg,tempImg,imgCurrent,imgDate,imgDepth,imgDuration,imgEnd,imgGas,imgSite,imgStart,imgTemp,imgVisi,imgWaves,mixImg,imgMix,oxyImg,imgOxy,nitImg,imgNit,helImg,imgHel;
+
+-(void)detectingDevice
+{
+    
+    if(IS_IPHONE_4_OR_LESS)
+    {
+        NSLog(@"IS_IPHONE_4_OR_LESS");
+        UIImageView *scrollBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.bundle/Background_i4"]];
+        [scrollBackground setFrame:scrollView.frame];
+        [self.view insertSubview:scrollBackground belowSubview:scrollView];
+        
+        
+    }
+    if(IS_IPHONE_5)
+    {
+        NSLog(@"IS_IPHONE_5");
+        UIImageView *scrollBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.bundle/Background_i5"]];
+       [scrollBackground setFrame:scrollView.frame];
+        [self.view insertSubview:scrollBackground belowSubview:scrollView];
+        
+    }
+    if(IS_IPHONE_6)
+    {
+        NSLog(@"IS_IPHONE_6");
+        
+        UIImageView *scrollBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.bundle/Background_i6"]];
+        //scrollBackground.contentMode = UIViewContentModeScaleAspectFit;
+        [scrollBackground setFrame:scrollView.frame];
+        [self.view insertSubview:scrollBackground belowSubview:scrollView];
+        
+        
+        
+        
+    }
+    if(IS_IPHONE_6P)
+    {
+        NSLog(@"IS_IPHONE_6P");
+        UIImageView *scrollBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.bundle/Background_i6P"]];
+        [scrollBackground setFrame:scrollView.frame];
+        
+        [self.view insertSubview:scrollBackground belowSubview:scrollView];
+        
+    }
+}
+
+-(void)images_ini
+{
+    imgDate = [UIImage imageNamed:@"LogImg.bundle/Date"];
+    dateImg = [[UIImageView alloc] initWithImage:imgDate];
+    
+    imgSite = [UIImage imageNamed:@"LogImg.bundle/Location"];
+    siteImg = [[UIImageView alloc] initWithImage:imgSite];
+    
+    imgWaves = [UIImage imageNamed:@"LogImg.bundle/Waves"];
+    wavesImg = [[UIImageView alloc] initWithImage:imgWaves];
+    
+    imgCurrent = [UIImage imageNamed:@"LogImg.bundle/Current"];
+    currentImg = [[UIImageView alloc] initWithImage:imgCurrent];
+    
+    imgGas = [UIImage imageNamed:@"LogImg.bundle/Diver"];
+    gasImg = [[UIImageView alloc] initWithImage:imgGas];
+    
+    imgStart = [UIImage imageNamed:@"LogImg.bundle/FullTank"];
+    startImg = [[UIImageView alloc] initWithImage:imgStart];
+    
+    imgEnd = [UIImage imageNamed:@"LogImg.bundle/EndTank"];
+    endImg = [[UIImageView alloc] initWithImage:imgEnd];
+    
+    imgDepth = [UIImage imageNamed:@"LogImg.bundle/Depth"];
+    deptthImg = [[UIImageView alloc] initWithImage:imgDepth];
+    
+    imgDuration = [UIImage imageNamed:@"LogImg.bundle/Duration"];
+    durationImg = [[UIImageView alloc] initWithImage:imgDuration];
+    
+    imgTemp = [UIImage imageNamed:@"LogImg.bundle/WTemp"];
+    tempImg =[[UIImageView alloc] initWithImage:imgTemp];
+    
+    imgVisi = [UIImage imageNamed:@"LogImg.bundle/Visibility"];
+    visiImg = [[UIImageView alloc] initWithImage:imgVisi];
+    
+    imgMix = [UIImage imageNamed:@"LogImg.bundle/Mix"];
+    mixImg = [[UIImageView alloc] initWithImage:imgMix];
+    
+    imgOxy = [UIImage imageNamed:@"LogImg.bundle/Oxy"];
+    oxyImg = [[UIImageView alloc] initWithImage:imgOxy];
+    
+    imgNit = [UIImage imageNamed:@"LogImg.bundle/Nitro"];
+    nitImg = [[UIImageView alloc] initWithImage:imgNit];
+    
+    imgHel = [UIImage imageNamed:@"LogImg.bundle/He"];
+    helImg = [[UIImageView alloc] initWithImage:imgHel];
+}
+
 -(void)loadView
 {
     
@@ -48,10 +142,12 @@
     
     scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, 1500);
-    scrollView.backgroundColor = [UIColor whiteColor];
+    scrollView.backgroundColor = [UIColor clearColor];
     //scrollView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"scroll_background.png"]];
     [self.view addSubview:scrollView];
     
+    [self detectingDevice];
+    [self images_ini];
     
     gasArr = [NSArray arrayWithObjects:NSLocalizedString(@"Air", nil),NSLocalizedString(@"Nitro", nil),NSLocalizedString(@"CCR", nil), nil];
     _firstRow = [NSArray arrayWithObjects:@" ",@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9", nil];
@@ -1455,12 +1551,11 @@
 
 -(void)textAndLabel
 {
-    dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 88, 80, 21)];
-    dateLabel.backgroundColor = [UIColor clearColor];
-    [dateLabel setText:NSLocalizedString(@"Date", nil)];
-    [scrollView addSubview:dateLabel];
+   
+    [dateImg setFrame:CGRectMake(60, 75, imgDate.size.width, imgDate.size.height)];
+    [scrollView addSubview:dateImg];
     
-    dateField = [[UITextField alloc] initWithFrame:CGRectMake(130, 85, 150, 30)];
+    dateField = [[UITextField alloc] initWithFrame:CGRectMake(130, 75, 150, 30)];
     dateField.backgroundColor = [UIColor clearColor];
     [dateField setTag:101];
     dateField.delegate = self;
@@ -1468,151 +1563,131 @@
     dateField.borderStyle = UITextBorderStyleRoundedRect;
     dateField.adjustsFontSizeToFitWidth = YES;
     [scrollView addSubview:dateField];
+   
+    [siteImg setFrame:CGRectMake(60, 157, imgSite.size.width, imgSite.size.height)];
+    [scrollView addSubview:siteImg];
     
-    siteLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 154, 80, 21)];
-    siteLabel.backgroundColor = [UIColor clearColor];
-    [siteLabel setText:NSLocalizedString(@"Site", nil)];
-    [scrollView addSubview:siteLabel];
-    
-    siteField = [[UITextField alloc] initWithFrame:CGRectMake(130, 151, 97, 30)];
+    siteField = [[UITextField alloc] initWithFrame:CGRectMake(130, 157, 97, 30)];
     siteField.backgroundColor = [UIColor clearColor];
     [siteField setTag:102];
     siteField.delegate = self;
-    siteField.placeholder = @"Site Name";
+    siteField.placeholder = NSLocalizedString(@"Site", nil);
     siteField.borderStyle = UITextBorderStyleRoundedRect;
     //siteField.textAlignment = NSTextAlignmentCenter;
     siteField.adjustsFontSizeToFitWidth = YES;
     [scrollView addSubview:siteField];
-
-    wavesLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 220, 100, 21)];
-    wavesLabel.backgroundColor = [UIColor clearColor];
-    [wavesLabel setText:NSLocalizedString(@"Waves", nil)];
-    [scrollView addSubview:wavesLabel];
     
-    wavesField = [[UITextField alloc] initWithFrame:CGRectMake(130, 217, 97, 30)];
+    [wavesImg setFrame:CGRectMake(60, 229, imgWaves.size.width, imgWaves.size.height)];
+    [scrollView addSubview:wavesImg];
+    
+    wavesField = [[UITextField alloc] initWithFrame:CGRectMake(130, 239, 97, 30)];
     wavesField.backgroundColor = [UIColor clearColor];
     [wavesField setTag:103];
     wavesField.delegate = self;
-    //wavesField.placeholder = @"25.061033";
+    wavesField.placeholder = NSLocalizedString(@"Waves", nil);
+    
     wavesField.borderStyle = UITextBorderStyleRoundedRect;
     wavesField.textAlignment = NSTextAlignmentCenter;
     [scrollView addSubview:wavesField];
     
-    currentLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 286, 100, 21)];
-    currentLabel.backgroundColor = [UIColor clearColor];
-    [currentLabel setText:NSLocalizedString(@"Current", nil)];
-    [scrollView addSubview:currentLabel];
+    [currentImg setFrame:CGRectMake(60, 321, imgCurrent.size.width, imgCurrent.size.height)];
+    [scrollView addSubview:currentImg];
     
-    currentField = [[UITextField alloc] initWithFrame:CGRectMake(130, 283, 97, 30)];
+    currentField = [[UITextField alloc] initWithFrame:CGRectMake(130, 321, 97, 30)];
     currentField.backgroundColor = [UIColor clearColor];
     [currentField setTag:104];
     currentField.delegate = self;
-    //currentField.placeholder = @"121.646056";
+    currentField.placeholder = NSLocalizedString(@"Current", nil);
     currentField.borderStyle = UITextBorderStyleRoundedRect;
     currentField.textAlignment = NSTextAlignmentCenter;
     [scrollView addSubview:currentField];
     
-    gasLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 352, 100, 21)];
-    gasLabel.backgroundColor = [UIColor clearColor];
-    [gasLabel setText:NSLocalizedString(@"Gas", nil)];
-    [scrollView addSubview:gasLabel];
+    [gasImg setFrame:CGRectMake(60, 383, imgGas.size.width, imgGas.size.height)];
+    [scrollView addSubview:gasImg];
     
-    gasField = [[UITextField alloc] initWithFrame:CGRectMake(130, 349, 97, 30)];
+    gasField = [[UITextField alloc] initWithFrame:CGRectMake(130, 383, 97, 30)];
     [gasField setTag:105];
     [gasField setText:NSLocalizedString(@"Air", nil)];
     gasField.delegate = self;
-    //gasField.placeholder = @"氣源";
+    gasField.placeholder = NSLocalizedString(@"Gas", nil);
     gasField.borderStyle = UITextBorderStyleRoundedRect;
     gasField.textAlignment = NSTextAlignmentCenter;
     gasField.adjustsFontSizeToFitWidth = YES;
     [scrollView addSubview:gasField];
     
-    staPrelabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 428, 200, 21)];
-    staPrelabel.backgroundColor = [UIColor clearColor];
-    [staPrelabel setText:NSLocalizedString(@"BPres", nil)];
-    [scrollView addSubview:staPrelabel];
+    [startImg setFrame:CGRectMake(60, 465, imgStart.size.width, imgStart.size.height)];
+    [scrollView addSubview:startImg];
     
-    staPreField = [[UITextField alloc] initWithFrame:CGRectMake(130, 425, 97, 30)];
+    staPreField = [[UITextField alloc] initWithFrame:CGRectMake(130, 465, 97, 30)];
     staPreField.backgroundColor = [UIColor clearColor];
     [staPreField setTag:106];
     staPreField.delegate = self;
-    staPreField.placeholder = @"200 bar";
+    staPreField.placeholder = NSLocalizedString(@"BPres", nil);
     staPreField.borderStyle = UITextBorderStyleRoundedRect;
     staPreField.adjustsFontSizeToFitWidth = YES;
     staPreField.textAlignment = NSTextAlignmentCenter;
     [scrollView addSubview:staPreField];
     
-    _endPreLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 494, 200, 21)];
-    _endPreLabel.backgroundColor = [UIColor clearColor];
-    [_endPreLabel setText:NSLocalizedString(@"EPres", nil)];
-    [scrollView addSubview:_endPreLabel];
+    [endImg setFrame:CGRectMake(60, 547, imgEnd.size.width, imgEnd.size.height)];
+    [scrollView addSubview:endImg];
     
-    _endPreField = [[UITextField alloc] initWithFrame:CGRectMake(130, 491, 97, 30)];
+    _endPreField = [[UITextField alloc] initWithFrame:CGRectMake(130, 547, 97, 30)];
     _endPreField.backgroundColor = [UIColor clearColor];
     [_endPreField setTag:107];
     _endPreField.delegate = self;
-    _endPreField.placeholder = @"60 bar";
+    _endPreField.placeholder = NSLocalizedString(@"EPres", nil);
     _endPreField.borderStyle = UITextBorderStyleRoundedRect;
     _endPreField.adjustsFontSizeToFitWidth = YES;
     _endPreField.textAlignment = NSTextAlignmentCenter;
     [scrollView addSubview:_endPreField];
     
+    [deptthImg setFrame:CGRectMake(60, 639, imgDepth.size.width, imgDepth.size.height)];
+    [scrollView addSubview:deptthImg];
     
-    maxDepLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 560, 100, 21)];
-    maxDepLabel.backgroundColor = [UIColor clearColor];
-    [maxDepLabel setText:NSLocalizedString(@"Max", nil)];
-    [scrollView addSubview:maxDepLabel];
-    
-    maxDepField = [[UITextField alloc] initWithFrame:CGRectMake(130, 557, 97, 30)];
+    maxDepField = [[UITextField alloc] initWithFrame:CGRectMake(130, 639, 97, 30)];
     maxDepField.backgroundColor = [UIColor clearColor];
     [maxDepField setTag:108];
     maxDepField.delegate = self;
-    maxDepField.placeholder = @"40 M";
+    maxDepField.placeholder = NSLocalizedString(@"Max", nil);
     maxDepField.borderStyle = UITextBorderStyleRoundedRect;
     maxDepField.adjustsFontSizeToFitWidth = YES;
     maxDepField.textAlignment = NSTextAlignmentCenter;
     [scrollView addSubview:maxDepField];
     
-    divetimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 626, 100, 21)];
-    divetimeLabel.backgroundColor = [UIColor clearColor];
-    [divetimeLabel setText:NSLocalizedString(@"DTime", nil)];
-    [scrollView addSubview:divetimeLabel];
+    [durationImg setFrame:CGRectMake(60, 732, imgDuration.size.width, imgDuration.size.height)];
+    [scrollView addSubview:durationImg];
     
-    divetimeField = [[UITextField alloc] initWithFrame:CGRectMake(130, 623, 97, 30)];
+    divetimeField = [[UITextField alloc] initWithFrame:CGRectMake(130, 732, 97, 30)];
     divetimeField.backgroundColor = [UIColor clearColor];
     [divetimeField setTag:111];
     divetimeField.delegate = self;
-    divetimeField.placeholder = @"in minutes";
+    divetimeField.placeholder = NSLocalizedString(@"DTime", nil);
     divetimeField.borderStyle = UITextBorderStyleRoundedRect;
     divetimeField.adjustsFontSizeToFitWidth = YES;
     divetimeField.textAlignment = NSTextAlignmentCenter;
     [scrollView addSubview:divetimeField];
+   
+    [tempImg setFrame:CGRectMake(60, 824, imgTemp.size.width, imgTemp.size.height)];
+    [scrollView addSubview:tempImg];
     
-    temperLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 692, 100, 21)];
-    temperLabel.backgroundColor = [UIColor clearColor];
-    [temperLabel setText:NSLocalizedString(@"Temp", nil)];
-    [scrollView addSubview:temperLabel];
-    
-    temperField = [[UITextField alloc] initWithFrame:CGRectMake(130, 689, 97, 30)];
+    temperField = [[UITextField alloc] initWithFrame:CGRectMake(130, 824, 97, 30)];
     temperField.backgroundColor = [UIColor clearColor];
     [temperField setTag:109];
     temperField.delegate = self;
-    temperField.placeholder = @"";
+    temperField.placeholder = NSLocalizedString(@"Temp", nil);
     temperField.borderStyle = UITextBorderStyleRoundedRect;
     temperField.textAlignment = NSTextAlignmentCenter;
     temperField.adjustsFontSizeToFitWidth = YES;
     [scrollView addSubview:temperField];
     
-    visiLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 758, 100, 21)];
-    visiLabel.backgroundColor = [UIColor clearColor];
-    [visiLabel setText:NSLocalizedString(@"Visi", nil)];
-    [scrollView addSubview:visiLabel];
+    [visiImg setFrame:CGRectMake(60, 926, imgVisi.size.width, imgVisi.size.height)];
+    [scrollView addSubview:visiImg];
     
-    visiField = [[UITextField alloc] initWithFrame:CGRectMake(130, 755, 97, 30)];
+    visiField = [[UITextField alloc] initWithFrame:CGRectMake(130, 926, 97, 30)];
     visiField.backgroundColor = [UIColor clearColor];
     [visiField setTag:110];
     visiField.delegate = self;
-    visiField.placeholder = @"15M";
+    visiField.placeholder = NSLocalizedString(@"Visi", nil);
     visiField.borderStyle = UITextBorderStyleRoundedRect;
     visiField.textAlignment = NSTextAlignmentCenter;
     visiField.adjustsFontSizeToFitWidth = YES;
@@ -1624,12 +1699,10 @@
 
 -(void)nitroxTextAndLabel
 {
-    dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 88, 80, 21)];
-    dateLabel.backgroundColor = [UIColor clearColor];
-    [dateLabel setText:NSLocalizedString(@"Date", nil)];
-    [scrollView addSubview:dateLabel];
+    [dateImg setFrame:CGRectMake(60, 75, imgDate.size.width, imgDate.size.height)];
+    [scrollView addSubview:dateImg];
     
-    dateField = [[UITextField alloc] initWithFrame:CGRectMake(130, 85, 150, 30)];
+    dateField = [[UITextField alloc] initWithFrame:CGRectMake(130, 75, 150, 30)];
     dateField.backgroundColor = [UIColor clearColor];
     [dateField setTag:101];
     dateField.delegate = self;
@@ -1638,193 +1711,169 @@
     dateField.adjustsFontSizeToFitWidth = YES;
     [scrollView addSubview:dateField];
     
-    siteLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 154, 80, 21)];
-    siteLabel.backgroundColor = [UIColor clearColor];
-    [siteLabel setText:NSLocalizedString(@"Site", nil)];
-    [scrollView addSubview:siteLabel];
+    [siteImg setFrame:CGRectMake(60, 157, imgSite.size.width, imgSite.size.height)];
+    [scrollView addSubview:siteImg];
     
-    siteField = [[UITextField alloc] initWithFrame:CGRectMake(130, 151, 97, 30)];
+    siteField = [[UITextField alloc] initWithFrame:CGRectMake(130, 157, 97, 30)];
     siteField.backgroundColor = [UIColor clearColor];
     [siteField setTag:102];
     siteField.delegate = self;
-    siteField.placeholder = @"Site Name";
+    siteField.placeholder = NSLocalizedString(@"Site", nil);
     siteField.borderStyle = UITextBorderStyleRoundedRect;
     //siteField.textAlignment = NSTextAlignmentCenter;
     siteField.adjustsFontSizeToFitWidth = YES;
     [scrollView addSubview:siteField];
     
-    wavesLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 220, 100, 21)];
-    wavesLabel.backgroundColor = [UIColor clearColor];
-    [wavesLabel setText:NSLocalizedString(@"Waves", nil)];
-    [scrollView addSubview:wavesLabel];
+    [wavesImg setFrame:CGRectMake(60, 229, imgWaves.size.width, imgWaves.size.height)];
+    [scrollView addSubview:wavesImg];
     
-    wavesField = [[UITextField alloc] initWithFrame:CGRectMake(130, 217, 97, 30)];
+    wavesField = [[UITextField alloc] initWithFrame:CGRectMake(130, 239, 97, 30)];
     wavesField.backgroundColor = [UIColor clearColor];
     [wavesField setTag:103];
     wavesField.delegate = self;
-    //wavesField.placeholder = @"25.061033";
+    wavesField.placeholder = NSLocalizedString(@"Waves", nil);
+    
     wavesField.borderStyle = UITextBorderStyleRoundedRect;
     wavesField.textAlignment = NSTextAlignmentCenter;
     [scrollView addSubview:wavesField];
     
-    currentLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 286, 100, 21)];
-    currentLabel.backgroundColor = [UIColor clearColor];
-    [currentLabel setText:NSLocalizedString(@"Current", nil)];
-    [scrollView addSubview:currentLabel];
+    [currentImg setFrame:CGRectMake(60, 321, imgCurrent.size.width, imgCurrent.size.height)];
+    [scrollView addSubview:currentImg];
     
-    currentField = [[UITextField alloc] initWithFrame:CGRectMake(130, 283, 97, 30)];
+    currentField = [[UITextField alloc] initWithFrame:CGRectMake(130, 321, 97, 30)];
     currentField.backgroundColor = [UIColor clearColor];
     [currentField setTag:104];
     currentField.delegate = self;
-    //currentField.placeholder = @"121.646056";
+    currentField.placeholder = NSLocalizedString(@"Current", nil);
     currentField.borderStyle = UITextBorderStyleRoundedRect;
     currentField.textAlignment = NSTextAlignmentCenter;
     [scrollView addSubview:currentField];
     
-    gasLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 352, 100, 21)];
-    gasLabel.backgroundColor = [UIColor clearColor];
-    [gasLabel setText:NSLocalizedString(@"Gas", nil)];
-    [scrollView addSubview:gasLabel];
+    [gasImg setFrame:CGRectMake(60, 383, imgGas.size.width, imgGas.size.height)];
+    [scrollView addSubview:gasImg];
     
-    gasField = [[UITextField alloc] initWithFrame:CGRectMake(130, 349, 97, 30)];
+    gasField = [[UITextField alloc] initWithFrame:CGRectMake(130, 383, 97, 30)];
     [gasField setTag:105];
     [gasField setText:NSLocalizedString(@"Nitro", nil)];
     gasField.delegate = self;
-    //gasField.placeholder = @"氣源";
+    gasField.placeholder = NSLocalizedString(@"Gas", nil);
     gasField.borderStyle = UITextBorderStyleRoundedRect;
     gasField.textAlignment = NSTextAlignmentCenter;
     gasField.adjustsFontSizeToFitWidth = YES;
     [scrollView addSubview:gasField];
     
-    staPrelabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 428, 200, 21)];
-    staPrelabel.backgroundColor = [UIColor clearColor];
-    [staPrelabel setText:NSLocalizedString(@"BPres", nil)];
-    [scrollView addSubview:staPrelabel];
+    [startImg setFrame:CGRectMake(60, 465, imgStart.size.width, imgStart.size.height)];
+    [scrollView addSubview:startImg];
     
-    staPreField = [[UITextField alloc] initWithFrame:CGRectMake(130, 425, 97, 30)];
+    staPreField = [[UITextField alloc] initWithFrame:CGRectMake(130, 465, 97, 30)];
     staPreField.backgroundColor = [UIColor clearColor];
     [staPreField setTag:106];
     staPreField.delegate = self;
-    staPreField.placeholder = @"200 bar";
+    staPreField.placeholder = NSLocalizedString(@"BPres", nil);
     staPreField.borderStyle = UITextBorderStyleRoundedRect;
     staPreField.adjustsFontSizeToFitWidth = YES;
     staPreField.textAlignment = NSTextAlignmentCenter;
     [scrollView addSubview:staPreField];
     
-    _endPreLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 494, 200, 21)];
-    _endPreLabel.backgroundColor = [UIColor clearColor];
-    [_endPreLabel setText:NSLocalizedString(@"EPres", nil)];
-    [scrollView addSubview:_endPreLabel];
+    [endImg setFrame:CGRectMake(60, 547, imgEnd.size.width, imgEnd.size.height)];
+    [scrollView addSubview:endImg];
     
-    _endPreField = [[UITextField alloc] initWithFrame:CGRectMake(130, 491, 97, 30)];
+    _endPreField = [[UITextField alloc] initWithFrame:CGRectMake(130, 547, 97, 30)];
     _endPreField.backgroundColor = [UIColor clearColor];
     [_endPreField setTag:107];
     _endPreField.delegate = self;
-    _endPreField.placeholder = @"60 bar";
+    _endPreField.placeholder = NSLocalizedString(@"EPres", nil);
     _endPreField.borderStyle = UITextBorderStyleRoundedRect;
     _endPreField.adjustsFontSizeToFitWidth = YES;
     _endPreField.textAlignment = NSTextAlignmentCenter;
     [scrollView addSubview:_endPreField];
     
-    mixtureLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 560, 100, 21)];
-    mixtureLabel.backgroundColor = [UIColor clearColor];
-    [mixtureLabel setText:NSLocalizedString(@"Mix", nil)];
-    [scrollView addSubview:mixtureLabel];
+    [mixImg setFrame:CGRectMake(60, 629, imgMix.size.width, imgMix.size.height)];
+    [scrollView addSubview:mixImg];
     
-    mixtureField = [[UITextField alloc] initWithFrame:CGRectMake(130, 557, 97, 30)];
+    mixtureField = [[UITextField alloc] initWithFrame:CGRectMake(130, 629, 97, 30)];
     mixtureField.backgroundColor = [UIColor clearColor];
     [mixtureField setTag:112];
     mixtureField.delegate = self;
+    mixtureField.placeholder = NSLocalizedString(@"Mix", nil);
     mixtureField.borderStyle = UITextBorderStyleRoundedRect;
     mixtureField.adjustsFontSizeToFitWidth = YES;
     mixtureField.textAlignment = NSTextAlignmentCenter;
     [scrollView addSubview:mixtureField];
     
-    oxygenLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 626, 100, 21)];
-    oxygenLabel.backgroundColor = [UIColor clearColor];
-    [oxygenLabel setText:NSLocalizedString(@"Oxy", nil)];
-    [scrollView addSubview:oxygenLabel];
+    [oxyImg setFrame:CGRectMake(60, 711, imgOxy.size.width, imgOxy.size.height)];
+    [scrollView addSubview:oxyImg];
     
-    oxygenField = [[UITextField alloc] initWithFrame:CGRectMake(130, 623, 97, 30)];
+    oxygenField = [[UITextField alloc] initWithFrame:CGRectMake(130, 711, 97, 30)];
     oxygenField.backgroundColor = [UIColor clearColor];
     [oxygenField setTag:113];
     oxygenField.delegate = self;
-    oxygenField.placeholder = @"";
+    oxygenField.placeholder = NSLocalizedString(@"Oxy", nil);
     oxygenField.borderStyle = UITextBorderStyleRoundedRect;
     oxygenField.adjustsFontSizeToFitWidth = YES;
     oxygenField.textAlignment = NSTextAlignmentCenter;
     [scrollView addSubview:oxygenField];
     
-    nitrogenLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 692, 100, 21)];
-    nitrogenLabel.backgroundColor = [UIColor clearColor];
-    [nitrogenLabel setText:NSLocalizedString(@"Nitrox", nil)];
-    [scrollView addSubview:nitrogenLabel];
+    [nitImg setFrame:CGRectMake(60, 793, imgNit.size.width, imgNit.size.height)];
+    [scrollView addSubview:nitImg];
     
-    nitrogenField = [[UITextField alloc] initWithFrame:CGRectMake(130, 689, 97, 30)];
+    nitrogenField = [[UITextField alloc] initWithFrame:CGRectMake(130, 793, 97, 30)];
     nitrogenField.backgroundColor = [UIColor clearColor];
     [nitrogenField setTag:114];
     nitrogenField.delegate = self;
-    nitrogenField.placeholder = @"";
+    nitrogenField.placeholder = NSLocalizedString(@"Nitrox", nil);
     nitrogenField.borderStyle = UITextBorderStyleRoundedRect;
     nitrogenField.textAlignment = NSTextAlignmentCenter;
     nitrogenField.adjustsFontSizeToFitWidth = YES;
     [scrollView addSubview:nitrogenField];
     
-    maxDepLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 758, 100, 21)];
-    maxDepLabel.backgroundColor = [UIColor clearColor];
-    [maxDepLabel setText:NSLocalizedString(@"Max", nil)];
-    [scrollView addSubview:maxDepLabel];
+    [deptthImg setFrame:CGRectMake(60, 875, imgDepth.size.width, imgDepth.size.height)];
+    [scrollView addSubview:deptthImg];
     
-    maxDepField = [[UITextField alloc] initWithFrame:CGRectMake(130, 755, 97, 30)];
+    maxDepField = [[UITextField alloc] initWithFrame:CGRectMake(130, 875, 97, 30)];
     maxDepField.backgroundColor = [UIColor clearColor];
     [maxDepField setTag:108];
     maxDepField.delegate = self;
-    maxDepField.placeholder = @"40 M";
+    maxDepField.placeholder = NSLocalizedString(@"Max", nil);
     maxDepField.borderStyle = UITextBorderStyleRoundedRect;
     maxDepField.adjustsFontSizeToFitWidth = YES;
     maxDepField.textAlignment = NSTextAlignmentCenter;
     [scrollView addSubview:maxDepField];
     
-    divetimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 824, 100, 21)];
-    divetimeLabel.backgroundColor = [UIColor clearColor];
-    [divetimeLabel setText:NSLocalizedString(@"DTime", nil)];
-    [scrollView addSubview:divetimeLabel];
+    [durationImg setFrame:CGRectMake(60, 957, imgDuration.size.width, imgDuration.size.height)];
+    [scrollView addSubview:durationImg];
     
-    divetimeField = [[UITextField alloc] initWithFrame:CGRectMake(130, 821, 97, 30)];
+    divetimeField = [[UITextField alloc] initWithFrame:CGRectMake(130, 957, 97, 30)];
     divetimeField.backgroundColor = [UIColor clearColor];
     [divetimeField setTag:111];
     divetimeField.delegate = self;
-    divetimeField.placeholder = @"in minutes";
+    divetimeField.placeholder = NSLocalizedString(@"DTime", nil);
     divetimeField.borderStyle = UITextBorderStyleRoundedRect;
     divetimeField.adjustsFontSizeToFitWidth = YES;
     divetimeField.textAlignment = NSTextAlignmentCenter;
     [scrollView addSubview:divetimeField];
     
-    temperLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 890, 100, 21)];
-    temperLabel.backgroundColor = [UIColor clearColor];
-    [temperLabel setText:NSLocalizedString(@"Temp", nil)];
-    [scrollView addSubview:temperLabel];
+    [tempImg setFrame:CGRectMake(60, 1039, imgTemp.size.width, imgTemp.size.height)];
+    [scrollView addSubview:tempImg];
     
-    temperField = [[UITextField alloc] initWithFrame:CGRectMake(130, 887, 97, 30)];
+    temperField = [[UITextField alloc] initWithFrame:CGRectMake(130, 1039, 97, 30)];
     temperField.backgroundColor = [UIColor clearColor];
     [temperField setTag:109];
     temperField.delegate = self;
-    temperField.placeholder = @"";
+    temperField.placeholder = NSLocalizedString(@"Temp", nil);
     temperField.borderStyle = UITextBorderStyleRoundedRect;
     temperField.textAlignment = NSTextAlignmentCenter;
     temperField.adjustsFontSizeToFitWidth = YES;
     [scrollView addSubview:temperField];
     
-    visiLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 956, 100, 21)];
-    visiLabel.backgroundColor = [UIColor clearColor];
-    [visiLabel setText:NSLocalizedString(@"Visi", nil)];
-    [scrollView addSubview:visiLabel];
+    [visiImg setFrame:CGRectMake(60, 1121, imgVisi.size.width, imgVisi.size.height)];
+    [scrollView addSubview:visiImg];
     
-    visiField = [[UITextField alloc] initWithFrame:CGRectMake(130, 953, 97, 30)];
+    visiField = [[UITextField alloc] initWithFrame:CGRectMake(130, 1121, 97, 30)];
     visiField.backgroundColor = [UIColor clearColor];
     [visiField setTag:110];
     visiField.delegate = self;
-    visiField.placeholder = @"15M";
+    visiField.placeholder = NSLocalizedString(@"Visi", nil);
     visiField.borderStyle = UITextBorderStyleRoundedRect;
     visiField.textAlignment = NSTextAlignmentCenter;
     visiField.adjustsFontSizeToFitWidth = YES;
@@ -1834,179 +1883,161 @@
 
 -(void)closedCircuitTextAndLabel
 {
-    dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 88, 80, 21)];
-    dateLabel.backgroundColor = [UIColor clearColor];
-    [dateLabel setText:NSLocalizedString(@"Date", nil)];
-    [scrollView addSubview:dateLabel];
+    [dateImg setFrame:CGRectMake(60, 75, imgDate.size.width, imgDate.size.height)];
+    [scrollView addSubview:dateImg];
     
-    dateField = [[UITextField alloc] initWithFrame:CGRectMake(130, 85, 150, 30)];
+    dateField = [[UITextField alloc] initWithFrame:CGRectMake(130, 75, 150, 30)];
     dateField.backgroundColor = [UIColor clearColor];
     [dateField setTag:101];
     dateField.delegate = self;
-    dateField.placeholder = @"YYYY-mm-dd";
+    dateField.placeholder = @"YYYY-mm-dd HH:mm";
     dateField.borderStyle = UITextBorderStyleRoundedRect;
     dateField.adjustsFontSizeToFitWidth = YES;
     [scrollView addSubview:dateField];
     
-    siteLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 154, 80, 21)];
-    siteLabel.backgroundColor = [UIColor clearColor];
-    [siteLabel setText:NSLocalizedString(@"Site", nil)];
-    [scrollView addSubview:siteLabel];
+    [siteImg setFrame:CGRectMake(60, 157, imgSite.size.width, imgSite.size.height)];
+    [scrollView addSubview:siteImg];
     
-    siteField = [[UITextField alloc] initWithFrame:CGRectMake(130, 151, 97, 30)];
+    siteField = [[UITextField alloc] initWithFrame:CGRectMake(130, 157, 97, 30)];
     siteField.backgroundColor = [UIColor clearColor];
     [siteField setTag:102];
     siteField.delegate = self;
-    siteField.placeholder = @"Site Name";
+    siteField.placeholder = NSLocalizedString(@"Site", nil);
     siteField.borderStyle = UITextBorderStyleRoundedRect;
-    siteField.textAlignment = NSTextAlignmentCenter;
+    //siteField.textAlignment = NSTextAlignmentCenter;
     siteField.adjustsFontSizeToFitWidth = YES;
     [scrollView addSubview:siteField];
-    /*
-     siteButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-     [siteButton setTitle:@"Auto" forState:UIControlStateNormal];
-     [siteButton setFrame:CGRectMake(210, 124, 80, 80)];
-     [siteButton addTarget:self action:@selector(locateSite) forControlEvents:UIControlEventTouchUpInside];
-     [scrollView addSubview:siteButton];
-     */
-    wavesLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 220, 100, 21)];
-    wavesLabel.backgroundColor = [UIColor clearColor];
-    [wavesLabel setText:NSLocalizedString(@"Waves", nil)];
-    [scrollView addSubview:wavesLabel];
     
-    wavesField = [[UITextField alloc] initWithFrame:CGRectMake(130, 217, 97, 30)];
+    [wavesImg setFrame:CGRectMake(60, 229, imgWaves.size.width, imgWaves.size.height)];
+    [scrollView addSubview:wavesImg];
+    
+    wavesField = [[UITextField alloc] initWithFrame:CGRectMake(130, 239, 97, 30)];
     wavesField.backgroundColor = [UIColor clearColor];
     [wavesField setTag:103];
     wavesField.delegate = self;
-    //wavesField.placeholder = @"25.061033";
+    wavesField.placeholder = NSLocalizedString(@"Waves", nil);
+    
     wavesField.borderStyle = UITextBorderStyleRoundedRect;
     wavesField.textAlignment = NSTextAlignmentCenter;
     [scrollView addSubview:wavesField];
     
-    currentLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 286, 100, 21)];
-    currentLabel.backgroundColor = [UIColor clearColor];
-    [currentLabel setText:NSLocalizedString(@"Current", nil)];
-    [scrollView addSubview:currentLabel];
+    [currentImg setFrame:CGRectMake(60, 321, imgCurrent.size.width, imgCurrent.size.height)];
+    [scrollView addSubview:currentImg];
     
-    currentField = [[UITextField alloc] initWithFrame:CGRectMake(130, 283, 97, 30)];
+    currentField = [[UITextField alloc] initWithFrame:CGRectMake(130, 321, 97, 30)];
     currentField.backgroundColor = [UIColor clearColor];
     [currentField setTag:104];
     currentField.delegate = self;
-    //currentField.placeholder = @"121.646056";
+    currentField.placeholder = NSLocalizedString(@"Current", nil);
     currentField.borderStyle = UITextBorderStyleRoundedRect;
     currentField.textAlignment = NSTextAlignmentCenter;
     [scrollView addSubview:currentField];
     
-    gasLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 352, 100, 21)];
-    gasLabel.backgroundColor = [UIColor clearColor];
-    [gasLabel setText:NSLocalizedString(@"Gas", nil)];
-    [scrollView addSubview:gasLabel];
+    [gasImg setFrame:CGRectMake(60, 383, imgGas.size.width, imgGas.size.height)];
+    [scrollView addSubview:gasImg];
     
-    gasField = [[UITextField alloc] initWithFrame:CGRectMake(130, 349, 97, 30)];
+    gasField = [[UITextField alloc] initWithFrame:CGRectMake(130, 383, 97, 30)];
     [gasField setTag:105];
     [gasField setText:NSLocalizedString(@"CCR", nil)] ;
     gasField.delegate = self;
-    //gasField.placeholder = @"氣源";
+    gasField.placeholder = NSLocalizedString(@"Gas", nil);
     gasField.borderStyle = UITextBorderStyleRoundedRect;
     gasField.textAlignment = NSTextAlignmentCenter;
     gasField.adjustsFontSizeToFitWidth = YES;
     [scrollView addSubview:gasField];
     
-    staPrelabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 428, 200, 21)];
-    staPrelabel.backgroundColor = [UIColor clearColor];
-    [staPrelabel setText:NSLocalizedString(@"BPres", nil)];
-    [scrollView addSubview:staPrelabel];
+    [startImg setFrame:CGRectMake(60, 465, imgStart.size.width, imgStart.size.height)];
+    [scrollView addSubview:startImg];
     
-    staPreField = [[UITextField alloc] initWithFrame:CGRectMake(130, 425, 97, 30)];
+    staPreField = [[UITextField alloc] initWithFrame:CGRectMake(130, 465, 97, 30)];
     staPreField.backgroundColor = [UIColor clearColor];
     [staPreField setTag:106];
     staPreField.delegate = self;
-    staPreField.placeholder = @"200 bar";
+    staPreField.placeholder = NSLocalizedString(@"BPres", nil);
     staPreField.borderStyle = UITextBorderStyleRoundedRect;
     staPreField.adjustsFontSizeToFitWidth = YES;
     staPreField.textAlignment = NSTextAlignmentCenter;
     [scrollView addSubview:staPreField];
     
-    _endPreLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 494, 200, 21)];
-    _endPreLabel.backgroundColor = [UIColor clearColor];
-    [_endPreLabel setText:NSLocalizedString(@"EPres", nil)];
-    [scrollView addSubview:_endPreLabel];
+    [endImg setFrame:CGRectMake(60, 547, imgEnd.size.width, imgEnd.size.height)];
+    [scrollView addSubview:endImg];
     
-    _endPreField = [[UITextField alloc] initWithFrame:CGRectMake(130, 491, 97, 30)];
+    _endPreField = [[UITextField alloc] initWithFrame:CGRectMake(130, 547, 97, 30)];
     _endPreField.backgroundColor = [UIColor clearColor];
     [_endPreField setTag:107];
     _endPreField.delegate = self;
-    _endPreField.placeholder = @"60 bar";
+    _endPreField.placeholder = NSLocalizedString(@"EPres", nil);
     _endPreField.borderStyle = UITextBorderStyleRoundedRect;
     _endPreField.adjustsFontSizeToFitWidth = YES;
     _endPreField.textAlignment = NSTextAlignmentCenter;
     [scrollView addSubview:_endPreField];
     
-    mixtureLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 560, 100, 21)];
-    mixtureLabel.backgroundColor = [UIColor clearColor];
-    [mixtureLabel setText:NSLocalizedString(@"Mix", nil)];
-    [scrollView addSubview:mixtureLabel];
+    [mixImg setFrame:CGRectMake(60, 629, imgMix.size.width, imgMix.size.height)];
+    [scrollView addSubview:mixImg];
     
-    mixtureField = [[UITextField alloc] initWithFrame:CGRectMake(130, 557, 97, 30)];
+    mixtureField = [[UITextField alloc] initWithFrame:CGRectMake(130, 629, 97, 30)];
     mixtureField.backgroundColor = [UIColor clearColor];
     [mixtureField setTag:112];
     mixtureField.delegate = self;
+    mixtureField.placeholder = NSLocalizedString(@"Mix", nil);
     mixtureField.borderStyle = UITextBorderStyleRoundedRect;
     mixtureField.adjustsFontSizeToFitWidth = YES;
     mixtureField.textAlignment = NSTextAlignmentCenter;
     [scrollView addSubview:mixtureField];
     
-    oxygenLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 626, 100, 21)];
-    oxygenLabel.backgroundColor = [UIColor clearColor];
-    [oxygenLabel setText:NSLocalizedString(@"Oxy", nil)];
-    [scrollView addSubview:oxygenLabel];
+    [oxyImg setFrame:CGRectMake(60, 711, imgOxy.size.width, imgOxy.size.height)];
+    [scrollView addSubview:oxyImg];
     
-    oxygenField = [[UITextField alloc] initWithFrame:CGRectMake(130, 623, 97, 30)];
+    oxygenField = [[UITextField alloc] initWithFrame:CGRectMake(130, 711, 97, 30)];
     oxygenField.backgroundColor = [UIColor clearColor];
     [oxygenField setTag:113];
     oxygenField.delegate = self;
-    oxygenField.placeholder = @"in minutes";
+    oxygenField.placeholder = NSLocalizedString(@"Oxy", nil);
     oxygenField.borderStyle = UITextBorderStyleRoundedRect;
     oxygenField.adjustsFontSizeToFitWidth = YES;
     oxygenField.textAlignment = NSTextAlignmentCenter;
     [scrollView addSubview:oxygenField];
     
-    nitrogenLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 692, 100, 21)];
-    nitrogenLabel.backgroundColor = [UIColor clearColor];
-    [nitrogenLabel setText:NSLocalizedString(@"Nitrox", nil)];
-    [scrollView addSubview:nitrogenLabel];
+    [nitImg setFrame:CGRectMake(60, 793, imgNit.size.width, imgNit.size.height)];
+    [scrollView addSubview:nitImg];
     
-    nitrogenField = [[UITextField alloc] initWithFrame:CGRectMake(130, 689, 97, 30)];
+    nitrogenField = [[UITextField alloc] initWithFrame:CGRectMake(130, 793, 97, 30)];
     nitrogenField.backgroundColor = [UIColor clearColor];
     [nitrogenField setTag:114];
     nitrogenField.delegate = self;
-    nitrogenField.placeholder = @"%";
+    nitrogenField.placeholder = NSLocalizedString(@"Nitrox", nil);
     nitrogenField.borderStyle = UITextBorderStyleRoundedRect;
     nitrogenField.textAlignment = NSTextAlignmentCenter;
     nitrogenField.adjustsFontSizeToFitWidth = YES;
     [scrollView addSubview:nitrogenField];
     
+    
+    /*
     heliumLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 758, 100, 21)];
     heliumLabel.backgroundColor = [UIColor clearColor];
     [heliumLabel setText:NSLocalizedString(@"Helium", nil)];
     [scrollView addSubview:heliumLabel];
+    */
+    [helImg setFrame:CGRectMake(60, 875, imgHel.size.width, imgHel.size.height)];
+    [scrollView addSubview:helImg];
     
-    heliumField = [[UITextField alloc] initWithFrame:CGRectMake(130, 755, 97, 30)];
+    heliumField = [[UITextField alloc] initWithFrame:CGRectMake(130, 875, 97, 30)];
     heliumField.backgroundColor = [UIColor clearColor];
     [heliumField setTag:115];
     heliumField.delegate = self;
+    heliumField.placeholder = NSLocalizedString(@"Helium", nil);
     heliumField.borderStyle = UITextBorderStyleRoundedRect;
     heliumField.adjustsFontSizeToFitWidth = YES;
     heliumField.textAlignment = NSTextAlignmentCenter;
     [scrollView addSubview:heliumField];
     
     
-    lowppo2Label = [[UILabel alloc] initWithFrame:CGRectMake(30, 824, 100, 21)];
+    lowppo2Label = [[UILabel alloc] initWithFrame:CGRectMake(30, 957, 100, 21)];
     lowppo2Label.backgroundColor = [UIColor clearColor];
     [lowppo2Label setText:NSLocalizedString(@"LowP", nil)];
     [scrollView addSubview:lowppo2Label];
     
-    lowppo2Field = [[UITextField alloc] initWithFrame:CGRectMake(130, 821, 97, 30)];
+    lowppo2Field = [[UITextField alloc] initWithFrame:CGRectMake(130, 954, 97, 30)];
     lowppo2Field.backgroundColor = [UIColor clearColor];
     [lowppo2Field setTag:116];
     lowppo2Field.delegate = self;
@@ -2015,12 +2046,12 @@
     lowppo2Field.textAlignment = NSTextAlignmentCenter;
     [scrollView addSubview:lowppo2Field];
     
-    highppo2Label = [[UILabel alloc] initWithFrame:CGRectMake(30, 890, 100, 21)];
+    highppo2Label = [[UILabel alloc] initWithFrame:CGRectMake(30, 1039, 100, 21)];
     highppo2Label.backgroundColor = [UIColor clearColor];
     [highppo2Label setText:NSLocalizedString(@"HighP", nil)];
     [scrollView addSubview:highppo2Label];
     
-    highppo2Field = [[UITextField alloc] initWithFrame:CGRectMake(130, 887, 97, 30)];
+    highppo2Field = [[UITextField alloc] initWithFrame:CGRectMake(130, 1036, 97, 30)];
     highppo2Field.backgroundColor = [UIColor clearColor];
     [highppo2Field setTag:117];
     highppo2Field.delegate = self;
@@ -2030,61 +2061,53 @@
     highppo2Field.adjustsFontSizeToFitWidth = YES;
     [scrollView addSubview:highppo2Field];
     
-    maxDepLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 956, 100, 21)];
-    maxDepLabel.backgroundColor = [UIColor clearColor];
-    [maxDepLabel setText:NSLocalizedString(@"Max", nil)];
-    [scrollView addSubview:maxDepLabel];
+    [deptthImg setFrame:CGRectMake(60, 1121, imgDepth.size.width, imgDepth.size.height)];
+    [scrollView addSubview:deptthImg];
     
-    maxDepField = [[UITextField alloc] initWithFrame:CGRectMake(130, 953, 97, 30)];
+    maxDepField = [[UITextField alloc] initWithFrame:CGRectMake(130, 1121, 97, 30)];
     maxDepField.backgroundColor = [UIColor clearColor];
     [maxDepField setTag:108];
     maxDepField.delegate = self;
-    maxDepField.placeholder = @"40 M";
+    maxDepField.placeholder = NSLocalizedString(@"Max", nil);
     maxDepField.borderStyle = UITextBorderStyleRoundedRect;
     maxDepField.adjustsFontSizeToFitWidth = YES;
     maxDepField.textAlignment = NSTextAlignmentCenter;
     [scrollView addSubview:maxDepField];
     
-    divetimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 1022, 100, 21)];
-    divetimeLabel.backgroundColor = [UIColor clearColor];
-    [divetimeLabel setText:NSLocalizedString(@"DTime", nil)];
-    [scrollView addSubview:divetimeLabel];
+    [durationImg setFrame:CGRectMake(60, 1203, imgDuration.size.width, imgDuration.size.height)];
+    [scrollView addSubview:durationImg];
     
-    divetimeField = [[UITextField alloc] initWithFrame:CGRectMake(130, 1019, 97, 30)];
+    divetimeField = [[UITextField alloc] initWithFrame:CGRectMake(130, 1203, 97, 30)];
     divetimeField.backgroundColor = [UIColor clearColor];
     [divetimeField setTag:111];
     divetimeField.delegate = self;
-    divetimeField.placeholder = @"in minutes";
+    divetimeField.placeholder = NSLocalizedString(@"DTime", nil);
     divetimeField.borderStyle = UITextBorderStyleRoundedRect;
     divetimeField.adjustsFontSizeToFitWidth = YES;
     divetimeField.textAlignment = NSTextAlignmentCenter;
     [scrollView addSubview:divetimeField];
     
-    temperLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 1088, 100, 21)];
-    temperLabel.backgroundColor = [UIColor clearColor];
-    [temperLabel setText:NSLocalizedString(@"Temp", nil)];
-    [scrollView addSubview:temperLabel];
+    [tempImg setFrame:CGRectMake(60, 1285, imgTemp.size.width, imgTemp.size.height)];
+    [scrollView addSubview:tempImg];
     
-    temperField = [[UITextField alloc] initWithFrame:CGRectMake(130, 1085, 97, 30)];
+    temperField = [[UITextField alloc] initWithFrame:CGRectMake(130, 1285, 97, 30)];
     temperField.backgroundColor = [UIColor clearColor];
     [temperField setTag:109];
     temperField.delegate = self;
-    temperField.placeholder = @"";
+    temperField.placeholder = NSLocalizedString(@"Temp", nil);
     temperField.borderStyle = UITextBorderStyleRoundedRect;
     temperField.textAlignment = NSTextAlignmentCenter;
     temperField.adjustsFontSizeToFitWidth = YES;
     [scrollView addSubview:temperField];
     
-    visiLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 1154, 100, 21)];
-    visiLabel.backgroundColor = [UIColor clearColor];
-    [visiLabel setText:NSLocalizedString(@"Visi", nil)];
-    [scrollView addSubview:visiLabel];
+    [visiImg setFrame:CGRectMake(60, 1367, imgVisi.size.width, imgVisi.size.height)];
+    [scrollView addSubview:visiImg];
     
-    visiField = [[UITextField alloc] initWithFrame:CGRectMake(130, 1151, 97, 30)];
+    visiField = [[UITextField alloc] initWithFrame:CGRectMake(130, 1367, 97, 30)];
     visiField.backgroundColor = [UIColor clearColor];
     [visiField setTag:110];
     visiField.delegate = self;
-    visiField.placeholder = @"15M";
+    visiField.placeholder = NSLocalizedString(@"Visi", nil);
     visiField.borderStyle = UITextBorderStyleRoundedRect;
     visiField.textAlignment = NSTextAlignmentCenter;
     visiField.adjustsFontSizeToFitWidth = YES;
