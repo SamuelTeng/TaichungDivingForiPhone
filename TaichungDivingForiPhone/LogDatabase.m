@@ -23,7 +23,7 @@
 @implementation LogDatabase
 
 @synthesize resultController,_managedObject;
-@synthesize logDate,logEndPressure,logStartPressure,logTemperature,logVisibility,logGas,logDepth,logTime,logSite,logCurrent,logWaves,logHelium,logHighppO2,logLowppO2,logMixture,logNitrogen,logOxygen;
+@synthesize logDate,logEndPressure,logStartPressure,logTemperature,logVisibility,logGas,logDepth,logTime,logSite,logCurrent,logWaves,logHelium,logHighppO2,logLowppO2,logMixture,logNitrogen,logOxygen,logImg;
 @synthesize pages;
 
 -(void)fetchData
@@ -183,6 +183,15 @@
     NSManagedObject *managedObject = [resultController objectAtIndexPath:indexpath];
     logHighppO2 = [managedObject valueForKey:@"highppo2"];
     return logHighppO2;
+}
+
+-(NSData *)images:(NSIndexPath *)indexpath;
+{
+    
+    NSManagedObject *managedObject = [resultController objectAtIndexPath:indexpath];
+    logImg = [managedObject valueForKey:@"photos"];
+    return logImg;
+    
 }
 
 

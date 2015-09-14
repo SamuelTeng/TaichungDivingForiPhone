@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "LogBookTableViewController.h"
 #import "LogCategoryViewController.h"
+#import "PhotoViewController.h"
 
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() ==UIUserInterfaceIdiomPhone)
 #define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
@@ -31,6 +32,7 @@
     AppDelegate *delegate;
     LogBookTableViewController *logBookTableView;
     LogCategoryViewController *logCategory;
+    PhotoViewController *photoRoll;
     
 }
 
@@ -39,9 +41,10 @@
 
 @implementation LogViewController
 
-@synthesize managedObjectContext,scrollView,secondRow,selectedRow,siteField,siteLabel,staPreField,staPrelabel,dateField,dateLabel,divetimeField,divetimeLabel,wavesField,wavesLabel,currentField,currentLabel,mAndf,maxDepField,maxDepLabel,temperField,temperLabel,thirdRow,visiField,visiLabel,otherField,otherLabel,gasArr,gasField,gasLabel,dateFromData,wavesFromData,currentFromData,timeFromData,wavesArr,currentArr,logType,mixtureArr,mixtureField,mixtureLabel,oxygenField,oxygenLabel,nitrogenField,nitrogenLabel,heliumField,heliumLabel,lowppo2Field,lowppo2Label,highppo2Field,highppo2Label;
+@synthesize managedObjectContext,scrollView,secondRow,selectedRow,siteField,staPreField,dateField,divetimeField,wavesField,currentField,mAndf,maxDepField,temperField,thirdRow,visiField,otherField,gasArr,gasField,dateFromData,wavesFromData,currentFromData,timeFromData,wavesArr,currentArr,logType,mixtureArr,mixtureField,oxygenField,nitrogenField,heliumField,lowppo2Field,lowppo2Label,highppo2Field,highppo2Label;
 
-@synthesize dateImg,deptthImg,durationImg,siteImg,startImg,endImg,gasImg,visiImg,wavesImg,currentImg,tempImg,imgCurrent,imgDate,imgDepth,imgDuration,imgEnd,imgGas,imgSite,imgStart,imgTemp,imgVisi,imgWaves,mixImg,imgMix,oxyImg,imgOxy,nitImg,imgNit,helImg,imgHel;
+@synthesize dateImg,deptthImg,durationImg,siteImg,startImg,endImg,gasImg,visiImg,wavesImg,currentImg,tempImg,imgCurrent,imgDate,imgDepth,imgDuration,imgEnd,imgGas,imgSite,imgStart,imgTemp,imgVisi,imgWaves,mixImg,imgMix,oxyImg,imgOxy,nitImg,imgNit,helImg,imgHel,cameraImg,imgCamera;
+@synthesize selectedImg,viewReserved;
 
 -(void)detectingDevice
 {
@@ -133,6 +136,17 @@
     
     imgHel = [UIImage imageNamed:@"LogImg.bundle/He"];
     helImg = [[UIImageView alloc] initWithImage:imgHel];
+    
+    imgCamera = [UIImage imageNamed:@"LogImg.bundle/Camera_roll"];
+    cameraImg = [UIButton buttonWithType:UIButtonTypeCustom];
+    [cameraImg setBackgroundImage:imgCamera forState:UIControlStateNormal];
+    
+}
+
+-(void)fowardToPhoto:(id)sender
+{
+    [delegate.navi pushViewController:photoRoll animated:NO];
+    viewReserved = 1;
 }
 
 -(void)loadView
@@ -143,7 +157,7 @@
     scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, 1500);
     scrollView.backgroundColor = [UIColor clearColor];
-    //scrollView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"scroll_background.png"]];
+    
     [self.view addSubview:scrollView];
     
     [self detectingDevice];
@@ -177,6 +191,7 @@
     
     logBookTableView = [[LogBookTableViewController alloc] init];
     logCategory = [[LogCategoryViewController alloc] init];
+    photoRoll = [[PhotoViewController alloc] init];
     
     
 
@@ -193,26 +208,44 @@
     
     [super viewWillAppear:animated];
     
-    switch (logType) {
+    switch (viewReserved) {
         case 0:
             
-            [self textAndLabel];
+            switch (logType) {
+                case 0:
+                    
+                    [self textAndLabel];
+                    break;
+                    
+                case 1:
+                    
+                    [self nitroxTextAndLabel];
+                    break;
+                    
+                case 2:
+                    
+                    [self closedCircuitTextAndLabel];
+                    break;
+                    
+                default:
+                    break;
+            }
+            
             break;
             
         case 1:
             
-            [self nitroxTextAndLabel];
+            selectedImg.image = delegate.selectedCellImage;
+            
             break;
             
-        case 2:
-            
-            [self closedCircuitTextAndLabel];
-            break;
+        
             
         default:
             break;
     }
-
+    
+    
     
 }
 
@@ -222,86 +255,171 @@
     switch (logType) {
         case 0:
         {
-            NSString *dateStr = dateField.text;
-            NSLog(@"%@",dateStr);
-            
-            
-            NSString *site = siteField.text;
-            
-            
-            
-            NSString *waves = wavesField.text;
-            
-            
-            NSString *current= currentField.text;
-            
-            
-            
-            NSString *maxDepth = maxDepField.text;
-            
-            
-            NSString *gasType = gasField.text;
-            
-            
-            NSString *diveTime = divetimeField.text;
-            NSNumberFormatter *diveTimeFormatter = [[NSNumberFormatter alloc] init];
-            [diveTimeFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
-            NSNumber *_diveTime = [diveTimeFormatter numberFromString:diveTime];
-            
-            
-            NSString *visibility = visiField.text;
-            
-            
-            NSString *temperature = temperField.text;
-            
-            
-            NSString *startPressure = staPreField.text;
-            //    NSNumberFormatter *startPressureFormatter = [[NSNumberFormatter alloc] init];
-            //    [startPressureFormatter setNumberStyle:NSNumberFormatterNoStyle];
-            //    NSNumber *_startPressure = [startPressureFormatter numberFromString:startPressure];
-            
-            
-            NSString *endPressure = _endPreField.text;
-            //    NSNumberFormatter *endPressureFormatter = [[NSNumberFormatter alloc] init];
-            //    [endPressureFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
-            //    NSNumber *_endPressure = [endPressureFormatter numberFromString:endPressure];
-            dateField.text = nil;
-            siteField.text = nil;
-            wavesField.text = nil;
-            currentField.text = nil;
-            maxDepField.text = nil;
-            gasField.text = nil;
-            divetimeField.text = nil;
-            visiField.text = nil;
-            temperField.text = nil;
-            staPreField.text = nil;
-            _endPreField.text = nil;
-            
-            DiveLog *database = (DiveLog *)[NSEntityDescription insertNewObjectForEntityForName:@"DiveLog" inManagedObjectContext:managedObjectContext];
-            
-            database.date = dateStr;
-            database.site = site;
-            database.waves = waves;
-            database.current = current;
-            database.max_depth = maxDepth;
-            database.gas_type = gasType;
-            database.dive_time = _diveTime;
-            database.visibility = visibility;
-            database.temperature = temperature;
-            database.start_pressure = startPressure;
-            database.end_pressure = endPressure;
-            
-            
-            
-            NSError *error;
-            if (![managedObjectContext save:&error]) {
-                NSLog(@"error:%@", [error localizedFailureReason]);
+            if (selectedImg.image == nil) {
+                
+                NSString *dateStr = dateField.text;
+                NSLog(@"%@",dateStr);
+                
+                
+                NSString *site = siteField.text;
+                
+                
+                
+                NSString *waves = wavesField.text;
+                
+                
+                NSString *current= currentField.text;
+                
+                
+                
+                NSString *maxDepth = maxDepField.text;
+                
+                
+                NSString *gasType = gasField.text;
+                
+                
+                NSString *diveTime = divetimeField.text;
+                NSNumberFormatter *diveTimeFormatter = [[NSNumberFormatter alloc] init];
+                [diveTimeFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+                NSNumber *_diveTime = [diveTimeFormatter numberFromString:diveTime];
+                
+                
+                NSString *visibility = visiField.text;
+                
+                
+                NSString *temperature = temperField.text;
+                
+                
+                NSString *startPressure = staPreField.text;
+                
+                
+                
+                NSString *endPressure = _endPreField.text;
+                
+                dateField.text = nil;
+                siteField.text = nil;
+                wavesField.text = nil;
+                currentField.text = nil;
+                maxDepField.text = nil;
+                gasField.text = nil;
+                divetimeField.text = nil;
+                visiField.text = nil;
+                temperField.text = nil;
+                staPreField.text = nil;
+                _endPreField.text = nil;
+                
+                DiveLog *database = (DiveLog *)[NSEntityDescription insertNewObjectForEntityForName:@"DiveLog" inManagedObjectContext:managedObjectContext];
+                
+                database.date = dateStr;
+                database.site = site;
+                database.waves = waves;
+                database.current = current;
+                database.max_depth = maxDepth;
+                database.gas_type = gasType;
+                database.dive_time = _diveTime;
+                database.visibility = visibility;
+                database.temperature = temperature;
+                database.start_pressure = startPressure;
+                database.end_pressure = endPressure;
+                
+                
+                
+                NSError *error;
+                if (![managedObjectContext save:&error]) {
+                    NSLog(@"error:%@", [error localizedFailureReason]);
+                }
+                
+                
+                viewReserved = 0;
+                
+                [delegate.navi pushViewController:logBookTableView animated:YES];
+                
+            } else {
+                
+                NSString *dateStr = dateField.text;
+                NSLog(@"%@",dateStr);
+                
+                
+                NSString *site = siteField.text;
+                
+                
+                
+                NSString *waves = wavesField.text;
+                
+                
+                NSString *current= currentField.text;
+                
+                
+                
+                NSString *maxDepth = maxDepField.text;
+                
+                
+                NSString *gasType = gasField.text;
+                
+                
+                NSString *diveTime = divetimeField.text;
+                NSNumberFormatter *diveTimeFormatter = [[NSNumberFormatter alloc] init];
+                [diveTimeFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+                NSNumber *_diveTime = [diveTimeFormatter numberFromString:diveTime];
+                
+                
+                NSString *visibility = visiField.text;
+                
+                
+                NSString *temperature = temperField.text;
+                
+                
+                NSString *startPressure = staPreField.text;
+                
+                
+                
+                NSString *endPressure = _endPreField.text;
+                
+                NSData *photoData = [NSData dataWithData:UIImagePNGRepresentation(selectedImg.image)];
+                
+                dateField.text = nil;
+                siteField.text = nil;
+                wavesField.text = nil;
+                currentField.text = nil;
+                maxDepField.text = nil;
+                gasField.text = nil;
+                divetimeField.text = nil;
+                visiField.text = nil;
+                temperField.text = nil;
+                staPreField.text = nil;
+                _endPreField.text = nil;
+                selectedImg.image = nil;
+                delegate.selectedCellImage = nil;
+                
+                DiveLog *database = (DiveLog *)[NSEntityDescription insertNewObjectForEntityForName:@"DiveLog" inManagedObjectContext:managedObjectContext];
+                
+                database.date = dateStr;
+                database.site = site;
+                database.waves = waves;
+                database.current = current;
+                database.max_depth = maxDepth;
+                database.gas_type = gasType;
+                database.dive_time = _diveTime;
+                database.visibility = visibility;
+                database.temperature = temperature;
+                database.start_pressure = startPressure;
+                database.end_pressure = endPressure;
+                database.photos = photoData;
+                
+                
+                NSError *error;
+                if (![managedObjectContext save:&error]) {
+                    NSLog(@"error:%@", [error localizedFailureReason]);
+                }
+                
+                
+                viewReserved = 0;
+                
+                [delegate.navi pushViewController:logBookTableView animated:YES];
+                
             }
             
             
-            
-            
-            [delegate.navi pushViewController:logBookTableView animated:YES];
             
             
         }
@@ -309,209 +427,435 @@
             
         case 1:
         {
-            NSString *dateStr = dateField.text;
-            NSLog(@"%@",dateStr);
-            
-            
-            NSString *site = siteField.text;
-            
-            
-            
-            NSString *waves = wavesField.text;
-            
-            
-            NSString *current= currentField.text;
-            
-            
-            
-            NSString *maxDepth = maxDepField.text;
-            
-            
-            NSString *gasType = gasField.text;
-            
-            
-            NSString *diveTime = divetimeField.text;
-            NSNumberFormatter *diveTimeFormatter = [[NSNumberFormatter alloc] init];
-            [diveTimeFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
-            NSNumber *_diveTime = [diveTimeFormatter numberFromString:diveTime];
-            
-            
-            NSString *visibility = visiField.text;
-            
-            
-            NSString *temperature = temperField.text;
-            
-            
-            NSString *startPressure = staPreField.text;
-            //    NSNumberFormatter *startPressureFormatter = [[NSNumberFormatter alloc] init];
-            //    [startPressureFormatter setNumberStyle:NSNumberFormatterNoStyle];
-            //    NSNumber *_startPressure = [startPressureFormatter numberFromString:startPressure];
-            
-            
-            NSString *endPressure = _endPreField.text;
-            //    NSNumberFormatter *endPressureFormatter = [[NSNumberFormatter alloc] init];
-            //    [endPressureFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
-            //    NSNumber *_endPressure = [endPressureFormatter numberFromString:endPressure];
-            NSString *_mixture = mixtureField.text;
-            
-            NSString *_oxygen = oxygenField.text;
-            
-            NSString *_nitrogen = nitrogenField.text;
-            
-            
-            dateField.text = nil;
-            siteField.text = nil;
-            wavesField.text = nil;
-            currentField.text = nil;
-            maxDepField.text = nil;
-            gasField.text = nil;
-            divetimeField.text = nil;
-            visiField.text = nil;
-            temperField.text = nil;
-            staPreField.text = nil;
-            _endPreField.text = nil;
-            mixtureField.text = nil;
-            oxygenField.text = nil;
-            nitrogenField.text = nil;
-            
-            DiveLog *database = (DiveLog *)[NSEntityDescription insertNewObjectForEntityForName:@"DiveLog" inManagedObjectContext:managedObjectContext];
-            
-            database.date = dateStr;
-            database.site = site;
-            database.waves = waves;
-            database.current = current;
-            database.max_depth = maxDepth;
-            database.gas_type = gasType;
-            database.dive_time = _diveTime;
-            database.visibility = visibility;
-            database.temperature = temperature;
-            database.start_pressure = startPressure;
-            database.end_pressure = endPressure;
-            database.mixture = _mixture;
-            database.oxygen = _oxygen;
-            database.nitrogen = _nitrogen;
-            
-            
-            NSError *error;
-            if (![managedObjectContext save:&error]) {
-                NSLog(@"error:%@", [error localizedFailureReason]);
+           
+            if (selectedImg.image == nil) {
+                
+                NSString *dateStr = dateField.text;
+                NSLog(@"%@",dateStr);
+                
+                
+                NSString *site = siteField.text;
+                
+                
+                
+                NSString *waves = wavesField.text;
+                
+                
+                NSString *current= currentField.text;
+                
+                
+                
+                NSString *maxDepth = maxDepField.text;
+                
+                
+                NSString *gasType = gasField.text;
+                
+                
+                NSString *diveTime = divetimeField.text;
+                NSNumberFormatter *diveTimeFormatter = [[NSNumberFormatter alloc] init];
+                [diveTimeFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+                NSNumber *_diveTime = [diveTimeFormatter numberFromString:diveTime];
+                
+                
+                NSString *visibility = visiField.text;
+                
+                
+                NSString *temperature = temperField.text;
+                
+                
+                NSString *startPressure = staPreField.text;
+                //    NSNumberFormatter *startPressureFormatter = [[NSNumberFormatter alloc] init];
+                //    [startPressureFormatter setNumberStyle:NSNumberFormatterNoStyle];
+                //    NSNumber *_startPressure = [startPressureFormatter numberFromString:startPressure];
+                
+                
+                NSString *endPressure = _endPreField.text;
+                //    NSNumberFormatter *endPressureFormatter = [[NSNumberFormatter alloc] init];
+                //    [endPressureFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+                //    NSNumber *_endPressure = [endPressureFormatter numberFromString:endPressure];
+                NSString *_mixture = mixtureField.text;
+                
+                NSString *_oxygen = oxygenField.text;
+                
+                NSString *_nitrogen = nitrogenField.text;
+                
+                
+                dateField.text = nil;
+                siteField.text = nil;
+                wavesField.text = nil;
+                currentField.text = nil;
+                maxDepField.text = nil;
+                gasField.text = nil;
+                divetimeField.text = nil;
+                visiField.text = nil;
+                temperField.text = nil;
+                staPreField.text = nil;
+                _endPreField.text = nil;
+                mixtureField.text = nil;
+                oxygenField.text = nil;
+                nitrogenField.text = nil;
+                
+                DiveLog *database = (DiveLog *)[NSEntityDescription insertNewObjectForEntityForName:@"DiveLog" inManagedObjectContext:managedObjectContext];
+                
+                database.date = dateStr;
+                database.site = site;
+                database.waves = waves;
+                database.current = current;
+                database.max_depth = maxDepth;
+                database.gas_type = gasType;
+                database.dive_time = _diveTime;
+                database.visibility = visibility;
+                database.temperature = temperature;
+                database.start_pressure = startPressure;
+                database.end_pressure = endPressure;
+                database.mixture = _mixture;
+                database.oxygen = _oxygen;
+                database.nitrogen = _nitrogen;
+                
+                
+                NSError *error;
+                if (![managedObjectContext save:&error]) {
+                    NSLog(@"error:%@", [error localizedFailureReason]);
+                }
+                
+                
+                viewReserved = 0;
+                
+                [delegate.navi pushViewController:logBookTableView animated:YES];
+                
+
+                
+            } else {
+                
+                NSString *dateStr = dateField.text;
+                NSLog(@"%@",dateStr);
+                
+                
+                NSString *site = siteField.text;
+                
+                
+                
+                NSString *waves = wavesField.text;
+                
+                
+                NSString *current= currentField.text;
+                
+                
+                
+                NSString *maxDepth = maxDepField.text;
+                
+                
+                NSString *gasType = gasField.text;
+                
+                
+                NSString *diveTime = divetimeField.text;
+                NSNumberFormatter *diveTimeFormatter = [[NSNumberFormatter alloc] init];
+                [diveTimeFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+                NSNumber *_diveTime = [diveTimeFormatter numberFromString:diveTime];
+                
+                
+                NSString *visibility = visiField.text;
+                
+                
+                NSString *temperature = temperField.text;
+                
+                
+                NSString *startPressure = staPreField.text;
+                //    NSNumberFormatter *startPressureFormatter = [[NSNumberFormatter alloc] init];
+                //    [startPressureFormatter setNumberStyle:NSNumberFormatterNoStyle];
+                //    NSNumber *_startPressure = [startPressureFormatter numberFromString:startPressure];
+                
+                
+                NSString *endPressure = _endPreField.text;
+                //    NSNumberFormatter *endPressureFormatter = [[NSNumberFormatter alloc] init];
+                //    [endPressureFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+                //    NSNumber *_endPressure = [endPressureFormatter numberFromString:endPressure];
+                NSString *_mixture = mixtureField.text;
+                
+                NSString *_oxygen = oxygenField.text;
+                
+                NSString *_nitrogen = nitrogenField.text;
+                
+                NSData *photoData = [NSData dataWithData:UIImagePNGRepresentation(selectedImg.image)];
+                
+                
+                
+                dateField.text = nil;
+                siteField.text = nil;
+                wavesField.text = nil;
+                currentField.text = nil;
+                maxDepField.text = nil;
+                gasField.text = nil;
+                divetimeField.text = nil;
+                visiField.text = nil;
+                temperField.text = nil;
+                staPreField.text = nil;
+                _endPreField.text = nil;
+                mixtureField.text = nil;
+                oxygenField.text = nil;
+                nitrogenField.text = nil;
+                selectedImg.image = nil;
+                delegate.selectedCellImage = nil;
+                
+                DiveLog *database = (DiveLog *)[NSEntityDescription insertNewObjectForEntityForName:@"DiveLog" inManagedObjectContext:managedObjectContext];
+                
+                database.date = dateStr;
+                database.site = site;
+                database.waves = waves;
+                database.current = current;
+                database.max_depth = maxDepth;
+                database.gas_type = gasType;
+                database.dive_time = _diveTime;
+                database.visibility = visibility;
+                database.temperature = temperature;
+                database.start_pressure = startPressure;
+                database.end_pressure = endPressure;
+                database.mixture = _mixture;
+                database.oxygen = _oxygen;
+                database.nitrogen = _nitrogen;
+                database.photos = photoData;
+                
+                
+                NSError *error;
+                if (![managedObjectContext save:&error]) {
+                    NSLog(@"error:%@", [error localizedFailureReason]);
+                }
+                
+                
+                viewReserved = 0;
+                
+                [delegate.navi pushViewController:logBookTableView animated:YES];
+                
+                
             }
-            
-            
-            
-            
-            [delegate.navi pushViewController:logBookTableView animated:YES];
-            
-            
-        }
+
+                
+            }
             
             break;
             
         case 2:
         {
-            NSString *dateStr = dateField.text;
-            NSLog(@"%@",dateStr);
-            
-            
-            NSString *site = siteField.text;
-            
-            
-            
-            NSString *waves = wavesField.text;
-            
-            
-            NSString *current= currentField.text;
-            
-            
-            
-            NSString *maxDepth = maxDepField.text;
-            
-            
-            NSString *gasType = gasField.text;
-            
-            
-            NSString *diveTime = divetimeField.text;
-            NSNumberFormatter *diveTimeFormatter = [[NSNumberFormatter alloc] init];
-            [diveTimeFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
-            NSNumber *_diveTime = [diveTimeFormatter numberFromString:diveTime];
-            
-            
-            NSString *visibility = visiField.text;
-            
-            
-            NSString *temperature = temperField.text;
-            
-            
-            NSString *startPressure = staPreField.text;
-            //    NSNumberFormatter *startPressureFormatter = [[NSNumberFormatter alloc] init];
-            //    [startPressureFormatter setNumberStyle:NSNumberFormatterNoStyle];
-            //    NSNumber *_startPressure = [startPressureFormatter numberFromString:startPressure];
-            
-            
-            NSString *endPressure = _endPreField.text;
-            //    NSNumberFormatter *endPressureFormatter = [[NSNumberFormatter alloc] init];
-            //    [endPressureFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
-            //    NSNumber *_endPressure = [endPressureFormatter numberFromString:endPressure];
-            NSString *_mixture = mixtureField.text;
-            
-            NSString *_oxygen = oxygenField.text;
-            
-            NSString *_nitrogen = nitrogenField.text;
-            
-            NSString *_helium = heliumField.text;
-            
-            NSString *_lowPPO2 = lowppo2Field.text;
-            
-            NSString *_highPPO2 = highppo2Field.text;
-            
-            
-            dateField.text = nil;
-            siteField.text = nil;
-            wavesField.text = nil;
-            currentField.text = nil;
-            maxDepField.text = nil;
-            gasField.text = nil;
-            divetimeField.text = nil;
-            visiField.text = nil;
-            temperField.text = nil;
-            staPreField.text = nil;
-            _endPreField.text = nil;
-            mixtureField.text = nil;
-            oxygenField.text = nil;
-            nitrogenField.text = nil;
-            heliumField.text = nil;
-            lowppo2Field.text = nil;
-            highppo2Field.text = nil;
-            
-            DiveLog *database = (DiveLog *)[NSEntityDescription insertNewObjectForEntityForName:@"DiveLog" inManagedObjectContext:managedObjectContext];
-            
-            database.date = dateStr;
-            database.site = site;
-            database.waves = waves;
-            database.current = current;
-            database.max_depth = maxDepth;
-            database.gas_type = gasType;
-            database.dive_time = _diveTime;
-            database.visibility = visibility;
-            database.temperature = temperature;
-            database.start_pressure = startPressure;
-            database.end_pressure = endPressure;
-            database.mixture = _mixture;
-            database.oxygen = _oxygen;
-            database.nitrogen = _nitrogen;
-            database.helium = _helium;
-            database.lowppo2 = _lowPPO2;
-            database.highppo2 = _highPPO2;
-            
-            NSError *error;
-            if (![managedObjectContext save:&error]) {
-                NSLog(@"error:%@", [error localizedFailureReason]);
+            if (selectedImg.image == nil) {
+                
+                NSString *dateStr = dateField.text;
+                NSLog(@"%@",dateStr);
+                
+                
+                NSString *site = siteField.text;
+                
+                
+                
+                NSString *waves = wavesField.text;
+                
+                
+                NSString *current= currentField.text;
+                
+                
+                
+                NSString *maxDepth = maxDepField.text;
+                
+                
+                NSString *gasType = gasField.text;
+                
+                
+                NSString *diveTime = divetimeField.text;
+                NSNumberFormatter *diveTimeFormatter = [[NSNumberFormatter alloc] init];
+                [diveTimeFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+                NSNumber *_diveTime = [diveTimeFormatter numberFromString:diveTime];
+                
+                
+                NSString *visibility = visiField.text;
+                
+                
+                NSString *temperature = temperField.text;
+                
+                
+                NSString *startPressure = staPreField.text;
+                //    NSNumberFormatter *startPressureFormatter = [[NSNumberFormatter alloc] init];
+                //    [startPressureFormatter setNumberStyle:NSNumberFormatterNoStyle];
+                //    NSNumber *_startPressure = [startPressureFormatter numberFromString:startPressure];
+                
+                
+                NSString *endPressure = _endPreField.text;
+                //    NSNumberFormatter *endPressureFormatter = [[NSNumberFormatter alloc] init];
+                //    [endPressureFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+                //    NSNumber *_endPressure = [endPressureFormatter numberFromString:endPressure];
+                NSString *_mixture = mixtureField.text;
+                
+                NSString *_oxygen = oxygenField.text;
+                
+                NSString *_nitrogen = nitrogenField.text;
+                
+                NSString *_helium = heliumField.text;
+                
+                NSString *_lowPPO2 = lowppo2Field.text;
+                
+                NSString *_highPPO2 = highppo2Field.text;
+                
+                
+                dateField.text = nil;
+                siteField.text = nil;
+                wavesField.text = nil;
+                currentField.text = nil;
+                maxDepField.text = nil;
+                gasField.text = nil;
+                divetimeField.text = nil;
+                visiField.text = nil;
+                temperField.text = nil;
+                staPreField.text = nil;
+                _endPreField.text = nil;
+                mixtureField.text = nil;
+                oxygenField.text = nil;
+                nitrogenField.text = nil;
+                heliumField.text = nil;
+                lowppo2Field.text = nil;
+                highppo2Field.text = nil;
+                
+                DiveLog *database = (DiveLog *)[NSEntityDescription insertNewObjectForEntityForName:@"DiveLog" inManagedObjectContext:managedObjectContext];
+                
+                database.date = dateStr;
+                database.site = site;
+                database.waves = waves;
+                database.current = current;
+                database.max_depth = maxDepth;
+                database.gas_type = gasType;
+                database.dive_time = _diveTime;
+                database.visibility = visibility;
+                database.temperature = temperature;
+                database.start_pressure = startPressure;
+                database.end_pressure = endPressure;
+                database.mixture = _mixture;
+                database.oxygen = _oxygen;
+                database.nitrogen = _nitrogen;
+                database.helium = _helium;
+                database.lowppo2 = _lowPPO2;
+                database.highppo2 = _highPPO2;
+                
+                NSError *error;
+                if (![managedObjectContext save:&error]) {
+                    NSLog(@"error:%@", [error localizedFailureReason]);
+                }
+                
+                
+                viewReserved = 0;
+                
+                [delegate.navi pushViewController:logBookTableView animated:YES];
+                
+            } else {
+                
+                NSString *dateStr = dateField.text;
+                NSLog(@"%@",dateStr);
+                
+                
+                NSString *site = siteField.text;
+                
+                
+                
+                NSString *waves = wavesField.text;
+                
+                
+                NSString *current= currentField.text;
+                
+                
+                
+                NSString *maxDepth = maxDepField.text;
+                
+                
+                NSString *gasType = gasField.text;
+                
+                
+                NSString *diveTime = divetimeField.text;
+                NSNumberFormatter *diveTimeFormatter = [[NSNumberFormatter alloc] init];
+                [diveTimeFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+                NSNumber *_diveTime = [diveTimeFormatter numberFromString:diveTime];
+                
+                
+                NSString *visibility = visiField.text;
+                
+                
+                NSString *temperature = temperField.text;
+                
+                
+                NSString *startPressure = staPreField.text;
+                //    NSNumberFormatter *startPressureFormatter = [[NSNumberFormatter alloc] init];
+                //    [startPressureFormatter setNumberStyle:NSNumberFormatterNoStyle];
+                //    NSNumber *_startPressure = [startPressureFormatter numberFromString:startPressure];
+                
+                
+                NSString *endPressure = _endPreField.text;
+                //    NSNumberFormatter *endPressureFormatter = [[NSNumberFormatter alloc] init];
+                //    [endPressureFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+                //    NSNumber *_endPressure = [endPressureFormatter numberFromString:endPressure];
+                NSString *_mixture = mixtureField.text;
+                
+                NSString *_oxygen = oxygenField.text;
+                
+                NSString *_nitrogen = nitrogenField.text;
+                
+                NSString *_helium = heliumField.text;
+                
+                NSString *_lowPPO2 = lowppo2Field.text;
+                
+                NSString *_highPPO2 = highppo2Field.text;
+                
+                NSData *photoData = [NSData dataWithData:UIImagePNGRepresentation(selectedImg.image)];
+                
+                
+                dateField.text = nil;
+                siteField.text = nil;
+                wavesField.text = nil;
+                currentField.text = nil;
+                maxDepField.text = nil;
+                gasField.text = nil;
+                divetimeField.text = nil;
+                visiField.text = nil;
+                temperField.text = nil;
+                staPreField.text = nil;
+                _endPreField.text = nil;
+                mixtureField.text = nil;
+                oxygenField.text = nil;
+                nitrogenField.text = nil;
+                heliumField.text = nil;
+                lowppo2Field.text = nil;
+                highppo2Field.text = nil;
+                selectedImg.image = nil;
+                delegate.selectedCellImage = nil;
+                
+                
+                DiveLog *database = (DiveLog *)[NSEntityDescription insertNewObjectForEntityForName:@"DiveLog" inManagedObjectContext:managedObjectContext];
+                
+                database.date = dateStr;
+                database.site = site;
+                database.waves = waves;
+                database.current = current;
+                database.max_depth = maxDepth;
+                database.gas_type = gasType;
+                database.dive_time = _diveTime;
+                database.visibility = visibility;
+                database.temperature = temperature;
+                database.start_pressure = startPressure;
+                database.end_pressure = endPressure;
+                database.mixture = _mixture;
+                database.oxygen = _oxygen;
+                database.nitrogen = _nitrogen;
+                database.helium = _helium;
+                database.lowppo2 = _lowPPO2;
+                database.highppo2 = _highPPO2;
+                database.photos = photoData;
+                
+                NSError *error;
+                if (![managedObjectContext save:&error]) {
+                    NSLog(@"error:%@", [error localizedFailureReason]);
+                }
+                
+                
+                viewReserved = 0;
+                
+                [delegate.navi pushViewController:logBookTableView animated:YES];
             }
             
-            
-            
-            
-            [delegate.navi pushViewController:logBookTableView animated:YES];
+           
             
             
         }
@@ -1693,6 +2037,13 @@
     visiField.adjustsFontSizeToFitWidth = YES;
     [scrollView addSubview:visiField];
     
+    [cameraImg setFrame:CGRectMake(225, 975, imgCamera.size.width, imgCamera.size.height)];
+    [cameraImg addTarget:self action:@selector(fowardToPhoto:) forControlEvents:UIControlEventTouchUpInside];
+    [scrollView addSubview:cameraImg];
+    
+    selectedImg = [[UIImageView alloc] initWithFrame:CGRectMake(70, 975, 80, 80)];
+    selectedImg.image = delegate.selectedCellImage;
+    [scrollView addSubview:selectedImg];
     
     
 }
@@ -1879,6 +2230,14 @@
     visiField.adjustsFontSizeToFitWidth = YES;
     [scrollView addSubview:visiField];
     
+    [cameraImg setFrame:CGRectMake(225, 1171, imgCamera.size.width, imgCamera.size.height)];
+    [cameraImg addTarget:self action:@selector(fowardToPhoto:) forControlEvents:UIControlEventTouchUpInside];
+    [scrollView addSubview:cameraImg];
+    
+    selectedImg = [[UIImageView alloc] initWithFrame:CGRectMake(70, 1171, 80, 80)];
+    selectedImg.image = delegate.selectedCellImage;
+    [scrollView addSubview:selectedImg];
+    
 }
 
 -(void)closedCircuitTextAndLabel
@@ -2011,13 +2370,6 @@
     nitrogenField.adjustsFontSizeToFitWidth = YES;
     [scrollView addSubview:nitrogenField];
     
-    
-    /*
-    heliumLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 758, 100, 21)];
-    heliumLabel.backgroundColor = [UIColor clearColor];
-    [heliumLabel setText:NSLocalizedString(@"Helium", nil)];
-    [scrollView addSubview:heliumLabel];
-    */
     [helImg setFrame:CGRectMake(60, 875, imgHel.size.width, imgHel.size.height)];
     [scrollView addSubview:helImg];
     
@@ -2113,13 +2465,34 @@
     visiField.adjustsFontSizeToFitWidth = YES;
     [scrollView addSubview:visiField];
     
+    [cameraImg setFrame:CGRectMake(225, 1417, imgCamera.size.width, imgCamera.size.height)];
+    [cameraImg addTarget:self action:@selector(fowardToPhoto:) forControlEvents:UIControlEventTouchUpInside];
+    [scrollView addSubview:cameraImg];
+    
+    selectedImg = [[UIImageView alloc] initWithFrame:CGRectMake(70, 1417, 80, 80)];
+    selectedImg.image = delegate.selectedCellImage;
+    [scrollView addSubview:selectedImg];
+    
 }
 
 -(void)viewDidDisappear:(BOOL)animated
 {
     
     [super viewDidDisappear:animated];
-    [scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+    switch (viewReserved) {
+        case 0:
+            [scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+            break;
+        
+        case 1:
+            
+            break;
+        
+        default:
+            break;
+    }
+    
     
 }
 

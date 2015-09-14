@@ -34,7 +34,7 @@
 @end
 
 @implementation LogShowViewController
-@synthesize  date,site,time,airType,preSta,preEnd,maxDep,temp,visib,logShowView,waves,current,mixture,oxygen,nitrogen,helium,lowppo2,highppo2;
+@synthesize  date,site,time,airType,preSta,preEnd,maxDep,temp,visib,logShowView,waves,current,mixture,oxygen,nitrogen,helium,lowppo2,highppo2,photos;
 @synthesize contenPath,log;
 
 -(void)toLogRecord:(id)sender
@@ -81,11 +81,19 @@
     
     highppo2 = [logDatabase highppO2:contenPath];
     
+    photos = [logDatabase images:contenPath];
+
+    
     if ([airType isEqualToString:NSLocalizedString(@"CCR", nil)]) {
         NSString *_log = [NSString stringWithFormat:NSLocalizedString(@"CCRL", nil), date,site,time,airType,preSta,preEnd,mixture,oxygen,nitrogen,helium,lowppo2,highppo2,maxDep,temp,visib,current,waves];
+        NSDictionary *dict = @{NSStrokeColorAttributeName:[UIColor whiteColor],NSStrokeWidthAttributeName:@3};
+        
+        NSMutableAttributedString *logAttr = [[NSMutableAttributedString alloc] initWithString:_log attributes:dict];
+        
         
         log = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 1100)];
-        [log setText:_log];
+        //[log setText:_log];
+        [log setAttributedText:logAttr];
         log.textColor = [UIColor blackColor];
         log.backgroundColor = [UIColor clearColor];
         
@@ -93,6 +101,14 @@
         //[log setFont:[UIFont systemFontOfSize:20.0]];
         log.editable = NO;
         [logShowView addSubview:log];
+        
+        if (photos != NULL) {
+            
+            UIImageView *scrollBackground = [[UIImageView alloc] initWithImage:[UIImage imageWithData:photos]];
+            [scrollBackground setFrame:logShowView.frame];
+            [self.view insertSubview:scrollBackground belowSubview:logShowView];
+            
+        }
         
         CGFloat scrollViewHeight = 0.0f;
         for (UIView *view in logShowView.subviews) {
@@ -110,15 +126,28 @@
         
         NSString *_log = [NSString stringWithFormat:NSLocalizedString(@"NitroL", nil), date,site,time,airType,preSta,preEnd,mixture,oxygen,nitrogen,maxDep,temp,visib,current,waves];
         
+        NSDictionary *dict = @{NSStrokeColorAttributeName:[UIColor whiteColor],NSStrokeWidthAttributeName:@3};
+        
+        NSMutableAttributedString *logAttr = [[NSMutableAttributedString alloc] initWithString:_log attributes:dict];
+        
         log = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 900)];
-        [log setText:_log];
-        log.textColor = [UIColor blackColor];
+        //[log setText:_log];
+        [log setAttributedText:logAttr];
+        log.textColor = [UIColor darkTextColor];
         log.backgroundColor = [UIColor clearColor];
         
         [log setFont:[UIFont fontWithName:@"Baskerville" size:20.0]];
         //[log setFont:[UIFont systemFontOfSize:20.0]];
         log.editable = NO;
         [logShowView addSubview:log];
+        
+        if (photos != NULL) {
+            
+            UIImageView *scrollBackground = [[UIImageView alloc] initWithImage:[UIImage imageWithData:photos]];
+            [scrollBackground setFrame:logShowView.frame];
+            [self.view insertSubview:scrollBackground belowSubview:logShowView];
+            
+        }
         
         CGFloat scrollViewHeight = 0.0f;
         for (UIView *view in logShowView.subviews) {
@@ -134,16 +163,28 @@
     }else{
         
         NSString *_log = [NSString stringWithFormat:NSLocalizedString(@"Log", nil), date,site,time,airType,preSta,preEnd,maxDep,temp,visib,current,waves];
+        NSDictionary *dict = @{NSStrokeColorAttributeName:[UIColor whiteColor],NSStrokeWidthAttributeName:@2.0};
+        
+        NSMutableAttributedString *logAttr = [[NSMutableAttributedString alloc] initWithString:_log attributes:dict];
         
         log = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 800)];
-        [log setText:_log];
-        log.textColor = [UIColor blackColor];
+        //[log setText:_log];
+        [log setAttributedText:logAttr];
+        log.textColor = [UIColor darkTextColor];
         log.backgroundColor = [UIColor clearColor];
         
         [log setFont:[UIFont fontWithName:@"Baskerville" size:20.0]];
         //[log setFont:[UIFont systemFontOfSize:20.0]];
         log.editable = NO;
         [logShowView addSubview:log];
+        
+        if (photos != NULL) {
+            
+             UIImageView *scrollBackground = [[UIImageView alloc] initWithImage:[UIImage imageWithData:photos]];
+             [scrollBackground setFrame:logShowView.frame];
+             [self.view insertSubview:scrollBackground belowSubview:logShowView];
+             
+        }
         
         CGFloat scrollViewHeight = 0.0f;
         for (UIView *view in logShowView.subviews) {
@@ -241,6 +282,21 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    /*
+    logDatabase = [LogDatabase new];
+    photos = [logDatabase images:contenPath];
+    
+    if (photos == NULL) {
+        [self detectingDevice];
+        [self lodeLog];
+    } else {
+        
+         UIImageView *scrollBackground = [[UIImageView alloc] initWithImage:[UIImage imageWithData:photos]];
+        [scrollBackground setFrame:logShowView.frame];
+        [self.view insertSubview:scrollBackground belowSubview:logShowView];
+        [self lodeLog];
+    }
+   */
     [self lodeLog];
 }
 
@@ -273,6 +329,7 @@
     helium = nil;
     lowppo2 = nil;
     highppo2 = nil;
+    photos = nil;
     
 }
 
@@ -297,6 +354,7 @@
     helium = nil;
     lowppo2 = nil;
     highppo2 = nil;
+    photos = nil;
 }
 
 /*

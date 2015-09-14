@@ -263,9 +263,18 @@
     NSString *siteStr = [managedObject valueForKey:@"site"];
     NSString *gasStr = [managedObject valueForKey:@"gas_type"];
     NSString *detailStr = [NSString stringWithFormat:@"%@ %@",siteStr,gasStr];
+    NSData *imgData = [managedObject valueForKey:@"photos"];
     
-    cell.textLabel.text = timeStr;
-    cell.detailTextLabel.text = detailStr;
+    if (imgData == NULL) {
+        cell.textLabel.text = timeStr;
+        cell.detailTextLabel.text = detailStr;
+    } else {
+        cell.imageView.image = [UIImage imageWithData:imgData];
+        cell.textLabel.text = timeStr;
+        cell.detailTextLabel.text = detailStr;
+    }
+    
+    
     
     return cell;
     

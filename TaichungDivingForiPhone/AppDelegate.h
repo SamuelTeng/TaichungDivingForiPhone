@@ -25,6 +25,8 @@
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+@property (nonatomic,strong) UIImage *selectedCellImage;
+
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 

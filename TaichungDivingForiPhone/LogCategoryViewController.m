@@ -29,6 +29,8 @@
     AppDelegate *delegate;
     LogBookTableViewController *logBookTableView;
     LogViewController *logView;
+    
+    NSUInteger view_tag;
 }
 
 @end
@@ -172,6 +174,8 @@
     logBookTableView = [[LogBookTableViewController alloc] init];
     logView = [[LogViewController alloc] init];
     
+    view_tag = 0;
+    
     [self detectingDevice];
     
     
@@ -191,7 +195,9 @@
 
 -(void)air
 {
-    NSInteger air_tag = 0;
+    NSUInteger air_tag = 0;
+    
+    logView.viewReserved = view_tag;
     
     logView.logType = air_tag;
     
@@ -200,7 +206,9 @@
 
 -(void)nitrox
 {
-    NSInteger nirox_tag = 1;
+    NSUInteger nirox_tag = 1;
+    
+    logView.viewReserved = view_tag;
     
     logView.logType = nirox_tag;
     
@@ -209,7 +217,9 @@
 
 -(void)closedCircuit
 {
-    NSInteger closedCircuit = 2;
+    NSUInteger closedCircuit = 2;
+    
+    logView.viewReserved = view_tag;
     
     logView.logType = closedCircuit;
     

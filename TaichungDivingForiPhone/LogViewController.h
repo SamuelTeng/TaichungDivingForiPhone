@@ -11,22 +11,7 @@
 @interface LogViewController : UIViewController<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
 @property (readonly , strong ,nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic,strong) UIScrollView *scrollView;
-@property (nonatomic,strong) UILabel *dateLabel;
-@property (nonatomic,strong) UILabel *siteLabel;
-@property (nonatomic,strong) UILabel *wavesLabel;
-@property (nonatomic,strong) UILabel *currentLabel;
-@property (nonatomic,strong) UILabel *maxDepLabel;
-@property (nonatomic,strong) UILabel *gasLabel;
-@property (nonatomic,strong) UILabel *divetimeLabel;
-@property (nonatomic,strong) UILabel *visiLabel;
-@property (nonatomic,strong) UILabel *temperLabel;
-@property (nonatomic,strong) UILabel *staPrelabel;
-@property (nonatomic,strong) UILabel *endPreLabel;
-@property (nonatomic,strong) UILabel *otherLabel;
-@property (nonatomic,strong) UILabel *mixtureLabel;
-@property (nonatomic,strong) UILabel *oxygenLabel;
-@property (nonatomic,strong) UILabel *nitrogenLabel;
-@property (nonatomic,strong) UILabel *heliumLabel;
+
 @property (nonatomic,strong) UILabel *lowppo2Label;
 @property (nonatomic,strong) UILabel *highppo2Label;
 
@@ -60,6 +45,8 @@
 @property (nonatomic,strong) UIImage *imgNit;
 @property (nonatomic,strong) UIImageView *helImg;
 @property (nonatomic,strong) UIImage *imgHel;
+@property (nonatomic,strong) UIButton *cameraImg;
+@property (nonatomic,strong) UIImage *imgCamera;
 
 @property (nonatomic,strong) UITextField *dateField;
 @property (nonatomic,strong) UITextField *siteField;
@@ -100,6 +87,10 @@
 @property (nonatomic,strong) NSString *timeFromData;
 
 @property (nonatomic,assign)NSUInteger logType;
+
+@property (nonatomic,strong) UIImageView *selectedImg;
+
+@property (nonatomic,assign) NSUInteger viewReserved;
 
 
 @end

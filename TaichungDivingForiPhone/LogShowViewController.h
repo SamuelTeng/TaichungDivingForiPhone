@@ -27,6 +27,7 @@
 @property (nonatomic,strong) NSString *helium;
 @property (nonatomic,strong) NSString *lowppo2;
 @property (nonatomic,strong) NSString *highppo2;
+@property (nonatomic,strong) NSData *photos;
 
 @property (nonatomic,strong) UIScrollView *logShowView;
 

@@ -29,5 +29,6 @@
 @property (nonatomic, retain) NSString * temperature;
 @property (nonatomic, retain) NSString * visibility;
 @property (nonatomic, retain) NSString * waves;
+@property (nonatomic,strong) NSData *photos;
 
 @end

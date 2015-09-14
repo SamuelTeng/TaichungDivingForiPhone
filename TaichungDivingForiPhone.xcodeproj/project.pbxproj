@@ -40,6 +40,9 @@
 		571CBEB51B8C523E003343F1 /* ic_save_black_24dp.png in Resources */ = {isa = PBXBuildFile; fileRef = 571CBEAD1B8C523E003343F1 /* ic_save_black_24dp.png */; };
 		571CBEB61B8C523E003343F1 /* ic_warning_amber_48dp.png in Resources */ = {isa = PBXBuildFile; fileRef = 571CBEAE1B8C523E003343F1 /* ic_warning_amber_48dp.png */; };
 		571CBEB91B8C5E32003343F1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 571CBEBB1B8C5E32003343F1 /* Localizable.strings */; };
+		5757DEFD1BA55757001FC213 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5757DEFC1BA55757001FC213 /* AssetsLibrary.framework */; };
+		5757DF041BA5580F001FC213 /* PhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5757DF031BA5580F001FC213 /* PhotoCell.m */; };
+		5757DF071BA55D16001FC213 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5757DF061BA55D16001FC213 /* PhotoViewController.m */; };
 		578679581B95E38B00A0F977 /* Background.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 578679571B95E38B00A0F977 /* Background.bundle */; };
 		57ABF8191B96E69400BE7CF2 /* Button.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 57ABF8181B96E69400BE7CF2 /* Button.bundle */; };
 		57D4D0201B9FD3870008FD2A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57D4D01D1B9FD3870008FD2A /* Default-568h@2x.png */; };
@@ -111,6 +114,11 @@
 		571CBEBA1B8C5E32003343F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		571CBEBC1B8C5E35003343F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		571CBEBD1B8C5E49003343F1 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5757DEFC1BA55757001FC213 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		5757DF021BA5580F001FC213 /* PhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCell.h; sourceTree = "<group>"; };
+		5757DF031BA5580F001FC213 /* PhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCell.m; sourceTree = "<group>"; };
+		5757DF051BA55D16001FC213 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
+		5757DF061BA55D16001FC213 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
 		578679571B95E38B00A0F977 /* Background.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Background.bundle; sourceTree = "<group>"; };
 		57ABF8181B96E69400BE7CF2 /* Button.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Button.bundle; sourceTree = "<group>"; };
 		57D4D01D1B9FD3870008FD2A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -123,6 +131,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5757DEFD1BA55757001FC213 /* AssetsLibrary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,6 +179,7 @@
 		571CBE511B8C3C3E003343F1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5757DEFE1BA55772001FC213 /* Frameworks */,
 				571CBEBB1B8C5E32003343F1 /* Localizable.strings */,
 				571CBE811B8C3F5B003343F1 /* Reachability.h */,
 				571CBE821B8C3F5B003343F1 /* Reachability.m */,
@@ -248,6 +258,10 @@
 				571CBE971B8C48BB003343F1 /* TourDetailViewController.m */,
 				571CBE991B8C48E3003343F1 /* ForecastNewViewController.h */,
 				571CBE9A1B8C48E3003343F1 /* ForecastNewViewController.m */,
+				5757DF021BA5580F001FC213 /* PhotoCell.h */,
+				5757DF031BA5580F001FC213 /* PhotoCell.m */,
+				5757DF051BA55D16001FC213 /* PhotoViewController.h */,
+				5757DF061BA55D16001FC213 /* PhotoViewController.m */,
 			);
 			name = ViewControlers;
 			sourceTree = "<group>";
@@ -260,6 +274,14 @@
 				571CBEA31B8C4EDD003343F1 /* DiveLog.m */,
 			);
 			name = Database;
+			sourceTree = "<group>";
+		};
+		5757DEFE1BA55772001FC213 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5757DEFC1BA55757001FC213 /* AssetsLibrary.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -391,11 +413,13 @@
 				571CBE5A1B8C3C3E003343F1 /* TaichungDivingForiPhone.xcdatamodeld in Sources */,
 				571CBE891B8C47D7003343F1 /* LogBookTableViewController.m in Sources */,
 				571CBE8C1B8C4814003343F1 /* PageViewController.m in Sources */,
+				5757DF041BA5580F001FC213 /* PhotoCell.m in Sources */,
 				571CBE5D1B8C3C3E003343F1 /* MainViewController.m in Sources */,
 				571CBE8F1B8C484A003343F1 /* LogShowViewController.m in Sources */,
 				571CBE541B8C3C3E003343F1 /* main.m in Sources */,
 				571CBE831B8C3F5B003343F1 /* Reachability.m in Sources */,
 				571CBE951B8C4890003343F1 /* TourTableViewController.m in Sources */,
+				5757DF071BA55D16001FC213 /* PhotoViewController.m in Sources */,
 				571CBEA41B8C4EDD003343F1 /* DiveLog.m in Sources */,
 				571CBE861B8C47A1003343F1 /* LogViewController.m in Sources */,
 			);

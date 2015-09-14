@@ -28,5 +28,6 @@
 @dynamic temperature;
 @dynamic visibility;
 @dynamic waves;
+@dynamic photos;
 
 @end

@@ -13,6 +13,7 @@
         <attribute name="mixture" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nitrogen" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="oxygen" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photos" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="site" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="start_pressure" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="temperature" optional="YES" attributeType="String" syncable="YES"/>
@@ -20,6 +21,6 @@
         <attribute name="waves" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="DiveLog" positionX="-63" positionY="-18" width="128" height="300"/>
+        <element name="DiveLog" positionX="-63" positionY="-18" width="128" height="315"/>
     </elements>
 </model>

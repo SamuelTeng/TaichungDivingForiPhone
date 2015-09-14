@@ -31,6 +31,7 @@
 @property(nonatomic,strong) NSString *logHelium;
 @property(nonatomic,strong) NSString *logLowppO2;
 @property(nonatomic,strong) NSString *logHighppO2;
+@property(nonatomic,strong) NSData *logImg;
 
 
 @property (nonatomic)NSUInteger pages;
@@ -55,6 +56,7 @@
 -(NSString *)helium:(NSIndexPath *)indexpath;
 -(NSString *)lowppO2:(NSIndexPath *)indexpath;
 -(NSString *)highppO2:(NSIndexPath *)indexpath;
+-(NSData *)images:(NSIndexPath *)indexpath;
 
 
 
