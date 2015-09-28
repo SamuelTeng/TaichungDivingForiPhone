@@ -10,6 +10,8 @@
 #import "AppDelegate.h"
 #import "LogBookTableViewController.h"
 #import "LogDatabase.h"
+#import "ImageShowBrowser.h"
+
 
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() ==UIUserInterfaceIdiomPhone)
 #define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
@@ -36,6 +38,7 @@
 @implementation LogShowViewController
 @synthesize  date,site,time,airType,preSta,preEnd,maxDep,temp,visib,logShowView,waves,current,mixture,oxygen,nitrogen,helium,lowppo2,highppo2,photos;
 @synthesize contenPath,log;
+
 
 -(void)toLogRecord:(id)sender
 {
@@ -82,18 +85,20 @@
     highppo2 = [logDatabase highppO2:contenPath];
     
     photos = [logDatabase images:contenPath];
+    
+    
 
     
     if ([airType isEqualToString:NSLocalizedString(@"CCR", nil)]) {
         NSString *_log = [NSString stringWithFormat:NSLocalizedString(@"CCRL", nil), date,site,time,airType,preSta,preEnd,mixture,oxygen,nitrogen,helium,lowppo2,highppo2,maxDep,temp,visib,current,waves];
-        NSDictionary *dict = @{NSStrokeColorAttributeName:[UIColor whiteColor],NSStrokeWidthAttributeName:@3};
+        //NSDictionary *dict = @{NSStrokeColorAttributeName:[UIColor whiteColor],NSStrokeWidthAttributeName:@3};
         
-        NSMutableAttributedString *logAttr = [[NSMutableAttributedString alloc] initWithString:_log attributes:dict];
+        //NSMutableAttributedString *logAttr = [[NSMutableAttributedString alloc] initWithString:_log attributes:dict];
         
         
         log = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 1100)];
-        //[log setText:_log];
-        [log setAttributedText:logAttr];
+        [log setText:_log];
+        //[log setAttributedText:logAttr];
         log.textColor = [UIColor blackColor];
         log.backgroundColor = [UIColor clearColor];
         
@@ -104,9 +109,10 @@
         
         if (photos != NULL) {
             
-            UIImageView *scrollBackground = [[UIImageView alloc] initWithImage:[UIImage imageWithData:photos]];
-            [scrollBackground setFrame:logShowView.frame];
-            [self.view insertSubview:scrollBackground belowSubview:logShowView];
+            UIImageView *photoImg = [[UIImageView alloc] initWithImage:[UIImage imageWithData:photos]];
+            
+            [photoImg setFrame:CGRectMake(self.view.center.x-20, 820, 80, 80)];
+            [logShowView addSubview:photoImg];
             
         }
         
@@ -126,13 +132,13 @@
         
         NSString *_log = [NSString stringWithFormat:NSLocalizedString(@"NitroL", nil), date,site,time,airType,preSta,preEnd,mixture,oxygen,nitrogen,maxDep,temp,visib,current,waves];
         
-        NSDictionary *dict = @{NSStrokeColorAttributeName:[UIColor whiteColor],NSStrokeWidthAttributeName:@3};
+       // NSDictionary *dict = @{NSStrokeColorAttributeName:[UIColor whiteColor],NSStrokeWidthAttributeName:@3};
         
-        NSMutableAttributedString *logAttr = [[NSMutableAttributedString alloc] initWithString:_log attributes:dict];
+       // NSMutableAttributedString *logAttr = [[NSMutableAttributedString alloc] initWithString:_log attributes:dict];
         
         log = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 900)];
-        //[log setText:_log];
-        [log setAttributedText:logAttr];
+        [log setText:_log];
+        //[log setAttributedText:logAttr];
         log.textColor = [UIColor darkTextColor];
         log.backgroundColor = [UIColor clearColor];
         
@@ -143,9 +149,10 @@
         
         if (photos != NULL) {
             
-            UIImageView *scrollBackground = [[UIImageView alloc] initWithImage:[UIImage imageWithData:photos]];
-            [scrollBackground setFrame:logShowView.frame];
-            [self.view insertSubview:scrollBackground belowSubview:logShowView];
+            UIImageView *photoImg = [[UIImageView alloc] initWithImage:[UIImage imageWithData:photos]];
+            
+            [photoImg setFrame:CGRectMake(self.view.center.x-20, 680, 80, 80)];
+            [logShowView addSubview:photoImg];
             
         }
         
@@ -163,13 +170,13 @@
     }else{
         
         NSString *_log = [NSString stringWithFormat:NSLocalizedString(@"Log", nil), date,site,time,airType,preSta,preEnd,maxDep,temp,visib,current,waves];
-        NSDictionary *dict = @{NSStrokeColorAttributeName:[UIColor whiteColor],NSStrokeWidthAttributeName:@2.0};
+        //NSDictionary *dict = @{NSStrokeColorAttributeName:[UIColor whiteColor],NSStrokeWidthAttributeName:@2.0};
         
-        NSMutableAttributedString *logAttr = [[NSMutableAttributedString alloc] initWithString:_log attributes:dict];
+        //NSMutableAttributedString *logAttr = [[NSMutableAttributedString alloc] initWithString:_log attributes:dict];
         
         log = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 800)];
-        //[log setText:_log];
-        [log setAttributedText:logAttr];
+        [log setText:_log];
+        //[log setAttributedText:logAttr];
         log.textColor = [UIColor darkTextColor];
         log.backgroundColor = [UIColor clearColor];
         
@@ -180,9 +187,21 @@
         
         if (photos != NULL) {
             
-             UIImageView *scrollBackground = [[UIImageView alloc] initWithImage:[UIImage imageWithData:photos]];
-             [scrollBackground setFrame:logShowView.frame];
-             [self.view insertSubview:scrollBackground belowSubview:logShowView];
+             UIImageView *photoImg = [[UIImageView alloc] initWithImage:[UIImage imageWithData:photos]];
+            
+            [photoImg setFrame:CGRectMake(self.view.center.x-20, 520, 80, 80)];
+            /*
+            UIButton *photoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            [photoBtn setFrame:CGRectMake(self.view.center.x-20, 520, 80, 80)];
+            [photoBtn setBackgroundImage:photoImg.image forState:UIControlStateNormal];
+            [photoBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+            
+            //[photoImg addGestureRecognizer:singleTap];
+            */
+            [logShowView addSubview:photoImg];
+            
+             //[scrollBackground setFrame:logShowView.frame];
+             //[self.view insertSubview:scrollBackground belowSubview:logShowView];
              
         }
         
@@ -248,7 +267,6 @@
         
     }
 }
-
 
 -(void)loadView
 {
