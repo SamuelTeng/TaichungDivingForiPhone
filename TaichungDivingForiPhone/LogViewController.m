@@ -207,6 +207,7 @@
 {
     
     [super viewWillAppear:animated];
+    self.screenName = @"Log Input";
     
     switch (viewReserved) {
         case 0:
@@ -215,16 +216,19 @@
                 case 0:
                     
                     [self textAndLabel];
+                    
                     break;
                     
                 case 1:
                     
                     [self nitroxTextAndLabel];
+                    
                     break;
                     
                 case 2:
                     
                     [self closedCircuitTextAndLabel];
+                    
                     break;
                     
                 default:
@@ -2037,11 +2041,11 @@
     visiField.adjustsFontSizeToFitWidth = YES;
     [scrollView addSubview:visiField];
     
-    [cameraImg setFrame:CGRectMake(225, 975, imgCamera.size.width, imgCamera.size.height)];
+    [cameraImg setFrame:CGRectMake(225, 980, imgCamera.size.width, imgCamera.size.height)];
     [cameraImg addTarget:self action:@selector(fowardToPhoto:) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:cameraImg];
     
-    selectedImg = [[UIImageView alloc] initWithFrame:CGRectMake(70, 975, 80, 80)];
+    selectedImg = [[UIImageView alloc] initWithFrame:CGRectMake(70, 980, 90, 90)];
     selectedImg.image = delegate.selectedCellImage;
     [scrollView addSubview:selectedImg];
     
@@ -2230,11 +2234,11 @@
     visiField.adjustsFontSizeToFitWidth = YES;
     [scrollView addSubview:visiField];
     
-    [cameraImg setFrame:CGRectMake(225, 1171, imgCamera.size.width, imgCamera.size.height)];
+    [cameraImg setFrame:CGRectMake(225, 1176, imgCamera.size.width, imgCamera.size.height)];
     [cameraImg addTarget:self action:@selector(fowardToPhoto:) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:cameraImg];
     
-    selectedImg = [[UIImageView alloc] initWithFrame:CGRectMake(70, 1171, 80, 80)];
+    selectedImg = [[UIImageView alloc] initWithFrame:CGRectMake(70, 1176, 90, 90)];
     selectedImg.image = delegate.selectedCellImage;
     [scrollView addSubview:selectedImg];
     
@@ -2465,24 +2469,41 @@
     visiField.adjustsFontSizeToFitWidth = YES;
     [scrollView addSubview:visiField];
     
-    [cameraImg setFrame:CGRectMake(225, 1417, imgCamera.size.width, imgCamera.size.height)];
+    [cameraImg setFrame:CGRectMake(225, 1422, imgCamera.size.width, imgCamera.size.height)];
     [cameraImg addTarget:self action:@selector(fowardToPhoto:) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:cameraImg];
     
-    selectedImg = [[UIImageView alloc] initWithFrame:CGRectMake(70, 1417, 80, 80)];
+    selectedImg = [[UIImageView alloc] initWithFrame:CGRectMake(70, 1422, 90, 90)];
     selectedImg.image = delegate.selectedCellImage;
     [scrollView addSubview:selectedImg];
     
 }
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    if ([self.navigationController.viewControllers indexOfObject:self] == NSNotFound) {
+        [scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        delegate.selectedCellImage = nil;
+    }
+    
+    
+}
+
+
 
 -(void)viewDidDisappear:(BOOL)animated
 {
     
     [super viewDidDisappear:animated];
     
+    
+    
     switch (viewReserved) {
         case 0:
             [scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+            
             break;
         
         case 1:

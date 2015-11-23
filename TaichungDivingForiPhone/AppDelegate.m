@@ -8,6 +8,10 @@
 
 #import "AppDelegate.h"
 
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
+
 @interface AppDelegate ()
 
 @end
@@ -28,6 +32,13 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
     reachability = [Reachability reachabilityForInternetConnection];
     [reachability startNotifier];
+    
+    /*Initiate Google Analytics*/
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    [GAI sharedInstance].dispatchInterval = 30;
+    [[[GAI sharedInstance] logger]setLogLevel:kGAILogLevelNone];
+    [[GAI sharedInstance]trackerWithTrackingId:@"UA-70357341-1"];
+    
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
@@ -194,6 +205,14 @@
             abort();
         }
     }
+}
+
+#pragma mark - report to Google Analytics
+- (void)reportStatus:(NSString *)pattern{
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:pattern];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 @end

@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 #import "LogBookTableViewController.h"
 #import "LogDatabase.h"
-#import "ImageShowBrowser.h"
+
 
 
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() ==UIUserInterfaceIdiomPhone)

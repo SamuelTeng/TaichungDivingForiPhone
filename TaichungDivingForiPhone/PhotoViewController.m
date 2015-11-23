@@ -11,6 +11,19 @@
 #import "AppDelegate.h"
 #import "LogViewController.h"
 
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() ==UIUserInterfaceIdiomPhone)
+#define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
+
+#define SCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
+#define SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
+#define SCREEN_MAX_LENGTH (MAX(SCREEN_WIDTH, SCREEN_HEIGHT))
+#define SCREEN_MIN_LENGTH (MIN(SCREEN_WIDTH, SCREEN_HEIGHT))
+
+#define IS_IPHONE_4_OR_LESS (IS_IPHONE && SCREEN_MAX_LENGTH < 568.0)
+#define IS_IPHONE_5 (IS_IPHONE && SCREEN_MAX_LENGTH == 568.0)
+#define IS_IPHONE_6 (IS_IPHONE && SCREEN_MAX_LENGTH == 667.0)
+#define IS_IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
+
 @interface PhotoViewController (){
     
     AppDelegate *delegate;
@@ -23,6 +36,70 @@
 @implementation PhotoViewController
 
 @synthesize assets,collectionView;
+
+
+ -(void)detectingDevice
+ {
+ 
+ if(IS_IPHONE)
+ {
+ //NSLog(@"IS_IPHONE");
+ }
+ if(IS_RETINA)
+ {
+ //NSLog(@"IS_RETINA");
+ }
+ if(IS_IPHONE_4_OR_LESS)
+ {
+ 
+     NSLog(@"IS_IPHONE_4_OR_LESS");
+
+     UIImageView *backgroundImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.bundle/Background_i4"]];
+ 
+     self.collectionView.backgroundView = backgroundImg;
+
+ 
+ 
+ 
+ }
+ if(IS_IPHONE_5)
+ {
+ 
+     NSLog(@"IS_IPHONE_5");
+ 
+     UIImageView *backgroundImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.bundle/Background_i5"]];
+ 
+     self.collectionView.backgroundView = backgroundImg;
+
+ 
+ 
+ 
+ }
+ if(IS_IPHONE_6)
+ {
+ 
+     NSLog(@"IS_IPHONE_6");
+ 
+     UIImageView *backgroundImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.bundle/Background_i6"]];
+ 
+     //[self.view insertSubview:backgroundImg belowSubview:collectionView];
+     
+     self.collectionView.backgroundView = backgroundImg;
+ }
+ if(IS_IPHONE_6P)
+ {
+ 
+     NSLog(@"IS_IPHONE_6P");
+ 
+     UIImageView *backgroundImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.bundle/Background_i6P"]];
+     
+     self.collectionView.backgroundView = backgroundImg;
+
+ 
+ }
+}
+
+ 
 
 +(ALAssetsLibrary *)defaultAssetLibrary
 {
@@ -69,13 +146,17 @@
     [self.collectionView setDataSource:self];
     [self.collectionView setDelegate:self];
     
-    [self.collectionView setBackgroundColor:[UIColor brownColor]];
+    
+    [self.collectionView setBackgroundColor:[UIColor clearColor]];
     
     [self.collectionView registerClass:[PhotoCell class] forCellWithReuseIdentifier:@"PhotoCell"];
     
+    
     [self.view addSubview:self.collectionView];
     
+    
     [self fetchCameraRoll];
+    [self detectingDevice];
 
 }
 
@@ -112,7 +193,7 @@
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(10, 10, 10, 10);
+    return UIEdgeInsetsMake(0, 10, 40, 30);//UIEdgeInsetsMake(10, 10, 10, 10);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section

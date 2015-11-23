@@ -8,6 +8,8 @@
 
 #import "TourDetailViewController.h"
 
+
+
 @interface TourDetailViewController (){
     
     UIActivityIndicatorView *spinner;
@@ -28,6 +30,11 @@
 
 @synthesize webView,pageData;
 
+
+
+
+ 
+
 -(void)loadView
 {
     [super loadView];
@@ -44,6 +51,8 @@
     spinner.frame=self.view.bounds;
     self.webView.scalesPageToFit = YES;
     [self.webView addSubview:toolBar];
+    
+
 }
 
 - (void)viewDidLoad {

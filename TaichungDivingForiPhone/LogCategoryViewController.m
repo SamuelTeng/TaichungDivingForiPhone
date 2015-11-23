@@ -202,6 +202,7 @@
     logView.logType = air_tag;
     
     [delegate.navi pushViewController:logView animated:NO];
+    [delegate reportStatus:NSLocalizedString(@"Air", nil)];
 }
 
 -(void)nitrox
@@ -213,6 +214,7 @@
     logView.logType = nirox_tag;
     
     [delegate.navi pushViewController:logView animated:NO];
+    [delegate reportStatus:NSLocalizedString(@"Nitro", nil)];
 }
 
 -(void)closedCircuit
@@ -224,6 +226,7 @@
     logView.logType = closedCircuit;
     
     [delegate.navi pushViewController:logView animated:NO];
+    [delegate reportStatus:NSLocalizedString(@"CCR", nil)];
 }
 
 - (void)didReceiveMemoryWarning

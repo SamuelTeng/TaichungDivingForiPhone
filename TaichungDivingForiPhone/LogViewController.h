@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GAITrackedViewController.h"
 
-@interface LogViewController : UIViewController<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
+@interface LogViewController : GAITrackedViewController<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
 @property (readonly , strong ,nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic,strong) UIScrollView *scrollView;
 
