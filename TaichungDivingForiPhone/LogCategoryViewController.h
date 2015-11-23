@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GAITrackedViewController.h"
 
-@interface LogCategoryViewController : UIViewController
+@interface LogCategoryViewController : GAITrackedViewController
 
 @property (nonatomic,strong)UIButton *air_Button;
 @property (nonatomic,strong)UIButton *nitrox_Button;

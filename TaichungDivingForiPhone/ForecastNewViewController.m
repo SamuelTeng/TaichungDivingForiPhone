@@ -52,6 +52,9 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    self.screenName = @"Weather Forecast";
+    
     self.webView.frame=self.view.bounds;
     self.webView.scalesPageToFit = YES;
     spinner.frame=self.view.bounds;

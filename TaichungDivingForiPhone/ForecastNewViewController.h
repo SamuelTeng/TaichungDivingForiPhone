@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GAITrackedViewController.h"
 
-@interface ForecastNewViewController : UIViewController<UIWebViewDelegate>
+@interface ForecastNewViewController : GAITrackedViewController<UIWebViewDelegate>
 
 @property (nonatomic,strong)UIWebView *webView;
 

@@ -11,6 +11,7 @@
 "LogPage" = "Diving Log";
 "Weather" = "Weather";
 "Tour" = "Tour";
+"LogCat" = "Log Category";
 
 /*Subtitle*/
 "Air" = "Air";

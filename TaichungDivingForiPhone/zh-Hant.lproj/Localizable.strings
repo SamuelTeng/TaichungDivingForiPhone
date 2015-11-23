@@ -11,6 +11,7 @@
 "LogPage" = "潛水日誌";
 "Weather" = "氣象資訊";
 "Tour" = "旅遊行程";
+"LogCat" = "日誌類別";
 
 /*Subtitle*/
 "Air" = "一般空氣";

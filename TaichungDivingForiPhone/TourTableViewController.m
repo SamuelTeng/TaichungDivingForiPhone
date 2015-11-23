@@ -8,6 +8,7 @@
 
 #import "TourTableViewController.h"
 #import "TourDetailViewController.h"
+#import "AppDelegate.h"
 
 #define kSection 2
 #define kDomestic 0
@@ -26,7 +27,10 @@
 #define IS_IPHONE_6 (IS_IPHONE && SCREEN_MAX_LENGTH == 667.0)
 #define IS_IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
 
-@interface TourTableViewController ()
+@interface TourTableViewController (){
+    
+    AppDelegate *delegate;
+}
 
 
 @end
@@ -97,6 +101,7 @@
     self = [super init];
     if (self) {
         self.title = NSLocalizedString(@"Tour", nil);
+        delegate = [[UIApplication sharedApplication] delegate];
         
         [self detectingDevice];
         
@@ -140,6 +145,18 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    
+    [super viewWillAppear:animated];
+    /*Manually GA Track*/
+    id<GAITracker> tracter = [[GAI sharedInstance] defaultTracker];
+    /*Enable IDFA Collection
+    tracter.allowIDFACollection = YES;*/
+    [tracter set:kGAIScreenName value:NSLocalizedString(@"Tour", nil)];
+    [tracter send:[[GAIDictionaryBuilder createScreenView]build]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -243,6 +260,11 @@
 {
     NSArray *current=[self whichArray:indexPath.section];
     NSDictionary *selectedPage=[current objectAtIndex:indexPath.row];
+    
+    UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
+    NSString *selectedCellTitle = selectedCell.textLabel.text;
+    [delegate reportStatus:selectedCellTitle];
+    
     
     TourDetailViewController *tourDetailView = [[TourDetailViewController alloc] init];
     tourDetailView.pageData=selectedPage;

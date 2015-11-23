@@ -191,6 +191,7 @@
 {
     [super viewWillAppear:animated];
     
+    self.screenName = NSLocalizedString(@"LogCat", nil);
 }
 
 -(void)air
