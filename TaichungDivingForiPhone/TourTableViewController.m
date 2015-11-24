@@ -146,19 +146,20 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
-
+/*
 -(void)viewWillAppear:(BOOL)animated
 {
     
     [super viewWillAppear:animated];
-    /*Manually GA Track*/
-    id<GAITracker> tracter = [[GAI sharedInstance] defaultTracker];
+    Manually GA Track*/
+   // id<GAITracker> tracter = [[GAI sharedInstance] defaultTracker];
     /*Enable IDFA Collection
     tracter.allowIDFACollection = YES;*/
+/*
     [tracter set:kGAIScreenName value:NSLocalizedString(@"Tour", nil)];
     [tracter send:[[GAIDictionaryBuilder createScreenView]build]];
 }
-
+*/
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

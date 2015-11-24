@@ -203,6 +203,7 @@
     UIBarButtonItem *backToHome = [[UIBarButtonItem alloc] init];
     backToHome.title = @"首頁";
     self.navigationItem.backBarButtonItem = backToHome;
+    self.screenName = @"首頁";
 
 }
 

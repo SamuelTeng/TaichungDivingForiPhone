@@ -12,6 +12,8 @@
 "Weather" = "Weather";
 "Tour" = "Tour";
 "LogCat" = "Log Category";
+"LogInd" = "Log Index";
+"LogB" = "Log Body";
 
 /*Subtitle*/
 "Air" = "Air";

@@ -190,7 +190,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+    /*helps understanding the flow of behavior*/
     self.screenName = NSLocalizedString(@"LogCat", nil);
 }
 

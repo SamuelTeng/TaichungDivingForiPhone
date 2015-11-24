@@ -186,6 +186,7 @@
     NSUInteger count = resultController.fetchedObjects.count;
     NSString *countOfLogs = [NSString stringWithFormat:NSLocalizedString(@"Count", nil),(unsigned long)count];
     self.navigationItem.title = countOfLogs;
+    [delegate_logbook reportStatus:NSLocalizedString(@"LogInd", nil)];
     [self detectingDevice];
 }
 

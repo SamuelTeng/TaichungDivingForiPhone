@@ -8,7 +8,7 @@
 
 #import "TourDetailViewController.h"
 
-
+#import "AppDelegate.h"
 
 @interface TourDetailViewController (){
     
@@ -20,6 +20,7 @@
     UIBarButtonItem *stopButton;
     UIBarButtonItem *fixedSpace;
     UIBarButtonItem *flexibleSpace;
+    AppDelegate *delegate_gatrack;
     
 }
 
@@ -41,6 +42,7 @@
     self.view.backgroundColor=[UIColor purpleColor];
     spinner=[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, [[UIScreen mainScreen]bounds].size.height-44, [[UIScreen mainScreen] bounds].size.width, 44)];
+    delegate_gatrack = [[UIApplication sharedApplication] delegate];
     
 }
 
@@ -51,6 +53,7 @@
     spinner.frame=self.view.bounds;
     self.webView.scalesPageToFit = YES;
     [self.webView addSubview:toolBar];
+    [delegate_gatrack reportStatus:self.title];
     
 
 }

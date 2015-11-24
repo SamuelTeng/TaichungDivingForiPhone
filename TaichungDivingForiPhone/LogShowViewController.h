@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GAITrackedViewController.h"
 
-@interface LogShowViewController : UIViewController
+@interface LogShowViewController : GAITrackedViewController//UIViewController
 
 @property (nonatomic,strong) NSString *date;
 @property (nonatomic,strong) NSString *site;

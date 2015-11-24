@@ -300,6 +300,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.screenName = NSLocalizedString(@"LogB", nil);
     /*
     logDatabase = [LogDatabase new];
     photos = [logDatabase images:contenPath];

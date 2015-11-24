@@ -207,7 +207,7 @@
     }
 }
 
-#pragma mark - report to Google Analytics
+#pragma mark - report to Google Analytics manually
 - (void)reportStatus:(NSString *)pattern{
     
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
