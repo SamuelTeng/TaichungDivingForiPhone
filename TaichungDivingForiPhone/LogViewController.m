@@ -155,7 +155,7 @@
     [super loadView];
     
     scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
-    scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, 1500);
+    scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, 1700);
     scrollView.backgroundColor = [UIColor clearColor];
     
     [self.view addSubview:scrollView];

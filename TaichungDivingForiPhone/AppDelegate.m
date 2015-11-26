@@ -211,6 +211,7 @@
 - (void)reportStatus:(NSString *)pattern{
     
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    tracker.allowIDFACollection = YES;
     [tracker set:kGAIScreenName value:pattern];
     [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
