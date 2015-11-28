@@ -27,6 +27,8 @@
 
 @property (nonatomic,strong) UIImage *selectedCellImage;
 
+@property (nonatomic) id<GAITracker> tracker;
+
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 - (void)reportStatus:(NSString *)pattern;

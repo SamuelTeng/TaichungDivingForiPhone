@@ -10,6 +10,9 @@
 #import "AppDelegate.h"
 #import "LogBookTableViewController.h"
 #import "LogViewController.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
 
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() ==UIUserInterfaceIdiomPhone)
 #define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
@@ -31,6 +34,8 @@
     LogViewController *logView;
     
     NSUInteger view_tag;
+    
+    
 }
 
 @end
@@ -179,6 +184,8 @@
     [self detectingDevice];
     
     
+    
+    
 }
 
 - (void)viewDidLoad
@@ -203,7 +210,8 @@
     logView.logType = air_tag;
     
     [delegate.navi pushViewController:logView animated:NO];
-    [delegate reportStatus:NSLocalizedString(@"Air", nil)];
+    
+    [delegate.tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Input Logs" action:@"Log Category Selected" label:NSLocalizedString(@"Air", nil) value:nil]build]];
 }
 
 -(void)nitrox
@@ -215,7 +223,9 @@
     logView.logType = nirox_tag;
     
     [delegate.navi pushViewController:logView animated:NO];
-    [delegate reportStatus:NSLocalizedString(@"Nitro", nil)];
+    
+    [delegate.tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Input Logs" action:@"Log Category Selected" label:NSLocalizedString(@"Nitro", nil) value:nil]build]];
+    
 }
 
 -(void)closedCircuit
@@ -227,7 +237,8 @@
     logView.logType = closedCircuit;
     
     [delegate.navi pushViewController:logView animated:NO];
-    [delegate reportStatus:NSLocalizedString(@"CCR", nil)];
+    
+    [delegate.tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Input Logs" action:@"Log Category Selected" label:NSLocalizedString(@"CCR", nil) value:nil]build]];
 }
 
 - (void)didReceiveMemoryWarning

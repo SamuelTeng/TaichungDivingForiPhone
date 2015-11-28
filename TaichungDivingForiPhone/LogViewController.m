@@ -12,6 +12,9 @@
 #import "LogBookTableViewController.h"
 #import "LogCategoryViewController.h"
 #import "PhotoViewController.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
 
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() ==UIUserInterfaceIdiomPhone)
 #define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
@@ -33,6 +36,8 @@
     LogBookTableViewController *logBookTableView;
     LogCategoryViewController *logCategory;
     PhotoViewController *photoRoll;
+    
+    
     
 }
 
@@ -192,6 +197,9 @@
     logBookTableView = [[LogBookTableViewController alloc] init];
     logCategory = [[LogCategoryViewController alloc] init];
     photoRoll = [[PhotoViewController alloc] init];
+    
+    
+    
     
     
 
@@ -423,8 +431,8 @@
                 
             }
             
-            
-            
+            NSString *savedlog = [NSString stringWithFormat:@"%@ %@",NSLocalizedString(@"Air", nil), @"Saved"];
+            [delegate.tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Input Logs" action:@"Log Saved" label:savedlog value:nil]build]];
             
         }
             break;
@@ -632,6 +640,9 @@
                 
                 
             }
+            
+             NSString *savedlog = [NSString stringWithFormat:@"%@ %@",NSLocalizedString(@"Nitro", nil), @"Saved"];
+            [delegate.tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Input Logs" action:@"Log Saved" label:savedlog value:nil]build]];
 
                 
             }
@@ -859,8 +870,8 @@
                 [delegate.navi pushViewController:logBookTableView animated:YES];
             }
             
-           
-            
+            NSString *savedlog = [NSString stringWithFormat:@"%@ %@",NSLocalizedString(@"CCR", nil), @"Saved"];
+            [delegate.tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Input Logs" action:@"Log Saved" label:savedlog value:nil]build]];
             
         }
             break;
@@ -868,6 +879,7 @@
         default:
             break;
     }
+    
     
     
 }

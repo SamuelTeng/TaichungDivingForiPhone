@@ -25,6 +25,7 @@
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 @synthesize selectedCellImage;
+@synthesize tracker;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -38,6 +39,9 @@
     [GAI sharedInstance].dispatchInterval = 30;
     [[[GAI sharedInstance] logger]setLogLevel:kGAILogLevelNone];
     [[GAI sharedInstance]trackerWithTrackingId:@"UA-70357341-1"];
+    
+    tracker = [[GAI sharedInstance] defaultTracker];
+    tracker.allowIDFACollection = YES;
     
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -210,8 +214,8 @@
 #pragma mark - report to Google Analytics manually
 - (void)reportStatus:(NSString *)pattern{
     
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    tracker.allowIDFACollection = YES;
+    
+    
     [tracker set:kGAIScreenName value:pattern];
     [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }

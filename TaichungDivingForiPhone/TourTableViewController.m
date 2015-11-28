@@ -117,7 +117,7 @@
         foreignTour=[[NSMutableArray alloc]init];
         
         [foreignTour addObject:[[NSDictionary alloc]initWithObjectsAndKeys:NSLocalizedString(@"Maldives", nil),@"page",@"http://www.td-club.com.tw/Travels.asp?ID=G1_9D",@"url", nil]];
-        [foreignTour addObject:[[NSDictionary alloc]initWithObjectsAndKeys:NSLocalizedString(@"Similan", nil),@"page",@"http://www.td-club.com.tw/Travels.asp?ID=G3_6D",@"url", nil]];
+        [foreignTour addObject:[[NSDictionary alloc]initWithObjectsAndKeys:NSLocalizedString(@"SimilanI", nil),@"page",@"http://www.td-club.com.tw/Travels.asp?ID=G3_6D",@"url", nil]];
         [foreignTour addObject:[[NSDictionary alloc]initWithObjectsAndKeys:NSLocalizedString(@"SuluS", nil),@"page",@"http://www.td-club.com.tw/Travels.asp?ID=G4_7D",@"url", nil]];
         [foreignTour addObject:[[NSDictionary alloc]initWithObjectsAndKeys:NSLocalizedString(@"GBR", nil),@"page",@"http://www.td-club.com.tw/Travels.asp?ID=F05_9D",@"url", nil]];
         [foreignTour addObject:[[NSDictionary alloc]initWithObjectsAndKeys:NSLocalizedString(@"Mindoro", nil),@"page",@"http://www.td-club.com.tw/Travels.asp?ID=F10_6D",@"url", nil]];
@@ -146,20 +146,17 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
-/*
+
 -(void)viewWillAppear:(BOOL)animated
 {
     
     [super viewWillAppear:animated];
-    Manually GA Track*/
-   // id<GAITracker> tracter = [[GAI sharedInstance] defaultTracker];
-    /*Enable IDFA Collection
-    tracter.allowIDFACollection = YES;*/
-/*
-    [tracter set:kGAIScreenName value:NSLocalizedString(@"Tour", nil)];
-    [tracter send:[[GAIDictionaryBuilder createScreenView]build]];
+    /*Manually GA Track*/
+   [delegate reportStatus:NSLocalizedString(@"Tour", nil)];
+
+    
 }
-*/
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -264,7 +261,10 @@
     
     UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
     NSString *selectedCellTitle = selectedCell.textLabel.text;
-    [delegate reportStatus:selectedCellTitle];
+    
+    /*Events tracking*/
+    
+    [delegate.tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Tour" action:@"Tour Selected" label:selectedCellTitle value:nil]build]];
     
     
     TourDetailViewController *tourDetailView = [[TourDetailViewController alloc] init];
