@@ -50,12 +50,19 @@
 
 /*MSG*/
 "Alert" = "No Record Be Found";
-"AlertM" = "Please Pick A Category To Add One; Click Cancel To Dismiss";
+"AlertM" = "Click Add To Add One or Cancel To Dismiss";
 "Cancel" = "Cancel";
 "Count" = "You have dived: %lu";
 "Saved" = "Saved";
 "SavedM" = "Click \"Log Page\" To Return";
 "Add" = "Add";
+"Facebook" = "Post On FB";
+"FacebookM" = "Save & Post your Log on FB or Click Saved to just save the Log";
+"Post" = "Post";
+"Posted" = "Log Successfully Posted";
+"Successed" = "Successed";
+"Canceled" = "Post is canceled";
+"Error" = "Error";
 
 /*Spinner*/
 "Flat" = "Flat";

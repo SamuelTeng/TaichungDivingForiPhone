@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "GAITrackedViewController.h"
+#import <FBSDKShareKit/FBSDKShareKit.h>
 
 @interface LogViewController : GAITrackedViewController<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
 @property (readonly , strong ,nonatomic) NSManagedObjectContext *managedObjectContext;

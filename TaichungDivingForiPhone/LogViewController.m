@@ -5,6 +5,7 @@
 //  Created by Samuel Teng on 2015/8/25.
 //  Copyright (c) 2015年 Samuel Teng. All rights reserved.
 //
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 #import "LogViewController.h"
 #import "DiveLog.h"
@@ -15,6 +16,10 @@
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
+#import "FBFunction.h"
+
+#import "PhotoImagePicker.h"
+
 
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() ==UIUserInterfaceIdiomPhone)
 #define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
@@ -30,19 +35,24 @@
 #define IS_IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
 
 
-@interface LogViewController (){
+@interface LogViewController ()<FBFunctionDelegate,PhotoImagePickerDelegate>{
     
     AppDelegate *delegate;
     LogBookTableViewController *logBookTableView;
     LogCategoryViewController *logCategory;
     PhotoViewController *photoRoll;
-    
-    
+    FBFunction *fbFunction;
+    NSString *fbLog;
+    UIImage *fbPhotos;
+    BOOL fromPostCancel;
+    PhotoImagePicker *pickImage;
     
 }
 
 
 @end
+
+static int const MIN_USER_GENERATED_PHOTO_DIMENSION = 480;
 
 @implementation LogViewController
 
@@ -150,8 +160,21 @@
 
 -(void)fowardToPhoto:(id)sender
 {
+    /*
     [delegate.navi pushViewController:photoRoll animated:NO];
     viewReserved = 1;
+    */
+    pickImage = [[PhotoImagePicker alloc] init];
+    pickImage.delegate = self;
+    if ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) && [sender isKindOfClass:[UIView class]]) {
+        UIView *senderView = (UIView *)sender;
+        UIView *view = self.view;
+        [pickImage presentFromRect:[view convertRect:senderView.bounds fromView:senderView] inView:self.view];
+        viewReserved = 1;
+    } else {
+        [pickImage presentWithViewController:self];
+        viewReserved = 1;
+    }
 }
 
 -(void)loadView
@@ -182,7 +205,7 @@
     mixtureArr = [NSArray arrayWithObjects:NSLocalizedString(@"Air", nil),@"EAN32",@"EAN36",@"Trimix21/35",@"Trimix18/45",@"Trimix15/55", nil];
     
     
-    UIBarButtonItem *save = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed: @"ic_save_black_24dp.png"] style:UIBarButtonItemStylePlain target:self action:@selector(saveToData)];
+    UIBarButtonItem *save = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed: @"ic_save_black_24dp.png"] style:UIBarButtonItemStylePlain target:self action:@selector(publishALert)];
     self.navigationItem.rightBarButtonItem = save;
     self.navigationItem.rightBarButtonItem.enabled = NO;
     
@@ -199,7 +222,7 @@
     photoRoll = [[PhotoViewController alloc] init];
     
     
-    
+    fromPostCancel = NO;
     
     
 
@@ -261,6 +284,63 @@
     
 }
 
+-(void)publishALert
+{
+    UIAlertView *publish = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Facebook", nil) message:NSLocalizedString(@"FacebookM", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Saved", nil) otherButtonTitles:NSLocalizedString(@"Post", nil), nil];
+    [publish show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+            
+            if (fromPostCancel != NO) {
+                
+                
+            }else{
+                
+                [self saveToData];
+            }
+            
+            
+            
+            break;
+            
+        case 1:
+            [self saveToData];
+            if (fbPhotos == nil){
+                
+                //[fbFunction FBSharing:fbLog];
+                
+            }else{
+                
+                if (fbPhotos && ([fbPhotos size].height < MIN_USER_GENERATED_PHOTO_DIMENSION || [fbPhotos size].width < MIN_USER_GENERATED_PHOTO_DIMENSION)) {
+                    
+                    fromPostCancel = YES;
+                    UIAlertView *alert = [[UIAlertView alloc]
+                                          initWithTitle:[NSString stringWithFormat:@"%@%d%@", @"This photo is too small. Choose a photo with dimensions larger than ", MIN_USER_GENERATED_PHOTO_DIMENSION, @"px."]
+                                          message:nil
+                                          delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+                    [alert show];
+                    return;
+                }
+                
+                fbFunction = [[FBFunction alloc] initWithTitle:@"非潛不可" contents:fbLog photo:fbPhotos];
+                fbFunction.delegate = self;
+                [fbFunction start];
+
+            }
+            
+            break;
+            
+        default:
+            break;
+    }
+}
+
 -(void)saveToData
 {
     
@@ -308,6 +388,8 @@
                 
                 NSString *endPressure = _endPreField.text;
                 
+                fbLog = [NSString stringWithFormat:NSLocalizedString(@"Log", nil), dateStr,site,diveTime,gasType,startPressure,endPressure,maxDepth,temperature,visibility,current,waves];
+                
                 dateField.text = nil;
                 siteField.text = nil;
                 wavesField.text = nil;
@@ -343,6 +425,7 @@
                 
                 
                 viewReserved = 0;
+                
                 
                 [delegate.navi pushViewController:logBookTableView animated:YES];
                 
@@ -389,6 +472,9 @@
                 
                 NSData *photoData = [NSData dataWithData:UIImagePNGRepresentation(selectedImg.image)];
                 
+                fbLog = [NSString stringWithFormat:NSLocalizedString(@"Log", nil), dateStr,site,diveTime,gasType,startPressure,endPressure,maxDepth,temperature,visibility,current,waves];
+                fbPhotos = selectedImg.image;
+                
                 dateField.text = nil;
                 siteField.text = nil;
                 wavesField.text = nil;
@@ -426,6 +512,7 @@
                 
                 
                 viewReserved = 0;
+                
                 
                 [delegate.navi pushViewController:logBookTableView animated:YES];
                 
@@ -491,6 +578,7 @@
                 
                 NSString *_nitrogen = nitrogenField.text;
                 
+                fbLog = [NSString stringWithFormat:NSLocalizedString(@"NitroL", nil), dateStr,site,diveTime,gasType,startPressure,endPressure,_mixture,_oxygen,_nitrogen,maxDepth,temperature,visibility,current,waves];
                 
                 dateField.text = nil;
                 siteField.text = nil;
@@ -590,7 +678,9 @@
                 
                 NSData *photoData = [NSData dataWithData:UIImagePNGRepresentation(selectedImg.image)];
                 
+                fbLog = [NSString stringWithFormat:NSLocalizedString(@"NitroL", nil), dateStr,site,diveTime,gasType,startPressure,endPressure,_mixture,_oxygen,_nitrogen,maxDepth,temperature,visibility,current,waves];
                 
+                fbPhotos = selectedImg.image;
                 
                 dateField.text = nil;
                 siteField.text = nil;
@@ -708,6 +798,7 @@
                 
                 NSString *_highPPO2 = highppo2Field.text;
                 
+                fbLog = [NSString stringWithFormat:NSLocalizedString(@"CCRL", nil), dateStr,site,diveTime,gasType,startPressure,endPressure,_mixture,_oxygen,_nitrogen,_helium,_lowPPO2,_highPPO2,maxDepth,temperature,visibility,current,waves];
                 
                 dateField.text = nil;
                 siteField.text = nil;
@@ -816,6 +907,9 @@
                 
                 NSData *photoData = [NSData dataWithData:UIImagePNGRepresentation(selectedImg.image)];
                 
+                fbLog = [NSString stringWithFormat:NSLocalizedString(@"CCRL", nil), dateStr,site,diveTime,gasType,startPressure,endPressure,_mixture,_oxygen,_nitrogen,_helium,_lowPPO2,_highPPO2,maxDepth,temperature,visibility,current,waves];
+                
+                fbPhotos = selectedImg.image;
                 
                 dateField.text = nil;
                 siteField.text = nil;
@@ -1665,7 +1759,7 @@
         
     }else if (aTextField.tag == 111){
         
-        aTextField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+        aTextField.keyboardType = UIKeyboardTypeNumberPad;//UIKeyboardTypeNumbersAndPunctuation;
         aTextField.returnKeyType = UIReturnKeyDone;
         
     }else if (aTextField.tag == 112){
@@ -2548,7 +2642,7 @@
     temperField.text = nil;
     staPreField.text = nil;
     _endPreField.text = nil;
-    
+    fbLog = nil;
     
     // Dispose of any resources that can be recreated.
 }
@@ -2562,5 +2656,35 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma FBFunctionDelegate
+- (void)shareUtility:(FBFunction *)shareUtility didFailWithError:(NSError *)error
+{
+    if (!error.userInfo[FBSDKErrorLocalizedDescriptionKey]) {
+    NSLog(@"Unexpected error when sharing : %@", error);
+    [[[UIAlertView alloc] initWithTitle:@"Oops"
+                                message:@"There was a problem sharing. Please try again later."
+                               delegate:nil
+                      cancelButtonTitle:@"OK"
+                      otherButtonTitles:nil] show];
+    }
+}
+- (void)shareUtilityWillShare:(FBFunction *)shareUtility{}
+- (void)shareUtilityDidCompleteShare:(FBFunction *)shareUtility{}
+- (void)shareUtilityUserShouldLogin:(FBFunction *)shareUtility{}
+
+#pragma mark - PhotoImageDelegate
+
+- (void)imagePicker:(PhotoImagePicker *)imagePicker didSelectImage:(UIImage *)image
+{
+    delegate.selectedCellImage = image;
+    pickImage = nil;
+    
+}
+
+- (void)imagePickerDidCancel:(PhotoImagePicker *)imagePicker
+{
+    pickImage = nil;
+}
 
 @end

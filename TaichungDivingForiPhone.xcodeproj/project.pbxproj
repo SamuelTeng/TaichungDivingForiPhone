@@ -41,6 +41,7 @@
 		5757DEFD1BA55757001FC213 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5757DEFC1BA55757001FC213 /* AssetsLibrary.framework */; };
 		5757DF041BA5580F001FC213 /* PhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5757DF031BA5580F001FC213 /* PhotoCell.m */; };
 		5757DF071BA55D16001FC213 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5757DF061BA55D16001FC213 /* PhotoViewController.m */; };
+		577DA1631C13395A0020B9A6 /* PhotoImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 577DA1621C13395A0020B9A6 /* PhotoImagePicker.m */; };
 		578679581B95E38B00A0F977 /* Background.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 578679571B95E38B00A0F977 /* Background.bundle */; };
 		57ABF8191B96E69400BE7CF2 /* Button.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 57ABF8181B96E69400BE7CF2 /* Button.bundle */; };
 		57D39BE01BFDAD0D000FD965 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57D39BBF1BFDAD0D000FD965 /* libGoogleAnalyticsServices.a */; };
@@ -51,6 +52,10 @@
 		57D4D0201B9FD3870008FD2A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57D4D01D1B9FD3870008FD2A /* Default-568h@2x.png */; };
 		57D4D0211B9FD3870008FD2A /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57D4D01E1B9FD3870008FD2A /* Default-736h@3x.png */; };
 		57D4D0221B9FD3870008FD2A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57D4D01F1B9FD3870008FD2A /* Default@2x.png */; };
+		57DCB6F71C0D52C700B7B74E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57DCB6F41C0D52C700B7B74E /* FBSDKCoreKit.framework */; };
+		57DCB6F81C0D52C700B7B74E /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57DCB6F51C0D52C700B7B74E /* FBSDKLoginKit.framework */; };
+		57DCB6F91C0D52C700B7B74E /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57DCB6F61C0D52C700B7B74E /* FBSDKShareKit.framework */; };
+		57DCB6FC1C0DA7CC00B7B74E /* FBFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DCB6FB1C0DA7CC00B7B74E /* FBFunction.m */; };
 		57E155F31C06D3CC004DCC6E /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57E155F21C06D3CC004DCC6E /* AdSupport.framework */; };
 		57E155F51C06D41F004DCC6E /* libAdIdAccess.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57E155F41C06D41F004DCC6E /* libAdIdAccess.a */; };
 		57EC5D891BB8DF680040932A /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57EC5D871BB8DF680040932A /* Icon-60@2x.png */; };
@@ -125,6 +130,8 @@
 		5757DF031BA5580F001FC213 /* PhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCell.m; sourceTree = "<group>"; };
 		5757DF051BA55D16001FC213 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
 		5757DF061BA55D16001FC213 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
+		577DA1611C13395A0020B9A6 /* PhotoImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoImagePicker.h; sourceTree = "<group>"; };
+		577DA1621C13395A0020B9A6 /* PhotoImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoImagePicker.m; sourceTree = "<group>"; };
 		578679571B95E38B00A0F977 /* Background.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Background.bundle; sourceTree = "<group>"; };
 		57ABF8181B96E69400BE7CF2 /* Button.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Button.bundle; sourceTree = "<group>"; };
 		57D39BB41BFDAD0D000FD965 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
@@ -147,6 +154,11 @@
 		57D4D01F1B9FD3870008FD2A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		57D5CB3B1C044272005281DD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		57D5CB3C1C044281005281DD /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		57DCB6F41C0D52C700B7B74E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		57DCB6F51C0D52C700B7B74E /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		57DCB6F61C0D52C700B7B74E /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		57DCB6FA1C0DA7CC00B7B74E /* FBFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBFunction.h; sourceTree = "<group>"; };
+		57DCB6FB1C0DA7CC00B7B74E /* FBFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBFunction.m; sourceTree = "<group>"; };
 		57E155F21C06D3CC004DCC6E /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		57E155F41C06D41F004DCC6E /* libAdIdAccess.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAdIdAccess.a; path = GoogleAnalytics/libAdIdAccess.a; sourceTree = "<group>"; };
 		57EC5D871BB8DF680040932A /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@2x.png"; sourceTree = "<group>"; };
@@ -163,11 +175,14 @@
 			files = (
 				57E155F31C06D3CC004DCC6E /* AdSupport.framework in Frameworks */,
 				57E155F51C06D41F004DCC6E /* libAdIdAccess.a in Frameworks */,
+				57DCB6F81C0D52C700B7B74E /* FBSDKLoginKit.framework in Frameworks */,
 				57D39BEB1BFDB007000FD965 /* libz.tbd in Frameworks */,
 				57D39BE91BFDAFF5000FD965 /* libsqlite3.tbd in Frameworks */,
 				57D39BE71BFDAF12000FD965 /* SystemConfiguration.framework in Frameworks */,
+				57DCB6F91C0D52C700B7B74E /* FBSDKShareKit.framework in Frameworks */,
 				57D39BE51BFDAEF6000FD965 /* CoreData.framework in Frameworks */,
 				5757DEFD1BA55757001FC213 /* AssetsLibrary.framework in Frameworks */,
+				57DCB6F71C0D52C700B7B74E /* FBSDKCoreKit.framework in Frameworks */,
 				57D39BE01BFDAD0D000FD965 /* libGoogleAnalyticsServices.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -185,7 +200,6 @@
 		571CBE451B8C3C3E003343F1 = {
 			isa = PBXGroup;
 			children = (
-				57E155F21C06D3CC004DCC6E /* AdSupport.framework */,
 				571CBE501B8C3C3E003343F1 /* TaichungDivingForiPhone */,
 				571CBE6D1B8C3C3E003343F1 /* TaichungDivingForiPhoneTests */,
 				571CBE4F1B8C3C3E003343F1 /* Products */,
@@ -230,6 +244,8 @@
 				571CBE9D1B8C4914003343F1 /* ModelControler.m */,
 				571CBE9F1B8C4931003343F1 /* LogDatabase.h */,
 				571CBEA01B8C4931003343F1 /* LogDatabase.m */,
+				57DCB6FA1C0DA7CC00B7B74E /* FBFunction.h */,
+				57DCB6FB1C0DA7CC00B7B74E /* FBFunction.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -304,6 +320,8 @@
 				5757DF031BA5580F001FC213 /* PhotoCell.m */,
 				5757DF051BA55D16001FC213 /* PhotoViewController.h */,
 				5757DF061BA55D16001FC213 /* PhotoViewController.m */,
+				577DA1611C13395A0020B9A6 /* PhotoImagePicker.h */,
+				577DA1621C13395A0020B9A6 /* PhotoImagePicker.m */,
 			);
 			name = ViewControlers;
 			sourceTree = "<group>";
@@ -321,6 +339,10 @@
 		5757DEFE1BA55772001FC213 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				57DCB6F41C0D52C700B7B74E /* FBSDKCoreKit.framework */,
+				57DCB6F51C0D52C700B7B74E /* FBSDKLoginKit.framework */,
+				57DCB6F61C0D52C700B7B74E /* FBSDKShareKit.framework */,
+				57E155F21C06D3CC004DCC6E /* AdSupport.framework */,
 				57D39BEA1BFDB007000FD965 /* libz.tbd */,
 				57D39BE81BFDAFF5000FD965 /* libsqlite3.tbd */,
 				57D39BE61BFDAF12000FD965 /* SystemConfiguration.framework */,
@@ -488,6 +510,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57DCB6FC1C0DA7CC00B7B74E /* FBFunction.m in Sources */,
 				571CBE9E1B8C4914003343F1 /* ModelControler.m in Sources */,
 				571CBE571B8C3C3E003343F1 /* AppDelegate.m in Sources */,
 				571CBE981B8C48BB003343F1 /* TourDetailViewController.m in Sources */,
@@ -503,6 +526,7 @@
 				571CBE541B8C3C3E003343F1 /* main.m in Sources */,
 				571CBE831B8C3F5B003343F1 /* Reachability.m in Sources */,
 				571CBE951B8C4890003343F1 /* TourTableViewController.m in Sources */,
+				577DA1631C13395A0020B9A6 /* PhotoImagePicker.m in Sources */,
 				5757DF071BA55D16001FC213 /* PhotoViewController.m in Sources */,
 				571CBEA41B8C4EDD003343F1 /* DiveLog.m in Sources */,
 				571CBE861B8C47A1003343F1 /* LogViewController.m in Sources */,
@@ -637,6 +661,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/TaichungDivingForiPhone",
+				);
 				INFOPLIST_FILE = TaichungDivingForiPhone/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -658,6 +686,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/TaichungDivingForiPhone",
+				);
 				INFOPLIST_FILE = TaichungDivingForiPhone/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -11,6 +11,7 @@
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 @interface AppDelegate ()
 
@@ -43,6 +44,8 @@
     tracker = [[GAI sharedInstance] defaultTracker];
     tracker.allowIDFACollection = YES;
     
+    /*Setting up FB SDK*/
+    [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
@@ -60,6 +63,12 @@
     [self.window makeKeyAndVisible];
 
     return YES;
+}
+
+/*Setting up FB Token*/
+-(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    return [[FBSDKApplicationDelegate sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 
 /*Called by Reachability whenever status changes.*/
