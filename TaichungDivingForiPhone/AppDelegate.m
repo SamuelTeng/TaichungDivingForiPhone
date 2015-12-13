@@ -21,6 +21,7 @@
 
 @synthesize navi;
 @synthesize mainViewController;
+@synthesize loginViewController;
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
@@ -51,9 +52,18 @@
     
     // Override point for customization after application launch.
     
+    if (![FBSDKAccessToken currentAccessToken]) {
+        
+        self.loginViewController = [[FBLoginViewController alloc] init];
+        self.navi = [[UINavigationController alloc] initWithRootViewController:self.loginViewController];
+        
+    }else{
+        
+        self.mainViewController = [[MainViewController alloc] init];
+        self.navi = [[UINavigationController alloc] initWithRootViewController:self.mainViewController];
+    }
     
-    self.mainViewController = [[MainViewController alloc] init];
-    self.navi = [[UINavigationController alloc] initWithRootViewController:self.mainViewController];
+    
     
     self.window.rootViewController = self.navi;
     

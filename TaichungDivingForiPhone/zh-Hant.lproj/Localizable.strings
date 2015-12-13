@@ -23,6 +23,8 @@
 "Site" = "旅遊天氣";
 "Domestic" = "國內旅遊";
 "Foreign" = "國外旅遊";
+"WithoutLogin" = "我不要登入";
+"Logout" = "登出";
 
 /*Tour Title*/
 "NoEa" = "東北角潛水旅遊";
@@ -63,6 +65,8 @@
 "Successed" = "成功";
 "Canceled" = "日誌分享已取消";
 "Error" = "錯誤";
+"LoginError" = "登入異常，請稍候再嘗試。";
+"NoPublish" = "沒有發文權限，無法發文。";
 
 /*Spinner*/
 "Flat" = "平";

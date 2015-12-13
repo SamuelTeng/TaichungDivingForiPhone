@@ -16,7 +16,7 @@
     FBSDKShareAPI *_shareAPI;
     FBSDKShareDialog *_shareDialog;
 }
-
+/*
 #pragma FBSDKSharingDelegate
 - (void)sharer:(id<FBSDKSharing>)sharer didCompleteWithResults:(NSDictionary *)results
 {
@@ -41,6 +41,24 @@
     
     [_delegate shareUtility:self didFailWithError:nil];
 }
+*/
+
+#pragma FBSDKGraphRequestConnectionDelegate
+- (void)requestConnectionDidFinishLoading:(FBSDKGraphRequestConnection *)connection
+{
+    UIAlertView *published = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Successed", nil) message:NSLocalizedString(@"Posted", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [published show];
+    
+}
+
+- (void)requestConnection:(FBSDKGraphRequestConnection *)connection
+         didFailWithError:(NSError *)error
+{
+    UIAlertView *published = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [published show];
+
+    
+}
 
 #pragma Facebook Function
 - (instancetype)initWithTitle:(NSString *)title contents:(NSString *)description
@@ -51,7 +69,7 @@
         _title = [title copy];
         _description = [description copy];
         _photo = [self _normalizeImage:photo];
-        
+        /*
         FBSDKShareOpenGraphContent *shareContent = [self contentForSharing];
         
         _shareAPI = [[FBSDKShareAPI alloc] init];
@@ -62,11 +80,18 @@
         _shareDialog.delegate = self;
         _shareDialog.shouldFailOnDataError = YES;
         _shareDialog.shareContent = shareContent;
-        
+        */
         
     }
     
     return self;
+    
+}
+
+- (void)dealloc
+{
+    _shareAPI.delegate = nil;
+    _shareDialog.delegate = nil;
     
 }
 
@@ -75,82 +100,7 @@
     [self _postOpenGraphAction];
 }
 
--(void)FBLoging
-{
-    if (![FBSDKAccessToken currentAccessToken]) {
-        FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
-        [login logInWithPublishPermissions:@[@"publish_actions"] fromViewController:nil handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
-            if (error) {
-                // Process error
-                NSLog(@"Process error");
-            } else if (result.isCancelled) {
-                // Handle cancellations
-                NSLog(@"Handle cancellations: %@, %@, %@", result, result.grantedPermissions, [FBSDKAccessToken currentAccessToken]);
-            } else {
-                if ([result.grantedPermissions containsObject:@"publish_actions"]) {
-                    NSLog(@"with publish_actions");
-                } else {
-                    NSLog(@"without publish_actions");
-                }
-            }
-        }];
-        return;
-    } else if ([[FBSDKAccessToken currentAccessToken] hasGranted:@"publish_actions"]) {
-        NSLog(@"use publish_actions");
-    }
-    
-    NSLog(@"token: %@", [FBSDKAccessToken currentAccessToken]);
-    
-}
-
--(void)FBSharing:(NSString *)description
-{
-    if (![FBSDKAccessToken currentAccessToken]) {
-        FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
-        [login logInWithPublishPermissions:@[@"publish_actions"] fromViewController:nil handler:^(FBSDKLoginManagerLoginResult *result, NSError *error)  {
-            if (error) {
-                // Process error
-                NSLog(@"Process error");
-            } else if (result.isCancelled) {
-                // Handle cancellations
-            } else {
-                if ([result.grantedPermissions containsObject:@"publish_actions"]) {
-                    [self useFacebookSDK:description];
-                } else {
-                    [self useFacebookApp:description];
-                }
-            }
-        }];
-        return;
-    } else if ([[FBSDKAccessToken currentAccessToken] hasGranted:@"publish_actions"]) {
-        [self useFacebookSDK:description];
-    } else {
-        [self useFacebookApp:description];
-    }
-    return;
-}
-
--(void)useFacebookApp:(NSString *)description
-{
-    FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
-    content.contentURL = [NSURL URLWithString:@"http://www.td-club.com.tw/index.asp"];
-    content.contentTitle = @"非潛不可";
-    content.contentDescription = description;
-    content.imageURL = [NSURL URLWithString:@"http://www.td-club.com.tw/images/Banner/TDTC.png"];
-    [FBSDKShareDialog showFromViewController:nil
-                                 withContent:content
-                                    delegate:nil];
-}
-
--(void)useFacebookSDK:(NSString *)description
-{
-    FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
-    content.contentURL = [NSURL URLWithString:@"http://www.td-club.com.tw/index.asp"];
-    content.contentTitle = @"非潛不可";
-    content.contentDescription = description;
-    content.imageURL = [NSURL URLWithString:@"http://www.td-club.com.tw/images/Banner/TDTC.png"];
-    [FBSDKShareAPI shareWithContent:content delegate:self];
-}
+/*
 
 - (FBSDKShareOpenGraphContent *)contentForSharing
 {
@@ -158,40 +108,123 @@
     
     NSDictionary *objectProperties = @{@"og:type" : @"mustdiveapp:fadiving",
                                        @"og:title": _title,
-                                       @"og:description" :_description};
+                                       @"og:description" :_description
+                                       };
     FBSDKShareOpenGraphObject *object = [FBSDKShareOpenGraphObject objectWithProperties:objectProperties];
     
     FBSDKShareOpenGraphAction *action = [[FBSDKShareOpenGraphAction alloc] init];
-    action.actionType = @"mustdiveapp:divinglog";
-    [action setObject:object forKey:@"mustdiveapp:fadiving"];
-    [action setArray:@[[FBSDKSharePhoto photoWithImage:_photo userGenerated:YES]] forKey:@"og:image"];
+    action.actionType = @"mustdiveapp:wrote";
+    //[action setString:@"http://samples.ogp.me/1938311789728196" forKey:@"fadiving"];
+    [action setObject:object forKey:@"fadiving"];
+    if (_photo) {
+        
+        [action setArray:@[[FBSDKSharePhoto photoWithImage:_photo userGenerated:YES]] forKey:@"image"];
+    }
+    
     
     FBSDKShareOpenGraphContent *content = [[FBSDKShareOpenGraphContent alloc] init];
     content.action = action;
-    content.previewPropertyName = @"mustdiveapp:fadiving";
+    content.previewPropertyName = @"fadiving";
     
     return content;
     
 }
-
+*/
 - (void)_postOpenGraphAction
 {
     NSString *const publish_actions = @"publish_actions";
     if ([[FBSDKAccessToken currentAccessToken] hasGranted:publish_actions]) {
-        [self.delegate shareUtilityWillShare:self];
-        [_shareAPI share];
+        if (_photo) {
+            
+            [[[FBSDKGraphRequest alloc]
+              initWithGraphPath:@"me/photos"
+              parameters: @{ @"message" : _description,
+                             @"sourceImage" : _photo}
+              HTTPMethod:@"POST"]
+             startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+                 if (!error) {
+                     NSLog(@"Post id:%@", result[@"id"]);
+                     connection.delegate = self;
+                     
+                 }else{
+                     
+                     connection.delegate = self;
+                 }
+             }];
+            
+        }else{
+            
+            [[[FBSDKGraphRequest alloc]
+              initWithGraphPath:@"me/feed"
+              parameters: @{ @"message" : _description}
+              HTTPMethod:@"POST"]
+             startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+                 if (!error) {
+                     NSLog(@"Post id:%@", result[@"id"]);
+                     connection.delegate = self;
+                 }else{
+                     
+                     connection.delegate = self;
+                 }
+             }];
+        }
+        
+        //[self.delegate shareUtilityWillShare:self];
+        //[_shareAPI share];
+        
     } else {
         [[[FBSDKLoginManager alloc] init]
          logInWithPublishPermissions:@[publish_actions]
          fromViewController:nil
          handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
              if ([result.grantedPermissions containsObject:publish_actions]) {
+                 
+                 if (_photo) {
+                     
+                     [[[FBSDKGraphRequest alloc]
+                       initWithGraphPath:@"me/photos"
+                       parameters: @{ @"message" : _description,
+                                      @"sourceImage" : _photo}
+                       HTTPMethod:@"POST"]
+                      startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+                          if (!error) {
+                              NSLog(@"Post id:%@", result[@"id"]);
+                              connection.delegate = self;
+                              
+                          }else{
+                              
+                              connection.delegate = self;
+                          }
+                      }];
+                     
+                 }else{
+                     
+                     [[[FBSDKGraphRequest alloc]
+                       initWithGraphPath:@"me/feed"
+                       parameters: @{ @"message" : _description}
+                       HTTPMethod:@"POST"]
+                      startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+                          if (!error) {
+                              NSLog(@"Post id:%@", result[@"id"]);
+                              connection.delegate = self;
+                          }else{
+                              
+                              connection.delegate = self;
+                          }
+                      }];
+                 }
+
+                 /*
                  [self.delegate shareUtilityWillShare:self];
                  [_shareAPI share];
+                  */
+                 
              } else {
                  // This would be a nice place to tell the user why publishing
                  // is valuable.
-                 [_delegate shareUtility:self didFailWithError:nil];
+                 //[_delegate shareUtility:self didFailWithError:nil];
+                 UIAlertView *published = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"NoPublish", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                 [published show];
              }
          }];
     }
@@ -264,5 +297,117 @@
     
     return imageCopy;
 }
+
+/*
+-(void)FBLoging
+{
+    if (![FBSDKAccessToken currentAccessToken]) {
+        FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
+        [login logInWithPublishPermissions:@[@"publish_actions"] fromViewController:nil handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+            if (error) {
+                // Process error
+                NSLog(@"Process error");
+            } else if (result.isCancelled) {
+                // Handle cancellations
+                NSLog(@"Handle cancellations: %@, %@, %@", result, result.grantedPermissions, [FBSDKAccessToken currentAccessToken]);
+            } else {
+                if ([result.grantedPermissions containsObject:@"publish_actions"]) {
+                    NSLog(@"with publish_actions");
+                } else {
+                    NSLog(@"without publish_actions");
+                }
+            }
+        }];
+        return;
+    } else if ([[FBSDKAccessToken currentAccessToken] hasGranted:@"publish_actions"]) {
+        NSLog(@"use publish_actions");
+    }
+    
+    NSLog(@"token: %@", [FBSDKAccessToken currentAccessToken]);
+    
+}
+
+
+-(void)FBSharing:(NSString *)description
+{
+    FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
+    content.contentURL = [NSURL URLWithString:@"http://www.td-club.com.tw/index.asp"];
+    content.contentTitle = @"非潛不可";
+    content.contentDescription = description;
+    content.imageURL = [NSURL URLWithString:@"http://www.td-club.com.tw/images/Banner/TDTC.png"];
+    
+    if (![FBSDKAccessToken currentAccessToken]) {
+        FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
+        [login logInWithPublishPermissions:@[@"publish_actions"] fromViewController:nil handler:^(FBSDKLoginManagerLoginResult *result, NSError *error)  {
+            if (error) {
+                // Process error
+                NSLog(@"Process error");
+            } else if (result.isCancelled) {
+                // Handle cancellations
+            } else {
+                if ([result.grantedPermissions containsObject:@"publish_actions"]) {
+                    [FBSDKShareDialog showFromViewController:nil
+                                                 withContent:content
+                                                    delegate:self];
+                } else {
+                    [FBSDKShareAPI shareWithContent:content delegate:self];
+                }
+            }
+        }];
+        return;
+    } else if ([[FBSDKAccessToken currentAccessToken] hasGranted:@"publish_actions"]) {
+        [FBSDKShareDialog showFromViewController:nil
+                                     withContent:content
+                                        delegate:self];
+    } else {
+        [FBSDKShareAPI shareWithContent:content delegate:self];    }
+    return;
+}
+
+-(void)FBSharingPhoto:(NSString *)description sharePhoto:(UIImage *)img
+{
+    
+    FBSDKSharePhoto *photo = [[FBSDKSharePhoto alloc] init];
+    photo.image = img;
+    photo.userGenerated = YES;
+    photo.caption = description;
+    
+    FBSDKSharePhotoContent *shareContent = [[FBSDKSharePhotoContent alloc] init];
+    shareContent.photos = @[photo];
+    
+    if (![FBSDKAccessToken currentAccessToken]) {
+        FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
+        [login logInWithPublishPermissions:@[@"publish_actions"] fromViewController:nil handler:^(FBSDKLoginManagerLoginResult *result, NSError *error)  {
+            if (error) {
+                // Process error
+                NSLog(@"Process error");
+            } else if (result.isCancelled) {
+                // Handle cancellations
+            } else {
+                if ([result.grantedPermissions containsObject:@"publish_actions"]) {
+                    
+                    [FBSDKShareDialog showFromViewController:nil withContent:shareContent delegate:self];
+                    
+                } else {
+                    
+                    [FBSDKShareAPI shareWithContent:shareContent delegate:self];
+                    
+                }
+            }
+        }];
+        return;
+    } else if ([[FBSDKAccessToken currentAccessToken] hasGranted:@"publish_actions"]) {
+        
+        [FBSDKShareDialog showFromViewController:nil withContent:shareContent delegate:self];
+        
+    } else {
+        
+        [FBSDKShareAPI shareWithContent:shareContent delegate:self];
+    }
+    return;
+    
+}
+
+*/
 
 @end

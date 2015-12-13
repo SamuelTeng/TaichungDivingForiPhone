@@ -23,6 +23,8 @@
 "Site" = "Site";
 "Domestic" = "Domestic";
 "Foreign" = "Foreign";
+"WithoutLogin" = "Continue without login";
+"Logout" = "Log Out";
 
 /*Tour Title*/
 "NoEa" = "North East";
@@ -58,11 +60,13 @@
 "Add" = "Add";
 "Facebook" = "Post On FB";
 "FacebookM" = "Save & Post your Log on FB or Click Saved to just save the Log";
-"Post" = "Post";
+"Post" = "Publish";
 "Posted" = "Log Successfully Posted";
 "Successed" = "Successed";
 "Canceled" = "Post is canceled";
 "Error" = "Error";
+"LoginError" = "There was a problem logging in. Please try again later.";
+"NoPublish" = "Unable to post without publish permission.";
 
 /*Spinner*/
 "Flat" = "Flat";

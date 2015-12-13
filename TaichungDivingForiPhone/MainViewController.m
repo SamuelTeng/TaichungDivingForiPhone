@@ -12,6 +12,10 @@
 #import "TourTableViewController.h"
 #import "Reachability.h"
 #import "ForecastNewViewController.h"
+#import "FBLoginViewController.h"
+
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() ==UIUserInterfaceIdiomPhone)
 #define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
@@ -33,6 +37,8 @@
     ForecastNewViewController *forecastNewViewController;
     TourTableViewController *tourTableView;
     Reachability *networkReachability;
+    UIButton *logoutBtn;
+    FBLoginViewController *loginViewController;
 }
 
 @end
@@ -77,6 +83,22 @@
         [tourButton setFrame:CGRectMake(self.view.center.x-74, self.view.center.y+40, 145, 45)];
         [tourButton addTarget:self action:@selector(fowardToTourTable:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:tourButton];
+        
+        logoutBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [logoutBtn setTitle:NSLocalizedString(@"Logout", nil) forState:UIControlStateNormal];
+        [logoutBtn setTitleColor:[UIColor cyanColor] forState:UIControlStateNormal];
+        [logoutBtn setFrame:CGRectMake(self.view.center.x-74, self.view.center.y+95, 145, 45)];
+        if (![FBSDKAccessToken currentAccessToken]) {
+            
+            logoutBtn.hidden = YES;
+            
+        }else{
+            
+            logoutBtn.hidden = NO;
+            [logoutBtn addTarget:self action:@selector(log_out) forControlEvents:UIControlEventTouchUpInside];
+        }
+
+        [self.view addSubview:logoutBtn];
 
     }
     if(IS_IPHONE_5)
@@ -106,6 +128,22 @@
         [tourButton setFrame:CGRectMake(self.view.center.x-94, self.view.center.y+20, 190, 60)];
         [tourButton addTarget:self action:@selector(fowardToTourTable:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:tourButton];
+        
+        logoutBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [logoutBtn setTitle:NSLocalizedString(@"Logout", nil) forState:UIControlStateNormal];
+        [logoutBtn setTitleColor:[UIColor cyanColor] forState:UIControlStateNormal];
+        [logoutBtn setFrame:CGRectMake(self.view.center.x-94, self.view.center.y+100, 190, 60)];
+        
+        if (![FBSDKAccessToken currentAccessToken]) {
+            
+            logoutBtn.hidden = YES;
+            
+        }else{
+            
+            logoutBtn.hidden = NO;
+            [logoutBtn addTarget:self action:@selector(log_out) forControlEvents:UIControlEventTouchUpInside];
+        }
+        [self.view addSubview:logoutBtn];
 
     }
     if(IS_IPHONE_6)
@@ -135,6 +173,23 @@
         [tourButton setFrame:CGRectMake(self.view.center.x-100, self.view.center.y+40, 210, 70)];
         [tourButton addTarget:self action:@selector(fowardToTourTable:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:tourButton];
+        
+        logoutBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [logoutBtn setTitle:NSLocalizedString(@"Logout", nil) forState:UIControlStateNormal];
+        [logoutBtn setTitleColor:[UIColor cyanColor] forState:UIControlStateNormal];
+        [logoutBtn setFrame:CGRectMake(self.view.center.x-100, self.view.center.y+130, 210, 70)];
+        if (![FBSDKAccessToken currentAccessToken]) {
+            
+            logoutBtn.hidden = YES;
+            
+        }else{
+            
+            logoutBtn.hidden = NO;
+            [logoutBtn addTarget:self action:@selector(log_out) forControlEvents:UIControlEventTouchUpInside];
+        }
+
+        [self.view addSubview:logoutBtn];
+        
     }
     if(IS_IPHONE_6P)
     {
@@ -162,6 +217,22 @@
         [tourButton setFrame:CGRectMake(self.view.center.x-135, self.view.center.y+50, 280, 80)];
         [tourButton addTarget:self action:@selector(fowardToTourTable:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:tourButton];
+        
+        logoutBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [logoutBtn setTitle:NSLocalizedString(@"Logout", nil) forState:UIControlStateNormal];
+        [logoutBtn setTitleColor:[UIColor cyanColor] forState:UIControlStateNormal];
+        [logoutBtn setFrame:CGRectMake(self.view.center.x-135, self.view.center.y+150, 280, 80)];
+        if (![FBSDKAccessToken currentAccessToken]) {
+            
+            logoutBtn.hidden = YES;
+            
+        }else{
+            
+            logoutBtn.hidden = NO;
+            [logoutBtn addTarget:self action:@selector(log_out) forControlEvents:UIControlEventTouchUpInside];
+        }
+
+        [self.view addSubview:logoutBtn];
 
     }
 }
@@ -176,13 +247,9 @@
     logBook = [[LogBookTableViewController alloc] init];
     forecastNewViewController = [[ForecastNewViewController alloc] init];
     tourTableView = [[TourTableViewController alloc] init];
+    loginViewController = [[FBLoginViewController alloc] init];
     
     [self detectingDevice];
-    
-    
-   
-    
-    
     
     
     self.navigationItem.hidesBackButton = YES;
@@ -237,6 +304,14 @@
     [delegate.navi pushViewController:tourTableView animated:NO];
 }
 
+-(void)log_out
+{
+    FBSDKLoginManager *manager = [[FBSDKLoginManager alloc] init];
+    [manager logOut];
+    logoutBtn.hidden = YES;
+    logoutBtn.enabled = NO;
+    [delegate.navi pushViewController:loginViewController animated:NO];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

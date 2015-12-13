@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5702AFAA1B9F33F7009A149F /* Default-667H@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5702AFA91B9F33F7009A149F /* Default-667H@2x.png */; };
 		570396E01BA16ADD005F8385 /* LogImg.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 570396DF1BA16ADD005F8385 /* LogImg.bundle */; };
+		571496A31C16F9B200C9CE32 /* FBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 571496A21C16F9B200C9CE32 /* FBLoginViewController.m */; };
 		571CBE541B8C3C3E003343F1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBE531B8C3C3E003343F1 /* main.m */; };
 		571CBE571B8C3C3E003343F1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBE561B8C3C3E003343F1 /* AppDelegate.m */; };
 		571CBE5A1B8C3C3E003343F1 /* TaichungDivingForiPhone.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 571CBE581B8C3C3E003343F1 /* TaichungDivingForiPhone.xcdatamodeld */; };
@@ -78,6 +79,8 @@
 /* Begin PBXFileReference section */
 		5702AFA91B9F33F7009A149F /* Default-667H@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667H@2x.png"; sourceTree = "<group>"; };
 		570396DF1BA16ADD005F8385 /* LogImg.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LogImg.bundle; sourceTree = "<group>"; };
+		571496A11C16F9B200C9CE32 /* FBLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLoginViewController.h; sourceTree = "<group>"; };
+		571496A21C16F9B200C9CE32 /* FBLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLoginViewController.m; sourceTree = "<group>"; };
 		571CBE4E1B8C3C3E003343F1 /* TaichungDivingForiPhone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaichungDivingForiPhone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		571CBE521B8C3C3E003343F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		571CBE531B8C3C3E003343F1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -322,6 +325,8 @@
 				5757DF061BA55D16001FC213 /* PhotoViewController.m */,
 				577DA1611C13395A0020B9A6 /* PhotoImagePicker.h */,
 				577DA1621C13395A0020B9A6 /* PhotoImagePicker.m */,
+				571496A11C16F9B200C9CE32 /* FBLoginViewController.h */,
+				571496A21C16F9B200C9CE32 /* FBLoginViewController.m */,
 			);
 			name = ViewControlers;
 			sourceTree = "<group>";
@@ -525,6 +530,7 @@
 				571CBE8F1B8C484A003343F1 /* LogShowViewController.m in Sources */,
 				571CBE541B8C3C3E003343F1 /* main.m in Sources */,
 				571CBE831B8C3F5B003343F1 /* Reachability.m in Sources */,
+				571496A31C16F9B200C9CE32 /* FBLoginViewController.m in Sources */,
 				571CBE951B8C4890003343F1 /* TourTableViewController.m in Sources */,
 				577DA1631C13395A0020B9A6 /* PhotoImagePicker.m in Sources */,
 				5757DF071BA55D16001FC213 /* PhotoViewController.m in Sources */,

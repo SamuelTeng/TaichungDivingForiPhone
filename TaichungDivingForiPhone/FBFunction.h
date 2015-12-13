@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import <FBSDKShareKit/FBSDKShareKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
@@ -15,19 +16,20 @@
 
 @protocol FBFunctionDelegate;
 
-@interface FBFunction : NSObject<FBSDKSharingDelegate>
+@interface FBFunction : NSObject<FBSDKGraphRequestConnectionDelegate>//<FBSDKSharingDelegate>
 
 @property (nonatomic,weak) UIViewController <FBFunctionDelegate> *delegate;
 
 - (instancetype)initWithTitle:(NSString *)title contents:(NSString *)description
                             photo:(UIImage *)photo;
 
-
+/*
 -(void)FBLoging;
 -(void)FBSharing:(NSString *)description;
--(void)useFacebookApp:(NSString *)description;
--(void)useFacebookSDK:(NSString *)description;
-- (FBSDKShareOpenGraphContent *)contentForSharing;
+-(void)FBSharingPhoto:(NSString *)description sharePhoto:(UIImage *)img;
+*/
+
+//- (FBSDKShareOpenGraphContent *)contentForSharing;
 - (void)start;
 
 @end

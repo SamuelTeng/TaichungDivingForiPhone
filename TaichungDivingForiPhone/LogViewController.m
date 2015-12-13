@@ -35,7 +35,7 @@
 #define IS_IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
 
 
-@interface LogViewController ()<FBFunctionDelegate,PhotoImagePickerDelegate>{
+@interface LogViewController ()<FBFunctionDelegate,PhotoImagePickerDelegate>{//<PhotoImagePickerDelegate>{
     
     AppDelegate *delegate;
     LogBookTableViewController *logBookTableView;
@@ -224,7 +224,7 @@ static int const MIN_USER_GENERATED_PHOTO_DIMENSION = 480;
     
     fromPostCancel = NO;
     
-    
+    fbFunction = [[FBFunction alloc] init];
 
     
 }
@@ -311,9 +311,14 @@ static int const MIN_USER_GENERATED_PHOTO_DIMENSION = 480;
             [self saveToData];
             if (fbPhotos == nil){
                 
+                fbFunction = [[FBFunction alloc] initWithTitle:@"非潛不可" contents:fbLog photo:nil];
+                fbFunction.delegate = self;
+                [fbFunction start];
                 //[fbFunction FBSharing:fbLog];
                 
             }else{
+                
+                //[fbFunction FBSharingPhoto:fbLog sharePhoto:fbPhotos];
                 
                 if (fbPhotos && ([fbPhotos size].height < MIN_USER_GENERATED_PHOTO_DIMENSION || [fbPhotos size].width < MIN_USER_GENERATED_PHOTO_DIMENSION)) {
                     
@@ -331,6 +336,7 @@ static int const MIN_USER_GENERATED_PHOTO_DIMENSION = 480;
                 fbFunction = [[FBFunction alloc] initWithTitle:@"非潛不可" contents:fbLog photo:fbPhotos];
                 fbFunction.delegate = self;
                 [fbFunction start];
+                 
 
             }
             
@@ -2643,7 +2649,7 @@ static int const MIN_USER_GENERATED_PHOTO_DIMENSION = 480;
     staPreField.text = nil;
     _endPreField.text = nil;
     fbLog = nil;
-    
+    fbFunction = nil;
     // Dispose of any resources that can be recreated.
 }
 

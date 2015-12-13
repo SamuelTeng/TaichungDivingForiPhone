@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "MainViewController.h"
+#import "FBLoginViewController.h"
 #import "Reachability.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>{
@@ -20,6 +21,7 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (strong,nonatomic) UINavigationController *navi;
 @property (strong,nonatomic) MainViewController *mainViewController;
+@property (strong,nonatomic) FBLoginViewController *loginViewController;
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
