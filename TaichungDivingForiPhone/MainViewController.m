@@ -311,6 +311,8 @@
     logoutBtn.hidden = YES;
     logoutBtn.enabled = NO;
     [delegate.navi pushViewController:loginViewController animated:NO];
+    
+    [delegate.tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"FB Login" action:@"Logout" label:@"Logout & foward to Login page" value:nil]build]];
 }
 
 - (void)didReceiveMemoryWarning {

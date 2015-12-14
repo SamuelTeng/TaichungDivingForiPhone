@@ -316,6 +316,8 @@ static int const MIN_USER_GENERATED_PHOTO_DIMENSION = 480;
                 [fbFunction start];
                 //[fbFunction FBSharing:fbLog];
                 
+                [delegate.tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Input Logs" action:@"Social Shared" label:@"FB Share without photo" value:nil]build]];
+                
             }else{
                 
                 //[fbFunction FBSharingPhoto:fbLog sharePhoto:fbPhotos];
@@ -336,6 +338,7 @@ static int const MIN_USER_GENERATED_PHOTO_DIMENSION = 480;
                 fbFunction = [[FBFunction alloc] initWithTitle:@"非潛不可" contents:fbLog photo:fbPhotos];
                 fbFunction.delegate = self;
                 [fbFunction start];
+                [delegate.tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Input Logs" action:@"Social Shared" label:@"FB Share with photo" value:nil]build]];
                  
 
             }

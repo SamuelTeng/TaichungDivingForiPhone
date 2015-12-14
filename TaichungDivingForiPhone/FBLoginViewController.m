@@ -11,6 +11,10 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
+
 #import "AppDelegate.h"
 #import "MainViewController.h"
 
@@ -143,6 +147,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.screenName = @"登入頁面";
     // Do any additional setup after loading the view.
    
     //FBSDKLoginButton *loginBtn = [[FBSDKLoginButton alloc] init];
@@ -155,7 +161,7 @@
 {
     
     [delegate.navi pushViewController:mainViewController animated:NO];
-    
+    [delegate.tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"FB Login" action:@"No Login" label:@"Proceed without Login" value:nil]build]];
 }
 
 
@@ -179,16 +185,20 @@
                                    delegate:nil
                           cancelButtonTitle:@"OK"
                           otherButtonTitles:nil] show];
+        [delegate.tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"FB Login" action:@"Error" label:@"Login Error" value:nil]build]];
         
     }else if (result.isCancelled){
         
         [delegate.navi pushViewController:mainViewController animated:NO];
+        [delegate.tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"FB Login" action:@"Caceled" label:@"Login Canceled" value:nil]build]];
         
     }else{
         
         if ([result.grantedPermissions containsObject:@"public_profile"]) {
             
             [delegate.navi pushViewController:mainViewController animated:NO];
+            
+            [delegate.tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"FB Login" action:@"With permission" label:@"Proceed with access to profile at least" value:nil]build]];
             
         }
         
