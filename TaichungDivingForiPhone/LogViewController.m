@@ -35,25 +35,26 @@
 #define IS_IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
 
 
-@interface LogViewController ()<FBFunctionDelegate,PhotoImagePickerDelegate>{//<PhotoImagePickerDelegate>{
+@interface LogViewController ()<PhotoImagePickerDelegate>//<FBFunctionDelegate,PhotoImagePickerDelegate>{
+{
     
     AppDelegate *delegate;
     LogBookTableViewController *logBookTableView;
     LogCategoryViewController *logCategory;
     PhotoViewController *photoRoll;
-    FBFunction *fbFunction;
+    //FBFunction *fbFunction;
     NSString *fbLog;
     UIImage *fbPhotos;
-    BOOL fromPostCancel;
+    //BOOL fromPostCancel;
     PhotoImagePicker *pickImage;
     
 }
 
 
 @end
-
+/*
 static int const MIN_USER_GENERATED_PHOTO_DIMENSION = 480;
-
+*/
 @implementation LogViewController
 
 @synthesize managedObjectContext,scrollView,secondRow,selectedRow,siteField,staPreField,dateField,divetimeField,wavesField,currentField,mAndf,maxDepField,temperField,thirdRow,visiField,otherField,gasArr,gasField,dateFromData,wavesFromData,currentFromData,timeFromData,wavesArr,currentArr,logType,mixtureArr,mixtureField,oxygenField,nitrogenField,heliumField,lowppo2Field,lowppo2Label,highppo2Field,highppo2Label;
@@ -160,10 +161,8 @@ static int const MIN_USER_GENERATED_PHOTO_DIMENSION = 480;
 
 -(void)fowardToPhoto:(id)sender
 {
-    /*
-    [delegate.navi pushViewController:photoRoll animated:NO];
-    viewReserved = 1;
-    */
+    
+    
     pickImage = [[PhotoImagePicker alloc] init];
     pickImage.delegate = self;
     if ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) && [sender isKindOfClass:[UIView class]]) {
@@ -175,6 +174,7 @@ static int const MIN_USER_GENERATED_PHOTO_DIMENSION = 480;
         [pickImage presentWithViewController:self];
         viewReserved = 1;
     }
+    
 }
 
 -(void)loadView
@@ -205,7 +205,7 @@ static int const MIN_USER_GENERATED_PHOTO_DIMENSION = 480;
     mixtureArr = [NSArray arrayWithObjects:NSLocalizedString(@"Air", nil),@"EAN32",@"EAN36",@"Trimix21/35",@"Trimix18/45",@"Trimix15/55", nil];
     
     
-    UIBarButtonItem *save = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed: @"ic_save_black_24dp.png"] style:UIBarButtonItemStylePlain target:self action:@selector(publishALert)];
+    UIBarButtonItem *save = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed: @"ic_save_black_24dp.png"] style:UIBarButtonItemStylePlain target:self action:@selector(saveToData)];
     self.navigationItem.rightBarButtonItem = save;
     self.navigationItem.rightBarButtonItem.enabled = NO;
     
@@ -221,10 +221,11 @@ static int const MIN_USER_GENERATED_PHOTO_DIMENSION = 480;
     logCategory = [[LogCategoryViewController alloc] init];
     photoRoll = [[PhotoViewController alloc] init];
     
-    
+    /*
     fromPostCancel = NO;
     
     fbFunction = [[FBFunction alloc] init];
+    */
 
     
 }
@@ -283,7 +284,7 @@ static int const MIN_USER_GENERATED_PHOTO_DIMENSION = 480;
     
     
 }
-
+/*
 -(void)publishALert
 {
     UIAlertView *publish = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Facebook", nil) message:NSLocalizedString(@"FacebookM", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Saved", nil) otherButtonTitles:NSLocalizedString(@"Post", nil), nil];
@@ -349,7 +350,7 @@ static int const MIN_USER_GENERATED_PHOTO_DIMENSION = 480;
             break;
     }
 }
-
+*/
 -(void)saveToData
 {
     
@@ -396,9 +397,9 @@ static int const MIN_USER_GENERATED_PHOTO_DIMENSION = 480;
                 
                 
                 NSString *endPressure = _endPreField.text;
-                
+                /*
                 fbLog = [NSString stringWithFormat:NSLocalizedString(@"Log", nil), dateStr,site,diveTime,gasType,startPressure,endPressure,maxDepth,temperature,visibility,current,waves];
-                
+                */
                 dateField.text = nil;
                 siteField.text = nil;
                 wavesField.text = nil;
@@ -480,10 +481,10 @@ static int const MIN_USER_GENERATED_PHOTO_DIMENSION = 480;
                 NSString *endPressure = _endPreField.text;
                 
                 NSData *photoData = [NSData dataWithData:UIImagePNGRepresentation(selectedImg.image)];
-                
+                /*
                 fbLog = [NSString stringWithFormat:NSLocalizedString(@"Log", nil), dateStr,site,diveTime,gasType,startPressure,endPressure,maxDepth,temperature,visibility,current,waves];
                 fbPhotos = selectedImg.image;
-                
+                */
                 dateField.text = nil;
                 siteField.text = nil;
                 wavesField.text = nil;
@@ -521,7 +522,7 @@ static int const MIN_USER_GENERATED_PHOTO_DIMENSION = 480;
                 
                 
                 viewReserved = 0;
-                
+                pickImage = nil;
                 
                 [delegate.navi pushViewController:logBookTableView animated:YES];
                 
@@ -586,9 +587,9 @@ static int const MIN_USER_GENERATED_PHOTO_DIMENSION = 480;
                 NSString *_oxygen = oxygenField.text;
                 
                 NSString *_nitrogen = nitrogenField.text;
-                
+                /*
                 fbLog = [NSString stringWithFormat:NSLocalizedString(@"NitroL", nil), dateStr,site,diveTime,gasType,startPressure,endPressure,_mixture,_oxygen,_nitrogen,maxDepth,temperature,visibility,current,waves];
-                
+                */
                 dateField.text = nil;
                 siteField.text = nil;
                 wavesField.text = nil;
@@ -686,11 +687,11 @@ static int const MIN_USER_GENERATED_PHOTO_DIMENSION = 480;
                 NSString *_nitrogen = nitrogenField.text;
                 
                 NSData *photoData = [NSData dataWithData:UIImagePNGRepresentation(selectedImg.image)];
-                
+                /*
                 fbLog = [NSString stringWithFormat:NSLocalizedString(@"NitroL", nil), dateStr,site,diveTime,gasType,startPressure,endPressure,_mixture,_oxygen,_nitrogen,maxDepth,temperature,visibility,current,waves];
                 
                 fbPhotos = selectedImg.image;
-                
+                */
                 dateField.text = nil;
                 siteField.text = nil;
                 wavesField.text = nil;
@@ -734,7 +735,7 @@ static int const MIN_USER_GENERATED_PHOTO_DIMENSION = 480;
                 
                 
                 viewReserved = 0;
-                
+                pickImage = nil;
                 [delegate.navi pushViewController:logBookTableView animated:YES];
                 
                 
@@ -806,9 +807,9 @@ static int const MIN_USER_GENERATED_PHOTO_DIMENSION = 480;
                 NSString *_lowPPO2 = lowppo2Field.text;
                 
                 NSString *_highPPO2 = highppo2Field.text;
-                
+                /*
                 fbLog = [NSString stringWithFormat:NSLocalizedString(@"CCRL", nil), dateStr,site,diveTime,gasType,startPressure,endPressure,_mixture,_oxygen,_nitrogen,_helium,_lowPPO2,_highPPO2,maxDepth,temperature,visibility,current,waves];
-                
+                */
                 dateField.text = nil;
                 siteField.text = nil;
                 wavesField.text = nil;
@@ -915,11 +916,11 @@ static int const MIN_USER_GENERATED_PHOTO_DIMENSION = 480;
                 NSString *_highPPO2 = highppo2Field.text;
                 
                 NSData *photoData = [NSData dataWithData:UIImagePNGRepresentation(selectedImg.image)];
-                
+                /*
                 fbLog = [NSString stringWithFormat:NSLocalizedString(@"CCRL", nil), dateStr,site,diveTime,gasType,startPressure,endPressure,_mixture,_oxygen,_nitrogen,_helium,_lowPPO2,_highPPO2,maxDepth,temperature,visibility,current,waves];
                 
                 fbPhotos = selectedImg.image;
-                
+                */
                 dateField.text = nil;
                 siteField.text = nil;
                 wavesField.text = nil;
@@ -969,7 +970,7 @@ static int const MIN_USER_GENERATED_PHOTO_DIMENSION = 480;
                 
                 
                 viewReserved = 0;
-                
+                pickImage = nil;
                 [delegate.navi pushViewController:logBookTableView animated:YES];
             }
             
@@ -1770,6 +1771,10 @@ static int const MIN_USER_GENERATED_PHOTO_DIMENSION = 480;
         
         aTextField.keyboardType = UIKeyboardTypeNumberPad;//UIKeyboardTypeNumbersAndPunctuation;
         aTextField.returnKeyType = UIReturnKeyDone;
+        UIToolbar *cancelBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+        UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(donePicking:)];
+        cancelBar.items = [NSArray arrayWithObject:right];
+        aTextField.inputAccessoryView = cancelBar;
         
     }else if (aTextField.tag == 112){
         
@@ -2036,7 +2041,7 @@ static int const MIN_USER_GENERATED_PHOTO_DIMENSION = 480;
     siteField.delegate = self;
     siteField.placeholder = NSLocalizedString(@"Site", nil);
     siteField.borderStyle = UITextBorderStyleRoundedRect;
-    //siteField.textAlignment = NSTextAlignmentCenter;
+    siteField.textAlignment = NSTextAlignmentCenter;
     siteField.adjustsFontSizeToFitWidth = YES;
     [scrollView addSubview:siteField];
     
@@ -2190,7 +2195,7 @@ static int const MIN_USER_GENERATED_PHOTO_DIMENSION = 480;
     siteField.delegate = self;
     siteField.placeholder = NSLocalizedString(@"Site", nil);
     siteField.borderStyle = UITextBorderStyleRoundedRect;
-    //siteField.textAlignment = NSTextAlignmentCenter;
+    siteField.textAlignment = NSTextAlignmentCenter;
     siteField.adjustsFontSizeToFitWidth = YES;
     [scrollView addSubview:siteField];
     
@@ -2382,7 +2387,7 @@ static int const MIN_USER_GENERATED_PHOTO_DIMENSION = 480;
     siteField.delegate = self;
     siteField.placeholder = NSLocalizedString(@"Site", nil);
     siteField.borderStyle = UITextBorderStyleRoundedRect;
-    //siteField.textAlignment = NSTextAlignmentCenter;
+    siteField.textAlignment = NSTextAlignmentCenter;
     siteField.adjustsFontSizeToFitWidth = YES;
     [scrollView addSubview:siteField];
     
@@ -2651,8 +2656,11 @@ static int const MIN_USER_GENERATED_PHOTO_DIMENSION = 480;
     temperField.text = nil;
     staPreField.text = nil;
     _endPreField.text = nil;
+    pickImage = nil;
+    /*
     fbLog = nil;
     fbFunction = nil;
+     */
     // Dispose of any resources that can be recreated.
 }
 
@@ -2665,7 +2673,7 @@ static int const MIN_USER_GENERATED_PHOTO_DIMENSION = 480;
     // Pass the selected object to the new view controller.
 }
 */
-
+/*
 #pragma FBFunctionDelegate
 - (void)shareUtility:(FBFunction *)shareUtility didFailWithError:(NSError *)error
 {
@@ -2681,7 +2689,7 @@ static int const MIN_USER_GENERATED_PHOTO_DIMENSION = 480;
 - (void)shareUtilityWillShare:(FBFunction *)shareUtility{}
 - (void)shareUtilityDidCompleteShare:(FBFunction *)shareUtility{}
 - (void)shareUtilityUserShouldLogin:(FBFunction *)shareUtility{}
-
+*/
 #pragma mark - PhotoImageDelegate
 
 - (void)imagePicker:(PhotoImagePicker *)imagePicker didSelectImage:(UIImage *)image

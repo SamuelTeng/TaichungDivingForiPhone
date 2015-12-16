@@ -46,12 +46,13 @@
     tracker.allowIDFACollection = YES;
     
     /*Setting up FB SDK*/
+    /*
     [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
-    
+    */
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     // Override point for customization after application launch.
-    
+    /*
     if (![FBSDKAccessToken currentAccessToken]) {
         
         self.loginViewController = [[FBLoginViewController alloc] init];
@@ -59,11 +60,11 @@
         
     }else{
         
-        self.mainViewController = [[MainViewController alloc] init];
-        self.navi = [[UINavigationController alloc] initWithRootViewController:self.mainViewController];
+        
     }
-    
-    
+    */
+    self.mainViewController = [[MainViewController alloc] init];
+    self.navi = [[UINavigationController alloc] initWithRootViewController:self.mainViewController];
     
     self.window.rootViewController = self.navi;
     
@@ -76,11 +77,12 @@
 }
 
 /*Setting up FB Token*/
+/*
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     return [[FBSDKApplicationDelegate sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
 }
-
+*/
 /*Called by Reachability whenever status changes.*/
 -(void)reachabilityChanged:(NSNotification *)note
 {

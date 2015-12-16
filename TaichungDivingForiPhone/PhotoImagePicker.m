@@ -26,6 +26,10 @@
 {
     _actionSheet.delegate = nil;
     _imagePickerController.delegate = nil;
+    _imagePickerController = nil;
+    _popoverController = nil;
+    _view = nil;
+    _viewController = nil;
 }
 
 #pragma mark - Properties
@@ -107,10 +111,10 @@
                 [popoverController presentPopoverFromRect:self.rect
                                                    inView:view
                                  permittedArrowDirections:UIPopoverArrowDirectionAny
-                                                 animated:YES];
+                                                 animated:NO];
             } else {
                 imagePickerController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-                [self.viewController presentViewController:imagePickerController animated:YES completion:NULL];
+                [self.viewController presentViewController:imagePickerController animated:NO completion:NULL];
             }
         }
     }
@@ -122,12 +126,13 @@
         didFinishPickingImage:(UIImage *)image
                   editingInfo:(NSDictionary *)editingInfo {
     NSAssert1(imagePickerController == self.imagePickerController, @"Unexpected imagePickerController: %@", imagePickerController);
-    [self.popoverController dismissPopoverAnimated:YES];
+    [self.popoverController dismissPopoverAnimated:NO];
     self.popoverController = nil;
-    [self.viewController dismissViewControllerAnimated:YES completion:NULL];
+    [self.viewController dismissViewControllerAnimated:NO completion:NULL];
     self.viewController = nil;
     self.imagePickerController = nil;
-    [self.delegate imagePicker:self didSelectImage:image];
+   UIImage *newImg = [self useImage:image];
+    [self.delegate imagePicker:self didSelectImage:newImg];
 }
 
 #pragma mark - Helper Methods
@@ -139,13 +144,23 @@
                                                     cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:
-                                  @"Take Photo",
-                                  @"Choose Existing",
+                                  NSLocalizedString(@"Camera", nil),
+                                  NSLocalizedString(@"Album", nil),
                                   nil];
     self.actionSheet = actionSheet;
     [actionSheet showInView:self.view ?: self.viewController.view];
 }
 
-
+-(UIImage *)useImage:(UIImage *)img
+{
+    CGSize newsize = CGSizeMake(320, 480);
+    UIGraphicsBeginImageContext(newsize);
+    [img drawInRect:CGRectMake(0, 0, newsize.width, newsize.height)];
+    UIImage *newImg = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    
+    return newImg;
+}
 
 @end

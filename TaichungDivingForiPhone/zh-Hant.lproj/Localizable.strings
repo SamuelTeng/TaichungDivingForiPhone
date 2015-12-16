@@ -25,6 +25,8 @@
 "Foreign" = "國外旅遊";
 "WithoutLogin" = "我不要登入";
 "Logout" = "登出";
+"Camera" = "拍攝照片";
+"Album" = "選擇照片";
 
 /*Tour Title*/
 "NoEa" = "東北角潛水旅遊";
@@ -58,8 +60,8 @@
 "Saved" = "儲存";
 "SavedM" = "請點選\"日誌首頁\"回到目錄";
 "Add" = "新增";
-"Facebook" = "分享到FB";
-"FacebookM" = "儲存和分享您的日誌到FB或只儲存您的日誌";
+"Facebook" = "分享到Facebook";
+"FacebookM" = "儲存和分享您的日誌到Facebook或只儲存您的日誌";
 "Post" = "分享";
 "Posted" = "日誌分享成功";
 "Successed" = "成功";

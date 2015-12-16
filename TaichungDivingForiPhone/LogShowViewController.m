@@ -13,6 +13,7 @@
 
 
 
+
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() ==UIUserInterfaceIdiomPhone)
 #define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
 
@@ -31,6 +32,7 @@
     AppDelegate *delegate;
     LogBookTableViewController *logTableview;
     LogDatabase *logDatabase;
+    
 }
 @property (nonatomic,strong) UITextView *log;
 @end
@@ -190,15 +192,20 @@
              UIImageView *photoImg = [[UIImageView alloc] initWithImage:[UIImage imageWithData:photos]];
             
             [photoImg setFrame:CGRectMake(self.view.center.x-20, 520, 80, 80)];
+            
+            
             /*
             UIButton *photoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
             [photoBtn setFrame:CGRectMake(self.view.center.x-20, 520, 80, 80)];
             [photoBtn setBackgroundImage:photoImg.image forState:UIControlStateNormal];
             [photoBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-            
-            //[photoImg addGestureRecognizer:singleTap];
             */
+            //[photoImg addGestureRecognizer:singleTap];
+            
             [logShowView addSubview:photoImg];
+            
+            
+            
             
              //[scrollBackground setFrame:logShowView.frame];
              //[self.view insertSubview:scrollBackground belowSubview:logShowView];
@@ -221,6 +228,7 @@
 
     
 }
+
 
 -(void)detectingDevice
 {
@@ -282,6 +290,8 @@
     
     logShowView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     
+        
+    
     
     [self detectingDevice];
     
@@ -317,6 +327,7 @@
     }
    */
     [self lodeLog];
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated

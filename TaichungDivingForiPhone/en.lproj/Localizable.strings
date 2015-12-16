@@ -26,6 +26,8 @@
 "Foreign" = "Foreign";
 "WithoutLogin" = "Continue without login";
 "Logout" = "Log Out";
+"Camera" = "Take Photo";
+"Album" = "Choose Existing";
 
 /*Tour Title*/
 "NoEa" = "North East";
@@ -59,8 +61,8 @@
 "Saved" = "Saved";
 "SavedM" = "Click \"Log Page\" To Return";
 "Add" = "Add";
-"Facebook" = "Post On FB";
-"FacebookM" = "Save & Post your Log on FB or Click Saved to just save the Log";
+"Facebook" = "Post On Post On Facebook";
+"FacebookM" = "Save & Post your Log on Facebook or Click Saved to just save the Log";
 "Post" = "Publish";
 "Posted" = "Log Successfully Posted";
 "Successed" = "Successed";

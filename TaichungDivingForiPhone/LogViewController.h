@@ -10,7 +10,7 @@
 #import "GAITrackedViewController.h"
 #import <FBSDKShareKit/FBSDKShareKit.h>
 
-@interface LogViewController : GAITrackedViewController<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
+@interface LogViewController : GAITrackedViewController<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UIActionSheetDelegate>
 @property (readonly , strong ,nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic,strong) UIScrollView *scrollView;
 
